@@ -11,3 +11,9 @@ sudo apt-get install oracle-java8-installer
 ## Also ensure your JAVA_HOME variable has been set in '/etc/environment':
 ## JAVA_HOME=/usr/lib/jvm/java-8-oracle
 
+
+##
+## NodeJS (V6) install
+sudo apt-get install curl
+curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
+sudo apt-get install -y node
