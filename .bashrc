@@ -126,3 +126,7 @@ fi
 if [ -f /opt/google-cloud-sdk/completion.bash.inc ]; then
   source '/opt/google-cloud-sdk/completion.bash.inc'
 fi
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="/home/giovanni/.sdkman"
+[[ -s "/home/giovanni/.sdkman/bin/sdkman-init.sh" ]] && source "/home/giovanni/.sdkman/bin/sdkman-init.sh"

@@ -1,7 +1,11 @@
 <scheme name="Peacocks In Space" version="142" parent_scheme="Default">
-  <option name="LINE_SPACING" value="1.4" />
-  <option name="EDITOR_FONT_SIZE" value="10" />
-  <option name="EDITOR_FONT_NAME" value="DejaVu Sans Mono" />
+  <option name="LINE_SPACING" value="1.2" />
+  <option name="EDITOR_FONT_SIZE" value="17" />
+  <option name="EDITOR_LIGATURES" value="true" />
+  <option name="CONSOLE_FONT_NAME" value="Meslo LG M DZ" />
+  <option name="CONSOLE_FONT_SIZE" value="18" />
+  <option name="CONSOLE_LINE_SPACING" value="1.1" />
+  <option name="EDITOR_FONT_NAME" value="Hack" />
   <colors>
     <option name="ADDED_LINES_COLOR" value="292d38" />
     <option name="ANNOTATIONS_COLOR" value="8b999f" />
@@ -127,20 +131,11 @@
         <option name="EFFECT_TYPE" value="5" />
       </value>
     </option>
-    <option name="COFFEESCRIPT.GLOBAL_VARIABLE">
-      <value>
-        <option name="FONT_TYPE" value="2" />
-        <option name="EFFECT_TYPE" value="1" />
-      </value>
-    </option>
     <option name="COFFEESCRIPT.JAVASCRIPT_CONTENT">
       <value>
         <option name="FOREGROUND" value="dee3ec" />
         <option name="EFFECT_TYPE" value="5" />
       </value>
-    </option>
-    <option name="COFFEESCRIPT.LOCAL_VARIABLE">
-      <value />
     </option>
     <option name="COFFEESCRIPT.PARAMETER">
       <value>
@@ -302,11 +297,6 @@
     <option name="CSS.TAG_NAME">
       <value>
         <option name="FOREGROUND" value="26a6a6" />
-      </value>
-    </option>
-    <option name="CSS.URL">
-      <value>
-        <option name="FOREGROUND" value="287bde" />
       </value>
     </option>
     <option name="CTRL_CLICKABLE">
@@ -597,48 +587,15 @@
         <option name="EFFECT_TYPE" value="1" />
       </value>
     </option>
-    <option name="HAML_CLASS">
-      <value>
-        <option name="FOREGROUND" value="e8bf6a" />
-      </value>
-    </option>
-    <option name="HAML_COMMENT">
-      <value>
-        <option name="FOREGROUND" value="bc9458" />
-        <option name="FONT_TYPE" value="2" />
-      </value>
-    </option>
-    <option name="HAML_FILTER">
-      <value />
-    </option>
-    <option name="HAML_FILTER_CONTENT">
-      <value />
-    </option>
-    <option name="HAML_ID">
-      <value>
-        <option name="FOREGROUND" value="e8bf6a" />
-      </value>
-    </option>
     <option name="HAML_RUBY_CODE">
       <value>
         <option name="BACKGROUND" value="2b303b" />
       </value>
     </option>
-    <option name="HAML_RUBY_START">
-      <value />
-    </option>
     <option name="HAML_TAG">
       <value>
         <option name="FOREGROUND" value="dee3ec" />
       </value>
-    </option>
-    <option name="HAML_TEXT">
-      <value>
-        <option name="EFFECT_TYPE" value="2" />
-      </value>
-    </option>
-    <option name="HAML_XHTML">
-      <value />
     </option>
     <option name="HTML_ATTRIBUTE_NAME">
       <value>
@@ -877,11 +834,6 @@
         <option name="FONT_TYPE" value="2" />
       </value>
     </option>
-    <option name="LESS_VARIABLE">
-      <value>
-        <option name="FOREGROUND" value="d0d0ff" />
-      </value>
-    </option>
     <option name="LINE_FULL_COVERAGE">
       <value>
         <option name="FOREGROUND" value="485848" />
@@ -903,11 +855,6 @@
     <option name="LOG_ERROR_OUTPUT">
       <value>
         <option name="FOREGROUND" value="ff6b68" />
-      </value>
-    </option>
-    <option name="LOG_WARNING_OUTPUT">
-      <value>
-        <option name="FOREGROUND" value="ffa500" />
       </value>
     </option>
     <option name="List/map to object conversion">
@@ -1015,6 +962,18 @@
         <option name="FOREGROUND" value="26a6a6" />
       </value>
     </option>
+    <option name="PHP_PARAMETER">
+      <value>
+        <option name="FOREGROUND" value="b1c484" />
+      </value>
+    </option>
+    <option name="PHP_SCRIPTING_BACKGROUND">
+      <value>
+        <option name="FOREGROUND" value="26a6a6" />
+        <option name="BACKGROUND" value="a0b14" />
+        <option name="EFFECT_TYPE" value="5" />
+      </value>
+    </option>
     <option name="PHP_TAG">
       <value>
         <option name="FOREGROUND" value="dee3ec" />
@@ -1100,11 +1059,6 @@
         <option name="FONT_TYPE" value="1" />
       </value>
     </option>
-    <option name="REST.BOLD">
-      <value>
-        <option name="FONT_TYPE" value="1" />
-      </value>
-    </option>
     <option name="REST.FIXED">
       <value>
         <option name="BACKGROUND" value="2b303b" />
@@ -1120,22 +1074,6 @@
         <option name="BACKGROUND" value="2b303b" />
       </value>
     </option>
-    <option name="REST.ITALIC">
-      <value>
-        <option name="FONT_TYPE" value="2" />
-      </value>
-    </option>
-    <option name="SASS_COMMENT">
-      <value>
-        <option name="FOREGROUND" value="bc9455" />
-        <option name="FONT_TYPE" value="2" />
-      </value>
-    </option>
-    <option name="SASS_MIXIN">
-      <value>
-        <option name="FOREGROUND" value="d0d0ff" />
-      </value>
-    </option>
     <option name="SASS_NUMBER">
       <value>
         <option name="FOREGROUND" value="a5c261" />
@@ -1145,11 +1083,6 @@
     <option name="SASS_STRING">
       <value>
         <option name="FOREGROUND" value="a5c261" />
-      </value>
-    </option>
-    <option name="SASS_VARIABLE">
-      <value>
-        <option name="FOREGROUND" value="6d9cbe" />
       </value>
     </option>
     <option name="SEARCH_RESULT_ATTRIBUTES">
@@ -1230,12 +1163,6 @@
         <option name="FOREGROUND" value="bcd42a" />
       </value>
     </option>
-    <option name="TAPESTRY_COMPONENT_PARAMATER">
-      <value>
-        <option name="FOREGROUND" value="d0d0ff" />
-        <option name="FONT_TYPE" value="1" />
-      </value>
-    </option>
     <option name="TAPESTRY_COMPONENT_TAG">
       <value>
         <option name="FOREGROUND" value="26a6a6" />
@@ -1250,7 +1177,7 @@
     <option name="TEXT">
       <value>
         <option name="FOREGROUND" value="dee3ec" />
-        <option name="BACKGROUND" value="2b303b" />
+        <option name="BACKGROUND" value="7070f" />
         <option name="EFFECT_TYPE" value="5" />
       </value>
     </option>
@@ -1301,12 +1228,6 @@
         <option name="EFFECT_TYPE" value="1" />
       </value>
     </option>
-    <option name="VELOCITY_DIRECTIVE">
-      <value>
-        <option name="FOREGROUND" value="e8bf6a" />
-        <option name="FONT_TYPE" value="1" />
-      </value>
-    </option>
     <option name="VELOCITY_KEYWORD">
       <value>
         <option name="FOREGROUND" value="26a6a6" />
@@ -1316,11 +1237,6 @@
     <option name="VELOCITY_NUMBER">
       <value>
         <option name="FOREGROUND" value="bcd42a" />
-      </value>
-    </option>
-    <option name="VELOCITY_REFERENCE">
-      <value>
-        <option name="FOREGROUND" value="d0d0ff" />
       </value>
     </option>
     <option name="VELOCITY_SCRIPTING_BACKGROUND">
@@ -1341,6 +1257,7 @@
     </option>
     <option name="WARNING_ATTRIBUTES">
       <value>
+        <option name="BACKGROUND" value="3c3f41" />
         <option name="ERROR_STRIPE_COLOR" value="8c8c00" />
         <option name="EFFECT_TYPE" value="2" />
       </value>
@@ -1476,18 +1393,6 @@
       <value>
         <option name="FOREGROUND" value="a5c261" />
         <option name="EFFECT_TYPE" value="2" />
-      </value>
-    </option>
-    <option name="osmorc.attributeName">
-      <value>
-        <option name="FOREGROUND" value="d0d0ff" />
-        <option name="FONT_TYPE" value="1" />
-      </value>
-    </option>
-    <option name="osmorc.directiveName">
-      <value>
-        <option name="FOREGROUND" value="d0d0ff" />
-        <option name="FONT_TYPE" value="1" />
       </value>
     </option>
     <option name="osmorc.headerName">
