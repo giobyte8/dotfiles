@@ -130,3 +130,7 @@ fi
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="/home/giovanni/.sdkman"
 [[ -s "/home/giovanni/.sdkman/bin/sdkman-init.sh" ]] && source "/home/giovanni/.sdkman/bin/sdkman-init.sh"
+
+# tabtab source for electron-forge package
+# uninstall by removing these lines or running `tabtab uninstall electron-forge`
+[ -f /usr/lib/node_modules/electron-forge/node_modules/tabtab/.completions/electron-forge.bash ] && . /usr/lib/node_modules/electron-forge/node_modules/tabtab/.completions/electron-forge.bash
