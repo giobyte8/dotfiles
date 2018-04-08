@@ -1,0 +1,8 @@
+- Original breeze values:
+ - Active title bar: 71, 80, 87
+ - Active title bar text: 252, 252, 252
+
+- Custom setup
+ - Active title bar: 239, 240, 241
+ - Active title bar text: 71, 80, 87
+
