@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+#
+# Checks if spotify is running and prints the
+# play char or nothing
+
+IS_RUNNING="$(~/.config/polybar/scripts/spotify/is_running)"
+if [ "$IS_RUNNING" != '' ]
+then
+    echo ""
+else
+    echo ""
+fi

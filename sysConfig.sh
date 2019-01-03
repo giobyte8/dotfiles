@@ -7,7 +7,7 @@
 # Install java from webupd8team
 sudo add-apt-repository ppa:webupd8team/java
 sudo apt-get update
-sudo apt-get install oracle-java8-installer
+sudo apt-get install oracle-java9-installer
 
 ## TODO: Write bash code to execute this task
 ## Also ensure your JAVA_HOME variable has been set in '/etc/environment':
@@ -17,5 +17,5 @@ sudo apt-get install oracle-java8-installer
 ##
 ## NodeJS (V6) install
 sudo apt-get install curl
-curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
+curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
 sudo apt-get install -y nodejs

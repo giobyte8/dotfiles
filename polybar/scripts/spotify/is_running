@@ -1,0 +1,10 @@
+#!/bin/bash
+#
+# Check if spotify is running by geting its pid
+
+SPOTIFY_PID="$(pidof -s spotify || pidof -s .spotify-wrapped)"
+if [[ -z "$SPOTIFY_PID" ]]; then
+    echo ""
+else
+    echo "Is running"
+fi
