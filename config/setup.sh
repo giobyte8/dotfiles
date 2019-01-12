@@ -27,7 +27,7 @@ function backup_current_config {
             fi
       
             echo "Symlinking: $file"
-            ln -s "./$file" $target
+            ln -s "$(pwd)/$file" $target
         fi
     done
 }
