@@ -25,6 +25,7 @@ echo "Fonts installed correctly"
 
 #
 # Now go a head to install powerline fonts
+echo ""
 echo "Now lets install Powerline fonts"
 git clone https://github.com/powerline/fonts.git powerline_fonts --depth=1
 cd powerline_fonts
