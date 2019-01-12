@@ -11,7 +11,7 @@ mkdir -p $fonts_dir
 
 for font in *; do
     if [ ! "$font" = "setup.sh" ]; then
-        cp -n $font "$fonts_dir/$font"
+        cp -n "$font" "$fonts_dir/$font"
     fi
 done
 
