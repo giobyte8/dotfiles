@@ -8,8 +8,9 @@
 #
 
 #
-# Backup files from current config
-function backup_current_config {
+# Backup files from current config and symlink
+# to this setup
+function backup_symlink_config {
     if [ ! -d "../backups/config" ]; then
         mkdir -p ../backups/config
     fi
@@ -34,6 +35,7 @@ function backup_current_config {
 
 #
 # Setup fonts
+# TODO Should I move this to themming section?
 function setup_fonts {
     echo "Setting up fonts for your system UIs"
     kwriteconfig5 --file kdeglobals --group General --key font "Ubuntu,12,-1,5,50,0,0,0,0,0,Regular"
@@ -44,5 +46,13 @@ function setup_fonts {
     kwriteconfig5 --file kdeglobals --group WM --key activeFont "Ubuntu,12,-1,5,50,0,0,0,0,0,Regular"
 }
 
-# backup_current_config
-setup_fonts
+#
+# Setup screen locking
+function screen_locking {
+    echo "Setting up screen locking"
+    kwriteconfig5 --file kscreenlockerrc --group Daemon --key Timeout 45
+}
+
+# backup_symlink_config
+# setup_fonts
+screen_locking
