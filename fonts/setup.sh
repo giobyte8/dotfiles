@@ -5,16 +5,20 @@
 #
 
 echo "Installing fonts..."
+
+fonts_dir="$HOME/.local/share/fonts"
+mkdir -p $fonts_dir
+
 for font in *; do
-    if [ ! $font = "setup.sh" ]; then
-        cp -n $font "$HOME/.local/share/fonts/$font"
+    if [ ! "$font" = "setup.sh" ]; then
+        cp -n $font "$fonts_dir/$font"
     fi
 done
 
 # Reset font cache
 if which fc-cache >/dev/null 2>&1 ; then
     echo "Resetting font cache, this may take a moment..."
-    fc-cache -f "$HOME/.local/share/fonts"
+    fc-cache -f "$fonts_dir"
 fi
 
 echo "Fonts installed correctly"
