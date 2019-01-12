@@ -23,7 +23,7 @@ function backup_current_config {
             if [ -f "$target" ]; then
                 backup="../backups/config/$file"
                 cp $target $backup
-                rm target
+                rm $target
             fi
       
             echo "Symlinking: $file"
