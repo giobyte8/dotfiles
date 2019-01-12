@@ -1,7 +1,7 @@
 #!/bin/bash
 #
-# Symlink the files to current user's '~/.config/' folder and
-# backups original files into '../backups/config/*'
+# Symlink the config files to current user's '~/.config/'
+# folder and backups original files into '../backups/config/*'
 #
 # @author Giovanni Aguirre
 # @since January 12, 2019
@@ -32,5 +32,9 @@ function backup_current_config {
     done
 }
 
-backup_current_config
+# backup_current_config
+
+##
+## Setup fonts
+kwriteconfig5 --file kdeglobals --group General --key font "Ubuntu,12,-1,5,50,0,0,0,0,0,Regular"
 
