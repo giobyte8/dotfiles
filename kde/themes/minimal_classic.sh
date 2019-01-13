@@ -55,7 +55,7 @@ function _restore_or_backup {
     fi
 }
 
-function _konsole {
+function _konsolerc {
     #_restore_or_backup konsolerc
 
     kwriteconfig5 --file konsolerc --group "DownloadDialog Settings" --key "Height 1080" 684
@@ -73,6 +73,22 @@ function _konsole {
     kwriteconfig5 --file konsolerc --group TabBar --key ShowQuickButtons true
     kwriteconfig5 --file konsolerc --group TabBar --key TabBarPosition Top
     kwriteconfig5 --file konsolerc --group TabBar --key TabBarVisibility ShowTabBarWhenNeeded
+}
+
+function _konsole_profile {
+    scheme="./local/share/konsole/MonaLisa.colorscheme"
+    profile"./local/share/konsole/MinimalClassic.profile"
+
+    cp "$scheme" "$HOME/.local/share/konsole/"
+    cp "$profile" "$HOME/.local/share/konsole/"
+
+    kwriteconfig5 --file konsolerc --group "Desktop Entry" --key DefaultProfile MinimalClassic.profile
+    kwriteconfig5 --file konsolerc --group "Favorite Profiles" --key MinimalClassic.profile
+}
+
+function _konsole {
+    _konsolerc
+    _konsole_profile
 }
 
 _konsole
