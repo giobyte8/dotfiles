@@ -77,13 +77,13 @@ function _konsolerc {
 
 function _konsole_profile {
     scheme="./local/share/konsole/MonaLisa.colorscheme"
-    profile"./local/share/konsole/MinimalClassic.profile"
+    profile="./local/share/konsole/MinimalClassic.profile"
 
     cp "$scheme" "$HOME/.local/share/konsole/"
     cp "$profile" "$HOME/.local/share/konsole/"
 
     kwriteconfig5 --file konsolerc --group "Desktop Entry" --key DefaultProfile MinimalClassic.profile
-    kwriteconfig5 --file konsolerc --group "Favorite Profiles" --key MinimalClassic.profile
+    kwriteconfig5 --file konsolerc --group "Favorite Profiles" --key Favorites MinimalClassic.profile
 }
 
 function _konsole {
