@@ -21,7 +21,7 @@ function setup_bashrc {
         ensure_backup_dir
         backup="./backups/bashrc"
         cp $target_bash $backup
-        rm $target
+        rm $target_bash
     fi
 
     echo "Symlinking .bashrc to: $target_bash"
