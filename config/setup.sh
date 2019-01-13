@@ -20,7 +20,6 @@ function backup_symlink_config {
             
             # Check if file exists on active config
             target="$HOME/.config/$file"
-            backup="../backups/config/$file"
             if [ -f "$target" ]; then
                 backup="../backups/config/$file"
                 cp $target $backup
