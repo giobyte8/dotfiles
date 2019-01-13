@@ -24,9 +24,33 @@ function setup_bashrc {
         rm $target_bash
     fi
 
-    echo "Symlinking .bashrc to: $target_bash"
+    echo "Symlinking .bashrc"
     ln -s "$(pwd)/bashrc" $target_bash
     source $target_bash
 }
 
-setup_bashrc
+function setup_vimrc {
+    target_vim="$HOME/.vimrc"
+
+    # Install Vundle
+    git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+
+    # Backup before setup symlink
+    if [ -f "$target_vim" ]; then
+        echo "Backing up original .vimrc"
+
+        ensure_backup_dir
+        backup="./backups/vimrc"
+        cp $target_vim $backup
+        rm $target_vim
+    fi
+
+    echo "Symlinking .vimrc"
+    ln -s "$(pwd)/vimrc" $target_vim
+
+    # Install all vim plugins
+    vim +PluginInstall +qall
+}
+
+# setup_bashrc
+setup_vimrc
