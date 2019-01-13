@@ -12,6 +12,9 @@ function ensure_backup_dir {
 }
 
 function setup_bashrc {
+    echo ""
+    echo "Setting up bashrc"
+
     target_bash="$HOME/.bashrc"
     
     # Backup before setup symlink
@@ -30,6 +33,9 @@ function setup_bashrc {
 }
 
 function setup_vimrc {
+    echo ""
+    echo "Setting up vimrc and Vundle"
+
     target_vim="$HOME/.vimrc"
 
     # Install Vundle
@@ -52,5 +58,5 @@ function setup_vimrc {
     vim +PluginInstall +qall
 }
 
-# setup_bashrc
+setup_bashrc
 setup_vimrc
