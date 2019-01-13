@@ -98,6 +98,7 @@ function _global_shortcuts {
 
     kwriteconfig5 --file kglobalshortcutsrc --group kwin --key "Window Quick Tile Bottom" "none,none,Quick Tile Window to the Bottom"
     kwriteconfig5 --file kglobalshortcutsrc --group kwin --key "Window Quick Tile Top" "none,none,Quick Tile Window to the Top"
+    kwriteconfig5 --file kglobalshortcutsrc --group kwin --key "Switch Window Up" "Meta+Alt+Up,Meta+Alt+Up,Switch to Window Above"
 
     kwriteconfig5 --file kglobalshortcutsrc --group kwin --key "Window Maximize" "Meta+Up,Meta+PgUp,Maximize Window"
     kwriteconfig5 --file kglobalshortcutsrc --group kwin --key "Window Maximize Vertical" "Meta+Alt+Up,none,Maximize Window Vertically"
