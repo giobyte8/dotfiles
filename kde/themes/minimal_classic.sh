@@ -47,7 +47,7 @@ function _restore_config_file {
 # backups dir
 function _restore_or_backup {
     if [ -f "$BACKUPS_PATH/$1" ]; then
-        _restore_or_backup $1
+        _restore_config_file $1
     else
         if [ -f "$CONFIG_PATH/$1" ]; then
             _backup_config_file $1
@@ -87,8 +87,33 @@ function _konsole_profile {
 }
 
 function _konsole {
+    printf "\nSetting up konsole\n"
     _konsolerc
     _konsole_profile
 }
 
+function _global_shortcuts {
+    printf "\nSetting up global shortcuts\n"
+    _restore_or_backup kglobalshortcutsrc
+}
+
+function _screen_locking {
+    printf "\nSetting up screen locking\n"
+    _restore_or_backup kscreenlockerrc
+    kwriteconfig5 --file kscreenlockerrc --group Daemon --key Timeout 45
+}
+
+function setup_fonts {
+    printf "\nSetting up fonts for your system UIs\n"
+    kwriteconfig5 --file kdeglobals --group General --key font "Ubuntu,12,-1,5,50,0,0,0,0,0,Regular"
+    kwriteconfig5 --file kdeglobals --group General --key fixed "Hack [simp],11,-1,5,50,0,0,0,0,0,Regular"
+    kwriteconfig5 --file kdeglobals --group General --key smallestReadableFont "Roboto,11,-1,5,50,0,0,0,0,0,Regular"
+    kwriteconfig5 --file kdeglobals --group General --key toolBarFont "Ubuntu,12,-1,5,50,0,0,0,0,0,Regular"
+    kwriteconfig5 --file kdeglobals --group General --key menuFont "Ubuntu,12,-1,5,50,0,0,0,0,0,Regular"
+    kwriteconfig5 --file kdeglobals --group WM --key activeFont "Ubuntu,12,-1,5,50,0,0,0,0,0,Regular"
+}
+
+_dependencies
 _konsole
+_global_shortcuts
+_screen_locking

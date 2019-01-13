@@ -6,8 +6,7 @@
 #
 
 function check_dependencies {
-    echo ""
-    echo "Verifying dependencies"
+    printf "\nVerifying dependencies\n"
 
     sudo apt-get update
     sudo apt-get upgrade -y
@@ -21,8 +20,7 @@ function ensure_backup_dir {
 }
 
 function setup_bashrc {
-    echo ""
-    echo "Setting up bashrc"
+    printf "\nSetting up bashrc\n"
 
     target_bash="$HOME/.bashrc"
     
@@ -42,8 +40,7 @@ function setup_bashrc {
 }
 
 function setup_vimrc {
-    echo ""
-    echo "Setting up vimrc and Vundle"
+    printf "\nSetting up vimrc and Vundle\n"
 
     target_vim="$HOME/.vimrc"
 
