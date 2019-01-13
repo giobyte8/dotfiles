@@ -56,9 +56,23 @@ function _restore_or_backup {
 }
 
 function _konsole {
-    _restore_or_backup konsolerc
+    #_restore_or_backup konsolerc
 
-    
+    kwriteconfig5 --file konsolerc --group "DownloadDialog Settings" --key "Height 1080" 684
+    kwriteconfig5 --file konsolerc --group "DownloadDialog Settings" --key "Width 1920" 936
+
+    kwriteconfig5 --file konsolerc --group KonsoleWindow --key AllowMenuAccelerators true
+    kwriteconfig5 --file konsolerc --group KonsoleWindow --key ShowAppNameOnTitleBar false
+    kwriteconfig5 --file konsolerc --group KonsoleWindow --key ShowMenuBarByDefault false
+
+    kwriteconfig5 --file konsolerc --group MainWindow --key "Height 1080" 898
+    kwriteconfig5 --file konsolerc --group MainWindow --key "Width 1920" 958
+    kwriteconfig5 --file konsolerc --group MainWindow --key MenuBar Disabled
+    kwriteconfig5 --file konsolerc --group MainWindow --key ToolBarsMovable Disabled
+
+    kwriteconfig5 --file konsolerc --group TabBar --key ShowQuickButtons true
+    kwriteconfig5 --file konsolerc --group TabBar --key TabBarPosition Top
+    kwriteconfig5 --file konsolerc --group TabBar --key TabBarVisibility ShowTabBarWhenNeeded
 }
 
 _konsole
