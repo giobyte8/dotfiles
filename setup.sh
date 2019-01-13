@@ -10,6 +10,7 @@ function check_dependencies {
     echo "Verifying dependencies"
 
     sudo apt-get update
+    sudo apt-get upgrade -y
     sudo apt-get install -y git vim
 }
 
