@@ -133,4 +133,4 @@ export SDKMAN_DIR="/home/giovanni/.sdkman"
 
 # tabtab source for electron-forge package
 # uninstall by removing these lines or running `tabtab uninstall electron-forge`
-[ -f /usr/lib/node_modules/electron-forge/node_modules/tabtab/.completions/electron-forge.bash ] && . /usr/lib/node_modules/electron-forge/node_modules/tabtab/.completions/electron-forge.bash
+# [ -f /usr/lib/node_modules/electron-forge/node_modules/tabtab/.completions/electron-forge.bash ] && . /usr/lib/node_modules/electron-forge/node_modules/tabtab/.completions/electron-forge.bash
