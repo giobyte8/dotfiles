@@ -15,7 +15,7 @@ function setup_bashrc {
     target_bash="$HOME/.bashrc"
     
     # Backup before setup symlink
-    if [ -f "$target_bash"]; then
+    if [ -f "$target_bash" ]; then
         echo "Backing up orginal .bashrc"
 
         ensure_backup_dir
