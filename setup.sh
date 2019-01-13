@@ -5,6 +5,14 @@
 # .vimrc
 #
 
+function check_dependencies {
+    echo ""
+    echo "Verifying dependencies"
+
+    sudo apt-get update
+    sudo apt-get install -y git vim
+}
+
 function ensure_backup_dir {
     if [ ! -d "./backups/config" ]; then
         mkdir -p ./backups/config
@@ -58,5 +66,6 @@ function setup_vimrc {
     vim +PluginInstall +qall
 }
 
+check_dependencies
 setup_bashrc
 setup_vimrc

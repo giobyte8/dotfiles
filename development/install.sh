@@ -5,6 +5,9 @@
 #
 
 function basic_tools {
+    echo "Verifying basic tools"
+
+    sudo apt-get update
     sudo apt-get install -y \
         curl \
         zip \
@@ -15,10 +18,11 @@ function basic_tools {
 }
 
 function node_js {
+    echo ""
     echo "Installing node and npm"
+
     curl -sL https://deb.nodesource.com/setup_10.x | sudo bash -
     sudo apt-get install -y nodejs
-
     sudo npm install -g http-server
 }
 
@@ -60,13 +64,16 @@ function docker {
 }
 
 function python {
+    echo ""
+    echo "Installing python pip 3"
+
     sudo apt-get install -y python3-pip
     pip3 install virtualenv
 }
 
-# basic_tools
+basic_tools
 python
-# node_js
-# sdk_man_and_related
-# docker
-sudo apt autoremove
+node_js
+sdk_man_and_related
+docker
+sudo apt autoremove -y
