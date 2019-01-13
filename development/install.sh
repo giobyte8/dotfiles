@@ -41,7 +41,7 @@ function docker {
 
     # Clean up prev versions and setup dependencies
     sudo apt-get remove docker docker-engine docker.io containerd runc
-    sudo apt-get install \
+    sudo apt-get install -y \
         apt-transport-https \
         ca-certificates \
         software-properties-common
@@ -55,11 +55,17 @@ function docker {
 
     # install
     sudo apt-get update
-    sudo apt-get install docker-ce
+    sudo apt-get install -y docker-ce
     sudo usermod -aG docker $USER
 }
 
-basic_tools
-node_js
-sdk_man_and_related
-docker
+function python {
+    sudo apt-get install -y python3-pip
+    pip3 install virtualenv
+}
+
+# basic_tools
+python
+# node_js
+# sdk_man_and_related
+# docker
