@@ -95,6 +95,23 @@ function _konsole {
 function _global_shortcuts {
     printf "\nSetting up global shortcuts\n"
     _restore_or_backup kglobalshortcutsrc
+
+    kwriteconfig5 --file kglobalshortcutsrc --group kwin --key "Window Maximize" "Meta+Up,Meta+PgUp,Maximize Window"
+    kwriteconfig5 --file kglobalshortcutsrc --group kwin --key "Window Maximize Vertical" "Meta+Alt+Up,none,Maximize Window Vertically"
+    kwriteconfig5 --file kglobalshortcutsrc --group kwin --key "Window Minimize" "Meta+Down,Meta+PgDown,Minimize Window"
+    
+    kwriteconfig5 --file kglobalshortcutsrc --group kwin --key "Switch to Next Desktop" "Ctrl+Alt+Right,none,Switch to Next Desktop"
+    kwriteconfig5 --file kglobalshortcutsrc --group kwin --key "Switch to Previous Desktop" "Ctrl+Alt+Left,none,Switch to Previous Desktop"
+
+    kwriteconfig5 --file kglobalshortcutsrc --group kwin --key "Window One Desktop Down" "Ctrl+Alt+Shift+Down,none,Window One Desktop Down"
+    kwriteconfig5 --file kglobalshortcutsrc --group kwin --key "Window One Desktop Up" "Ctrl+Alt+Shift+Up,none,Window One Desktop Up"
+    kwriteconfig5 --file kglobalshortcutsrc --group kwin --key "Window One Desktop to the Left" "Ctrl+Alt+Shift+Left,none,Window One Desktop to the Left"
+    kwriteconfig5 --file kglobalshortcutsrc --group kwin --key "Window One Desktop to the Right" "Ctrl+Alt+Shift+Right,none,Window One Desktop to the Right"
+
+    kwriteconfig5 --file kglobalshortcutsrc --group kwin --key "view_actual_size" "Meta+0,Meta+0,Actual Size"
+    kwriteconfig5 --file kglobalshortcutsrc --group kwin --key "view_zoom_in" "Meta+=,Meta+=,Zoom In"
+    kwriteconfig5 --file kglobalshortcutsrc --group kwin --key "view_zoom_out" "Meta+-,Meta+-,Zoom Out"
+    
 }
 
 function _screen_locking {
@@ -105,6 +122,8 @@ function _screen_locking {
 
 function setup_fonts {
     printf "\nSetting up fonts for your system UIs\n"
+    _restore_or_backup kdeglobals
+    
     kwriteconfig5 --file kdeglobals --group General --key font "Ubuntu,12,-1,5,50,0,0,0,0,0,Regular"
     kwriteconfig5 --file kdeglobals --group General --key fixed "Hack [simp],11,-1,5,50,0,0,0,0,0,Regular"
     kwriteconfig5 --file kdeglobals --group General --key smallestReadableFont "Roboto,11,-1,5,50,0,0,0,0,0,Regular"
