@@ -69,3 +69,4 @@ python
 # node_js
 # sdk_man_and_related
 # docker
+sudo apt autoremove
