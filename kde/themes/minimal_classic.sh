@@ -124,7 +124,7 @@ function _screen_locking {
     kwriteconfig5 --file kscreenlockerrc --group Daemon --key Timeout 45
 }
 
-function setup_fonts {
+function _setup_fonts {
     printf "\nSetting up fonts for your system UIs\n"
     _restore_or_backup kdeglobals
     
@@ -136,7 +136,63 @@ function setup_fonts {
     kwriteconfig5 --file kdeglobals --group WM --key activeFont "Ubuntu,12,-1,5,50,0,0,0,0,0,Regular"
 }
 
-_dependencies
-_konsole
-_global_shortcuts
-_screen_locking
+function _dolphin {
+    printf "\nSetting up dolphin layouts\n"
+    _restore_or_backup dolphinrc
+
+    kwriteconfig5 --file dolphinrc --group CompactMode --key fontWeight 50
+    kwriteconfig5 --file dolphinrc --group CompactMode --key MaximumTextWidthIndex 2
+    kwriteconfig5 --file dolphinrc --group CompactMode --key PreviewSize 22
+
+    kwriteconfig5 --file dolphinrc --group "Desktop Entry" --key DefaultProfile MinimalClassic.profile
+
+    kwriteconfig5 --file dolphinrc --group DetailsMode --key FontWeight 50
+
+    kwriteconfig5 --file dolphinrc --group FileMetaDataConfigurationDialog --key "Height 1080" 308
+    kwriteconfig5 --file dolphinrc --group FileMetaDataConfigurationDialog --key "Width 1920" 419
+
+    kwriteconfig5 --file dolphinrc --group General --key BrowseThroughArchives true
+    kwriteconfig5 --file dolphinrc --group General --key ShowSelectionToggle false
+    kwriteconfig5 --file dolphinrc --group General --key Version 200
+    kwriteconfig5 --file dolphinrc --group General --key ViewPropsTimestamp "2018,4,6,21,11,20"
+
+    kwriteconfig5 --file dolphinrc --group IconsMode --key FontWeight 50
+    kwriteconfig5 --file dolphinrc --group IconsMode --key IconSize 80
+    kwriteconfig5 --file dolphinrc --group IconsMode --key MaximumTextLines 1
+    kwriteconfig5 --file dolphinrc --group IconsMode --key PreviewSize 80
+
+    kwriteconfig5 --file dolphinrc --group InformationPanel --key dateFormat ShortFormat
+
+    kwriteconfig5 --file dolphinrc --group KPropertiesDialog --key "Height 1080" 540
+    kwriteconfig5 --file dolphinrc --group KPropertiesDialog --key "Width 1920" 513
+
+    kwriteconfig5 --file dolphinrc --group MainWindow --key "Height 1080" 665
+    kwriteconfig5 --file dolphinrc --group MainWindow --key "Width 1920" 1034
+    kwriteconfig5 --file dolphinrc --group MainWindow --key MenuBar Disabled
+    kwriteconfig5 --file dolphinrc --group MainWindow --key ToolBarsMovable Disabled
+
+    kwriteconfig5 --file dolphinrc --group MainWindow --group "Toolbar mainToolBar" --key IconSize 24
+    kwriteconfig5 --file dolphinrc --group MainWindow --group "Toolbar mainToolBar" --key ToolButtonStyle IconOnly
+
+    kwriteconfig5 --file dolphinrc --group "Open-with settings" --key CompletionMode 1
+
+    kwriteconfig5 --file dolphinrc --group PlacesPanel --key IconSize 16
+
+    kwriteconfig5 --file dolphinrc --group PreviewSettings --key Plugins "directorythumbnail,imagethumbnail,jpegthumbnail,svgthumbnail"
+
+    kwriteconfig5 --file dolphinrc --group SettingsDialog --key "Height 1080" 458
+    kwriteconfig5 --file dolphinrc --group SettingsDialog --key "Width 1920" 630
+
+    kwriteconfig5 --file dolphinrc --group "Toolbar mainToolBar" --key IconSize 24
+    kwriteconfig5 --file dolphinrc --group "Toolbar mainToolBar" --key ToolButtonStyle IconOnly
+
+    kwriteconfig5 --file dolphinrc --group ViewPropertiesDialog "Height 1080" 466
+    kwriteconfig5 --file dolphinrc --group ViewPropertiesDialog "Width 1920" 419
+}
+
+# _dependencies
+# _konsole
+# _global_shortcuts
+# _screen_locking
+# _setup_fonts
+_dolphin
