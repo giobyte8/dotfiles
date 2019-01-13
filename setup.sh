@@ -26,6 +26,7 @@ function setup_bashrc {
 
     echo "Symlinking .bashrc to: $target_bash"
     ln -s "$(pwd)/bashrc" $target_bash
+    source $target_bash
 }
 
 setup_bashrc
