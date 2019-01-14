@@ -291,10 +291,39 @@ function _gwenview {
     kwriteconfig5 --file gwenviewrc --group ThumbnailView --key ThumbnailSize 256
 }
 
+function _kwin {
+    printf "\nSetting up Kwin\n"
+    _rest_or_bkp_config kwinrc
+
+    kwriteconfig5 --file kwinrc --group Desktops --key Number 4
+    kwriteconfig5 --file kwinrc --group Desktops --key Rows 2
+
+    kwriteconfig5 --file kwinrc --group Effect-Blur --key BlurStrength 6
+
+    kwriteconfig5 --file kwinrc --group Plugins --key blurEnabled true
+    kwriteconfig5 --file kwinrc --group Plugins --key coverswitchEnabled true
+    kwriteconfig5 --file kwinrc --group Plugins --key cubeslideEnabled false
+    kwriteconfig5 --file kwinrc --group Plugins --key desktopchangeosdEnabled false
+    kwriteconfig5 --file kwinrc --group Plugins --key flipswitchEnabled true
+    kwriteconfig5 --file kwinrc --group Plugins --key highlightwindowEnabled true
+    kwriteconfig5 --file kwinrc --group Plugins --key kwin4_effect_fadedesktopEnabled false
+    kwriteconfig5 --file kwinrc --group Plugins --key kwin4_effect_yetanothermagiclampEnabled true
+    kwriteconfig5 --file kwinrc --group Plugins --key minimizeanimationEnabled false
+    kwriteconfig5 --file kwinrc --group Plugins --key slideEnabled true
+    kwriteconfig5 --file kwinrc --group Plugins --key windowgeometryEnabled false
+    kwriteconfig5 --file kwinrc --group Plugins --key wobblywindowsEnabled true
+
+    kwriteconfig5 --file kwinrc --group org.kde.kdecoration2 --key BorderSize Normal
+    kwriteconfig5 --file kwinrc --group org.kde.kdecoration2 --key ButtonsOnLeft F
+    kwriteconfig5 --file kwinrc --group org.kde.kdecoration2 --key ButtonsOnRight IX
+    kwriteconfig5 --file kwinrc --group org.kde.kdecoration2 --key CloseOnDoubleClickOnMenu false
+}
+
 # _dependencies
 # _konsole
 # _global_shortcuts
 # _screen_locking
 # _setup_fonts
 # _dolphin
-_gwenview
+# _gwenview
+_kwin
