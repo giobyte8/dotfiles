@@ -8,19 +8,23 @@
 #
 
 CONFIG_PATH="$HOME/.config"
-BACKUPS_PATH="../../backups/config"
+LOCAL_SH_PATH="$HOME/.local/share"
+
+BKP_PATH="../../backups"
+BKP_CONFIG_PATH="$BKP_PATH/config"
+BKP_LOCAL_SH_PATH="$BKP_PATH/local/share"
 
 function _dependencies {
     printf "\nValidating dependencies\n"
 }
 
-function _backup_config_file {
-    if [ ! -d "$BACKUPS_PATH" ]; then
-        mkdir -p "$BACKUPS_PATH"
+function _bkp_config_file {
+    if [ ! -d "$BKP_CONFIG_PATH" ]; then
+        mkdir -p "$BKP_CONFIG_PATH"
     fi
 
     origin="$CONFIG_PATH/$1"
-    target="$BACKUPS_PATH/$1"
+    target="$BKP_CONFIG_PATH/$1"
     if [ -f "$origin" ]; then
         echo "Backing up $origin to $target"
         cp $origin $target
@@ -29,34 +33,34 @@ function _backup_config_file {
     fi
 }
 
-function _restore_config_file {
-    origin="$BACKUPS_PATH/$1"
+function _rest_config_file {
+    origin="$BKP_CONFIG_PATH/$1"
     target="$CONFIG_PATH/$1"
 
     if [ -f "$origin" ]; then
         echo "Restoring $origin to $target"
         cp "$origin" "$target"
     else
-        echo "$1 file not found on $BACKUPS_PATH"
+        echo "$1 file not found on $BKP_CONFIG_PATH"
     fi
 }
 
 #
-# If file exists in backups dir, restore it to config dir,
-# otherwise, if file exists in config dir, backup it to
-# backups dir
-function _restore_or_backup {
-    if [ -f "$BACKUPS_PATH/$1" ]; then
-        _restore_config_file $1
+# If file exists in config backups dir, restore it to
+# user's config dir, otherwise, if file exists in
+# users config dir, backup it to backups dir
+function _rest_or_bkp_config {
+    if [ -f "$BKP_CONFIG_PATH/$1" ]; then
+        _rest_config_file $1
     else
         if [ -f "$CONFIG_PATH/$1" ]; then
-            _backup_config_file $1
+            _bkp_config_file $1
         fi
     fi
 }
 
 function _konsolerc {
-    #_restore_or_backup konsolerc
+    _rest_or_bkp_config konsolerc
 
     kwriteconfig5 --file konsolerc --group "DownloadDialog Settings" --key "Height 1080" 684
     kwriteconfig5 --file konsolerc --group "DownloadDialog Settings" --key "Width 1920" 936
@@ -94,7 +98,7 @@ function _konsole {
 
 function _global_shortcuts {
     printf "\nSetting up global shortcuts\n"
-    _restore_or_backup kglobalshortcutsrc
+    _rest_or_bkp_config kglobalshortcutsrc
 
     kwriteconfig5 --file kglobalshortcutsrc --group kwin --key "Window Quick Tile Bottom" "none,none,Quick Tile Window to the Bottom"
     kwriteconfig5 --file kglobalshortcutsrc --group kwin --key "Window Quick Tile Top" "none,none,Quick Tile Window to the Top"
@@ -120,13 +124,13 @@ function _global_shortcuts {
 
 function _screen_locking {
     printf "\nSetting up screen locking\n"
-    _restore_or_backup kscreenlockerrc
+    _rest_or_bkp_config kscreenlockerrc
     kwriteconfig5 --file kscreenlockerrc --group Daemon --key Timeout 45
 }
 
 function _setup_fonts {
     printf "\nSetting up fonts for your system UIs\n"
-    _restore_or_backup kdeglobals
+    _rest_or_bkp_config kdeglobals
     
     kwriteconfig5 --file kdeglobals --group General --key font "Ubuntu,12,-1,5,50,0,0,0,0,0,Regular"
     kwriteconfig5 --file kdeglobals --group General --key fixed "Hack [simp],11,-1,5,50,0,0,0,0,0,Regular"
@@ -136,9 +140,9 @@ function _setup_fonts {
     kwriteconfig5 --file kdeglobals --group WM --key activeFont "Ubuntu,12,-1,5,50,0,0,0,0,0,Regular"
 }
 
-function _dolphin {
+function _dolphin_rc {
     printf "\nSetting up dolphin layouts\n"
-    _restore_or_backup dolphinrc
+    _rest_or_bkp_config dolphinrc
 
     kwriteconfig5 --file dolphinrc --group CompactMode --key fontWeight 50
     kwriteconfig5 --file dolphinrc --group CompactMode --key MaximumTextWidthIndex 2
@@ -188,6 +192,15 @@ function _dolphin {
 
     kwriteconfig5 --file dolphinrc --group ViewPropertiesDialog "Height 1080" 466
     kwriteconfig5 --file dolphinrc --group ViewPropertiesDialog "Width 1920" 419
+}
+
+function _dolphin_user_places {
+
+}
+
+function _dolphin {
+    _dolphin
+    _dolphin_user_places
 }
 
 # _dependencies
