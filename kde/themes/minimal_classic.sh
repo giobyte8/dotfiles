@@ -256,7 +256,7 @@ function _dolphin_toolbars_items {
 }
 
 function _dolphin {
-    _dolphin
+    _dolphin_rc
     _dolphin_user_places
     _dolphin_toolbars_items
 }
@@ -267,4 +267,3 @@ function _dolphin {
 # _screen_locking
 # _setup_fonts
 _dolphin
-_dolphin_user_places
