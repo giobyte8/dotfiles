@@ -261,7 +261,7 @@ function _dolphin {
     _dolphin_toolbars_items
 }
 
-function _gwenview_rc {
+function _gwenview {
     printf "\nSetting up Gwenview\n"
     _rest_or_bkp_config gwenviewrc
 
@@ -297,4 +297,4 @@ function _gwenview_rc {
 # _screen_locking
 # _setup_fonts
 # _dolphin
-_gwenview_rc
+_gwenview
