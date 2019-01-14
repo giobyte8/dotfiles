@@ -59,6 +59,47 @@ function _rest_or_bkp_config {
     fi
 }
 
+function _bkp_local_sh_file {
+    if [ ! -d "$BKP_LOCAL_SH_PATH" ]; then
+        mkdir -p "$BKP_LOCAL_SH_PATH"
+    fi
+
+    origin="$LOCAL_SH_PATH/$1"
+    target="$BKP_LOCAL_SH_PATH/$1"
+    if [ -f "$origin" ]; then
+        echo "Backing up $origin to $target"
+        cp $origin $target
+    else
+        echo "$1 file not found in $LOCAL_SH_PATH"
+    fi
+}
+
+function _rest_local_sh_file {
+    origin="$BKP_LOCAL_SH_PATH/$1"
+    target="$LOCAL_SH_PATH/$1"
+
+    if [ -f "$origin" ]; then
+        echo "Restoring $origin to $target"
+        cp "$origin" "$target"
+    else
+        echo "$1 file not found in $BKP_LOCAL_SH_PATH"
+    fi
+}
+
+#
+# If file exists in local/share backups dir, restore it to
+# user's local/share dir, otherwise if file exists in
+# user's /local/share dir then backup to backups dir
+function _rest_or_bkp_local_sh {
+    if [ -f "$BKP_LOCAL_SH_PATH/$1" ]; then
+        _rest_local_sh_file $1
+    else
+        if [ -f "$LOCAL_SH_PATH/$1" ]; then
+            _bkp_config_file $1
+        fi
+    fi
+} 
+
 function _konsolerc {
     _rest_or_bkp_config konsolerc
 
@@ -195,7 +236,11 @@ function _dolphin_rc {
 }
 
 function _dolphin_user_places {
+    printf "\nSetting up dolphin places\n"
+    _rest_or_bkp_local_sh user-places.xbel
 
+    user_places="./local/share/user-places.xbel"
+    cp "$user_places" "$LOCAL_SH_PATH/"
 }
 
 function _dolphin {
@@ -209,3 +254,4 @@ function _dolphin {
 # _screen_locking
 # _setup_fonts
 _dolphin
+_dolphin_user_places
