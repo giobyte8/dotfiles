@@ -64,6 +64,10 @@ function _bkp_local_sh_file {
         mkdir -p "$BKP_LOCAL_SH_PATH"
     fi
 
+    if [ ! -d "$BKP_LOCAL_SH_PATH/kxmlgui5/dolphin" ]; then
+        mkdir -p "$BKP_LOCAL_SH_PATH/kxmlgui5/dolphin"
+    fi
+
     origin="$LOCAL_SH_PATH/$1"
     target="$BKP_LOCAL_SH_PATH/$1"
     if [ -f "$origin" ]; then
@@ -95,7 +99,7 @@ function _rest_or_bkp_local_sh {
         _rest_local_sh_file $1
     else
         if [ -f "$LOCAL_SH_PATH/$1" ]; then
-            _bkp_config_file $1
+            _bkp_local_sh_file $1
         fi
     fi
 } 
@@ -243,9 +247,18 @@ function _dolphin_user_places {
     cp "$user_places" "$LOCAL_SH_PATH/"
 }
 
+function _dolphin_toolbars_items {
+    printf "\nSetting up dolphin toolbars and menus items\n"
+    _rest_or_bkp_local_sh kxmlgui5/dolphin/dolphinui.rc
+
+    dolphin_ui_file="./local/share/kxmlgui5/dolphin/dolphinui.rc"
+    cp "$dolphin_ui_file" "$LOCAL_SH_PATH/kxmlgui5/dolphin/dolphinui.rc"
+}
+
 function _dolphin {
     _dolphin
     _dolphin_user_places
+    _dolphin_toolbars_items
 }
 
 # _dependencies
