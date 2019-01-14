@@ -261,9 +261,40 @@ function _dolphin {
     _dolphin_toolbars_items
 }
 
+function _gwenview_rc {
+    printf "\nSetting up Gwenview\n"
+    _rest_or_bkp_config gwenviewrc
+
+    kwriteconfig5 --file gwenviewrc --group General --key SideBarPage folders
+
+    kwriteconfig5 --file gwenviewrc --group ImageView --key ThumbnailSplitterSizes "628,179"
+
+    kwriteconfig5 --file gwenviewrc --group MainWindow --key "Height 1080" 843
+    kwriteconfig5 --file gwenviewrc --group MainWindow --key MenuBar Disabled
+    kwriteconfig5 --file gwenviewrc --group MainWindow --key ToolBarsMovable Disabled
+    kwriteconfig5 --file gwenviewrc --group MainWindow --key "Width 1920" 1227
+
+    kwriteconfig5 --file gwenviewrc --group "Phonon::AudioOutput" --key "Gwenview_Volume" 1
+
+    kwriteconfig5 --file gwenviewrc --group Print --key PrintHeight 20
+
+    kwriteconfig5 --file gwenviewrc --group SemanticInfoDialog --key "Height 1080" 292
+    kwriteconfig5 --file gwenviewrc --group SemanticInfoDialog --key "Width 1920" 284
+
+    kwriteconfig5 --file gwenviewrc --group SideBar --key "IsVisible BrowseMode" false
+    kwriteconfig5 --file gwenviewrc --group SideBar --key "IsVisible ViewMode" false
+    kwriteconfig5 --file gwenviewrc --group SideBar --key SideBarSplitterSizes "242,1131"
+
+    kwriteconfig5 --file gwenviewrc --group StatusBar --key "IsVisible BrowseMode" false
+    kwriteconfig5 --file gwenviewrc --group StatusBar --key "IsVisible ViewMode" false
+
+    kwriteconfig5 --file gwenviewrc --group ThumbnailView --key ThumbnailSize 256
+}
+
 # _dependencies
 # _konsole
 # _global_shortcuts
 # _screen_locking
 # _setup_fonts
-_dolphin
+# _dolphin
+_gwenview_rc
