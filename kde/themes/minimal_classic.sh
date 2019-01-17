@@ -4,7 +4,7 @@
 # check screenshot for details
 #
 # Dependencies:
-# - Kwin script: YAML -> 
+# - Kwin script: YAML -> https://github.com/zzag/kwin-effects-yet-another-magic-lamp
 #
 
 CONFIG_PATH="$HOME/.config"
