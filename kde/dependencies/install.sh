@@ -39,5 +39,5 @@ function _papirus {
     sudo apt-get install -y papirus-icon-theme papirus-folders
 }
 
-# _yaml
+_yaml
 _papirus

@@ -319,11 +319,11 @@ function _kwin {
     kwriteconfig5 --file kwinrc --group org.kde.kdecoration2 --key CloseOnDoubleClickOnMenu false
 }
 
-# _dependencies
-# _konsole
-# _global_shortcuts
-# _screen_locking
-# _setup_fonts
-# _dolphin
-# _gwenview
+_dependencies
+_konsole
+_global_shortcuts
+_screen_locking
+_setup_fonts
+_dolphin
+_gwenview
 _kwin
