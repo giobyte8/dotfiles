@@ -43,7 +43,7 @@ esac
 # uncomment for a colored prompt, if the terminal has the capability; turned
 # off by default to not distract the user: the focus in a terminal window
 # should be on the output of commands, not on the prompt
-#force_color_prompt=yes
+force_color_prompt=yes
 
 if [ -n "$force_color_prompt" ]; then
     if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
@@ -59,7 +59,10 @@ fi
 if [ "$color_prompt" = yes ]; then
     #PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
     #PS1='\[\033[48;5;023;38;5;251m\] \$ \[\033[48;5;238;38;5;023m\]\[\033[48;5;238;38;5;251m\] \W \[\033[00m\]\[\033[38;5;238m\] \[\033[00m\]'
-    PS1='\[\e[033m\]- \[\e[034m\]> \[\e[m\]'
+    PS1='\[\e[033m\] \W \[\e[034m\]> \[\e[m\]'
+
+    # Check https://unix.stackexchange.com/a/124409/331321
+    #PS1='\[\033[48;5;178;38;5;232m\] \W \[\e[m\]'
 else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
@@ -118,16 +121,6 @@ if ! shopt -oq posix; then
   fi
 fi
 
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f /opt/google-cloud-sdk/path.bash.inc ]; then
-  source '/opt/google-cloud-sdk/path.bash.inc'
-fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f /opt/google-cloud-sdk/completion.bash.inc ]; then
-  source '/opt/google-cloud-sdk/completion.bash.inc'
-fi
-
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="/home/giovanni/.sdkman"
 [[ -s "/home/giovanni/.sdkman/bin/sdkman-init.sh" ]] && source "/home/giovanni/.sdkman/bin/sdkman-init.sh"
@@ -135,3 +128,9 @@ export SDKMAN_DIR="/home/giovanni/.sdkman"
 # tabtab source for electron-forge package
 # uninstall by removing these lines or running `tabtab uninstall electron-forge`
 [ -f /usr/lib/node_modules/electron-forge/node_modules/tabtab/.completions/electron-forge.bash ] && . /usr/lib/node_modules/electron-forge/node_modules/tabtab/.completions/electron-forge.bash
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/opt/google-cloud-sdk/path.bash.inc' ]; then . '/opt/google-cloud-sdk/path.bash.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/opt/google-cloud-sdk/completion.bash.inc' ]; then . '/opt/google-cloud-sdk/completion.bash.inc'; fi

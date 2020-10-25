@@ -14,6 +14,7 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'jacoborus/tender'
 Plugin 'junegunn/goyo.vim'
+Plugin 'dracula/vim'
 
 
 " All of your Plugins must be added before the following line
@@ -36,5 +37,5 @@ set tabstop=4                           " Show existing tab with 4 spaces
 set shiftwidth=4                        " When indenting with '>' use 4 spaces
 set expandtab                           " On pressing tab, insert 4 spaces
 
-syntax enable
-colorscheme tender
+syntax on
+color dracula
