@@ -38,4 +38,4 @@ set shiftwidth=4                        " When indenting with '>' use 4 spaces
 set expandtab                           " On pressing tab, insert 4 spaces
 
 syntax on
-color dracula
+
