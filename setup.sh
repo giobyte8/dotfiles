@@ -3,7 +3,10 @@
 # Setups the next items:
 # .bashrc
 # .vimrc
-#
+# DEPRECATED
+# TODO: Automate bash setup, symlinking file is not
+#       enough since every system may already have
+#       some custom settings
 
 function check_dependencies {
     printf "\nVerifying dependencies\n"
