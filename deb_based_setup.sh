@@ -80,11 +80,11 @@ function setup_vim {
 
         backup="${BKP_DIR}/vimrc"
         cp $VIMRC_PATH $backup
-        rm $target_vim
+        rm $VIMRC_PATH
     fi
 
     echo " Symlinking .vimrc"
-    ln -s "${HERE}/config/vimrc" $target_vim
+    ln -s "${HERE}/config/vimrc" "${VIMRC_PATH}"
 
     # Install all vim plugins
     echo " Installing plugins"
