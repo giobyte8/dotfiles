@@ -38,7 +38,7 @@ function install_and_setup_apps {
         build-essential \
         git \
         vim \
-        open-ssh \
+        openssh-server \
 
     setup_ssh
     setup_vim
@@ -63,7 +63,7 @@ function setup_vim {
 
     VIMRC_PATH="${HOME}/.vimrc"
 
-    if [[ -L "${VIMRC_PATH}" ]]; then
+    if [ -L "${VIMRC_PATH}" ]; then
         echo " WARN: ${VIMRC_PATH} is already a symlink"
         echo "       $(readlink -f ${VIMRC_PATH})"
     fi
