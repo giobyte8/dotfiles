@@ -49,7 +49,7 @@ function setup_ssh {
     echo "Setting up ssh programs"
 
     UFW_STATUS="$(systemctl is-active ufw)"
-    if [ "${UFW_STATUS}" == "active"]; then
+    if [ "${UFW_STATUS}" == "active" ]; then
         echo " Allowing ssh in ufw"
         sudo ufw allow ssh
     else
