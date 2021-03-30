@@ -94,4 +94,4 @@ function setup_vim {
 
 # Execute:
 verify_cnf_bkp_dir
-install_setup_and_apps
+install_and_setup_apps
