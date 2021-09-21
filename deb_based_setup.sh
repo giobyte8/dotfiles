@@ -36,12 +36,9 @@ function install_and_setup_apps {
     echo "Installing basic programs"
     sudo apt-get install -y \
         build-essential \
-        git \
-        vim \
         openssh-server \
 
     setup_ssh
-    setup_vim
 }
 
 function setup_ssh {
@@ -55,40 +52,6 @@ function setup_ssh {
     else
         echo " WARN: ufw not found, firewall setup for ssh may be required"
     fi
-}
-
-function setup_vim {
-    echo ""
-    echo "Setting up vim and Vundle"
-
-    VIMRC_PATH="${HOME}/.vimrc"
-
-    if [ -L "${VIMRC_PATH}" ]; then
-        echo " WARN: ${VIMRC_PATH} is already a symlink"
-        echo "       $(readlink -f ${VIMRC_PATH})"
-    fi
-
-    # Install Vundle
-    echo " Installing Vundle"
-    git clone \
-        https://github.com/VundleVim/Vundle.vim.git \
-        ~/.vim/bundle/Vundle.vim
-
-    # Backup before symlink
-    if [ -f "${VIMRC_PATH}" ]; then
-        echo " Backing up original .vimrc"
-
-        backup="${BKP_DIR}/vimrc"
-        cp $VIMRC_PATH $backup
-        rm $VIMRC_PATH
-    fi
-
-    echo " Symlinking .vimrc"
-    ln -s "${HERE}/config/vimrc" "${VIMRC_PATH}"
-
-    # Install all vim plugins
-    echo " Installing plugins"
-    vim +PluginInstall +qall
 }
 
 
