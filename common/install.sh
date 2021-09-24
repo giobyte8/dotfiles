@@ -40,9 +40,8 @@ function verify_cnf_bkp_dir {
     fi
 }
 
-
-## Try update for 'apt-get' based systems
-function update {
+## Makes sure all necessary programs are installed
+function verify_dependencies {
     if command -v apt-get &> /dev/null
     then
         sudo apt-get update
@@ -52,8 +51,46 @@ function update {
         check_for_errors
     else
         echo
-        echo "apt-get command not found on this system"
-        echo " skipping update"
+        echo " apt-get command not found on this system"
+        echo "  skipping update"
+    fi
+
+    ## Verify vim
+    if ! command -v vim &> /dev/null
+    then
+
+        # Check if apt-get is available to install vim
+        if ! command -v apt-get &> /dev/null
+        then
+            echo
+            echo " ERR: vim and apt-get were not found on this system"
+
+            return 1
+        fi
+
+        echo
+        echo " Installing vim"
+        sudo apt-get install -y vim
+        check_for_errors
+    fi
+
+    ## Verify git
+    if ! command -v git &> /dev/null
+    then
+        
+        # Check if apt-get is available to install git
+        if ! command -v apt-get &> /dev/null
+        then
+            echo
+            echo " ERR: git and apt-get were not found on this system"
+
+            return 1
+        fi
+
+        echo
+        echo " Installing git"
+        sudo apt-get install -y git
+        check_for_errors
     fi
 }
 
@@ -63,39 +100,8 @@ function setup_vim {
     echo
     echo "Setting up vim and Vundle"
 
-    # Verify vim is installed
-    if ! command -v vim &> /dev/null
-    then
-
-        # If not installed, check if apt-get is available to install vim
-        if ! command -v apt-get &> /dev/null
-        then
-            echo
-            echo " vim and apt-get were not found on this system"
-            echo " skipping vim setup"
-
-            return 0
-        fi
-
-        if ! command -v git &> /dev/null
-        then
-            echo
-            echo " Installing git"
-            sudo apt-get install -y git
-            check_for_errors
-        fi
-
-        echo
-        echo " Installing vim"
-        sudo apt-get install -y vim
-        check_for_errors
-    fi
-
-    # Verify vim install check up was successful
+    verify_dependencies
     check_for_errors
-
-    echo
-    echo "Setting up vim and Vundle"
 
     VIMRC_PATH="${HOME}/.vimrc"
 
