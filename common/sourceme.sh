@@ -18,7 +18,7 @@ fi
 
 if [ "$color_prompt" = yes ]; then
     # Color reference: https://unix.stackexchange.com/a/124409/331321
-    PS1='\[\e[033m\] \W \[\e[034m\]> \[\e[m\]'
+    PS1='\[\e[033m\]\W \[\e[034m\]❯ \[\e[m\]'
     #PS1='\[\033[48;5;178;38;5;232m\] \W \[\e[m\]'
 fi
 unset color_prompt force_color_prompt

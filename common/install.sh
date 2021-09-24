@@ -22,7 +22,6 @@ function check_for_errors {
     fi
 }
 
-
 ## Ensures existence of config backup directory
 function verify_cnf_bkp_dir {
     echo
@@ -110,7 +109,6 @@ function update {
     fi
 }
 
-
 ## Install and Setup vim
 function setup_vim {
     echo
@@ -157,5 +155,39 @@ function setup_vim {
     vim +PluginInstall +qall
 }
 
+## Add source for custom bash initialization scripts
+function setup_bash {
+    echo
+    echo "Setting up bash environment"
+
+    BASHRC_PATH="${HOME}/.bashrc"
+    if [ ! -f "${BASHRC_PATH}" ]; then
+        echo " .bashrc file not found"
+
+        if [ -f "${HOME}/.bash_profile" ]; then
+            echo " using ${HOME}/.bash_profile"
+            BASHRC_PATH="${HOME}/.bash_profile"
+        else
+            echo " ERR No suitable bash config file was found"
+            return 1
+        fi
+    fi
+
+    SOURCEME_PATH="${HERE}/sourceme.sh"
+    cat >>"${BASHRC_PATH}" <<EOL
+
+# Load shell env customizations
+if [ -f "${SOURCEME_PATH}" ]; then
+    source "${SOURCEME_PATH}"
+fi
+EOL
+
+    check_for_errors
+
+    # Source for enable immediately
+    source "${SOURCEME_PATH}"
+    echo " Bash setup is complete"
+}
+
 setup_vim
-## TODO Add source to 'sourceme.sh' file in .bashrc or .zshrc files
+setup_bash
