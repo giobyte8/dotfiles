@@ -132,6 +132,7 @@ function setup_vim {
     # Install all vim plugins
     echo
     echo " Installing plugins"
+    vim +PluginInstall +qall
 }
 
 setup_vim
