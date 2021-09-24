@@ -25,7 +25,7 @@ function check_for_errors {
 ## Ensures existence of config backup directory
 function verify_cnf_bkp_dir {
     echo
-    echo " Verifying backup directory"
+    echo "Verifying backup directory"
 
     if [ ! -d "${BKP_CNF_DIR}" ]; then
         mkdir -p "${BKP_CNF_DIR}"
@@ -33,7 +33,7 @@ function verify_cnf_bkp_dir {
         # Abort if directory could not be created
         if [ ! -d "${BKP_CNF_DIR}" ]; then
             echo ""
-            echo " ERR: Backup dir couldn't be created"
+            echo "ERR: Backup dir couldn't be created"
             return 1
         fi
     fi
@@ -121,15 +121,16 @@ function setup_vim {
 
     # TODO Verify VIMRC and BKP_CNF_DIR write permissions
 
-    # Check for preivous symlink existence
+    # Check for previous symlink existence
     if [ -L "${VIMRC_PATH}" ]; then
         echo " WARN: ${VIMRC_PATH} is already a symlink"
         echo "       $(readlink -f ${VIMRC_PATH})"
     fi
 
     # Backup before symlinking
-    if [ -f "${VIMRC_PATH}" ]; then
-        echo " Backing up original .vimrc"
+    if [ -f "${VIMRC_PATH}" ] || [ -L "${VIMRC_PATH}" ]; then
+        echo
+        echo "Backing up original .vimrc"
 
         verify_cnf_bkp_dir
         check_for_errors
@@ -139,20 +140,27 @@ function setup_vim {
         rm $VIMRC_PATH
     fi
 
-    echo " Symlinking .vimrc"
+    echo
+    echo "Symlinking .vimrc"
     ln -s "${DOTF_ROOT}/config/vimrc" "${VIMRC_PATH}"
 
     # Install Vundle
-    echo
-    echo " Installing Vundle"
-    git clone \
-        https://github.com/VundleVim/Vundle.vim.git \
-        ~/.vim/bundle/Vundle.vim
+    if [ -d "${HOME}/.vim/bundle/Vundle.vim" ]; then
+        echo
+        echo "Vundle already installed, skipping install"
+    else
+        echo
+        echo "Installing Vundle"
+        git clone \
+            https://github.com/VundleVim/Vundle.vim.git \
+            ~/.vim/bundle/Vundle.vim
+    fi
 
     # Install all vim plugins
     echo
-    echo " Installing plugins"
+    echo "Installing plugins"
     vim +PluginInstall +qall
+    echo "Plugins installed"
 }
 
 ## Add source for custom bash initialization scripts
