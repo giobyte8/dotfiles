@@ -1,6 +1,23 @@
 #!/bin/bash
 # Basic setup compatible with ALL *unix systems
+# NOTE: Use this initialization scripts for bash only
 
+
+SOURCE="${BASH_SOURCE[0]}"
+
+# resolve $SOURCE until the file is no longer a symlink 
+while [ -h "$SOURCE" ]; do
+  DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
+  SOURCE="$(readlink "$SOURCE")"
+
+  # if $SOURCE was a relative symlink, we need to resolve it relative
+  # to the path where the symlink file was located
+  [[ $SOURCE != /* ]] && SOURCE="$DIR/$SOURCE"
+done
+HERE="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
+
+DOTF_ROOT="${HERE}/.."
+SCRIPTS_ROOT="${DOTF_ROOT}/scripts"
 
 ##
 ## PS1 Variable setup (bash prompt)
@@ -23,5 +40,14 @@ if [ "$color_prompt" = yes ]; then
 fi
 unset color_prompt force_color_prompt
 
-## TODO Add source to aliases
-## TODO Add source to custom bash functions
+
+##
+## Load custom scripts and functions
+source "${SCRIPTS_ROOT}/aliases.sh"
+
+if [[ $OSTYPE == 'darwin'* ]]; then
+    source "${SCRIPTS_ROOT}/mac_utils.sh"
+
+    source "${SCRIPTS_ROOT}/skt/hook.sh"
+    source "${SCRIPTS_ROOT}/skt/woai.sh"
+fi
