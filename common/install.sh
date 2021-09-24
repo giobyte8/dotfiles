@@ -42,18 +42,6 @@ function verify_cnf_bkp_dir {
 
 ## Makes sure all necessary programs are installed
 function verify_dependencies {
-    if command -v apt-get &> /dev/null
-    then
-        sudo apt-get update
-        check_for_errors
-
-        sudo apt-get upgrade -y
-        check_for_errors
-    else
-        echo
-        echo " apt-get command not found on this system"
-        echo "  skipping update"
-    fi
 
     ## Verify vim
     if ! command -v vim &> /dev/null
@@ -67,6 +55,9 @@ function verify_dependencies {
 
             return 1
         fi
+
+        update
+        check_for_errors
 
         echo
         echo " Installing vim"
@@ -87,10 +78,35 @@ function verify_dependencies {
             return 1
         fi
 
+        update
+        check_for_errors
+
         echo
         echo " Installing git"
         sudo apt-get install -y git
         check_for_errors
+    fi
+}
+
+## Make sure of update system
+function update {
+    if command -v apt-get &> /dev/null
+    then
+        echo
+        echo " Updating system"
+        sudo apt-get update
+        check_for_errors
+
+        sudo apt-get upgrade -y
+        check_for_errors
+
+        echo
+        echo " -----------------------------------------"
+        echo " System was updated"
+    else
+        echo
+        echo " apt-get command not found on this system"
+        echo "  skipping update"
     fi
 }
 
