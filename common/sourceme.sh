@@ -40,6 +40,8 @@ if [ "$color_prompt" = yes ]; then
 fi
 unset color_prompt force_color_prompt
 
+## Custom variables
+export SYSTEMD_EDITOR=vim
 
 ##
 ## Load custom scripts and functions
