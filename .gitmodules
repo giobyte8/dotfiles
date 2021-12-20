@@ -1,0 +1,6 @@
+[submodule "ohmyzsh-custom/plugins/pyenv-lazy"]
+	path = ohmyzsh-custom/plugins/pyenv-lazy
+	url = https://github.com/davidparsson/zsh-pyenv-lazy.git
+[submodule "ohmyzsh-custom/plugins/zsh-nvm"]
+	path = ohmyzsh-custom/plugins/zsh-nvm
+	url = https://github.com/lukechilds/zsh-nvm
