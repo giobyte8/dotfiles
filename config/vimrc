@@ -37,5 +37,10 @@ set tabstop=4                           " Show existing tab with 4 spaces
 set shiftwidth=4                        " When indenting with '>' use 4 spaces
 set expandtab                           " On pressing tab, insert 4 spaces
 
+" Nerdtree config
+set wildignore+=*.pyc,*.o,*.obj,*.svn,*.swp,*.class,*.hg,*.DS_Store,*.min.*
+let NERDTreeRespectWildIgnore=1
+let NERDTreeShowHidden=1
+
 syntax on
 
