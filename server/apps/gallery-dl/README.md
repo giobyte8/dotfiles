@@ -7,7 +7,7 @@
 1. `cp .env.template .env`
 2. Make sure to update values in `.env` for your env
 
-**Download single url**
+**Download single url:**
 ```bash
 docker-compose run --rm --name gallerydl gallerydl <url>
 
@@ -22,5 +22,6 @@ docker-compose run --rm -v "${PWD}/dlurls.txt:/dl/dlurls.txt" gallerydl -i dlurl
 
 # Use this approach to for example collect urls during day and then schedule a
 # cron job to download using file during night
+# You may want to use -d after run for dettached mode
 ```
 
