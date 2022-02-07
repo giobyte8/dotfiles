@@ -1,0 +1,16 @@
+{
+    "extractor": {
+
+        "500px": {
+            "gallery": {
+                "filename": "{name|id}.{extension}",
+                "directory": ["{category}", "{gallery[name]}"]
+            },
+            "image": {
+                "filename": "{name|id}.{extension}"
+            }
+        }
+    }
+
+}
+

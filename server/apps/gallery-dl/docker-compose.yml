@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  gallerydl:
+    build:
+      context: .
+      dockerfile: ./gallerydl.docker
+    image: giobyte8/gallerydl:1.0.0
+    container_name: gallerydl
+    volumes:
+      - "./gallery.conf.json:/etc/gallery-dl.conf"
+
+      # Image already uses /dl as WORKDIR and gallery-dl by default
+      # will use ./gallery-dl as download destination
+      - "${DOWNLOADS_PATH}:/dl/gallery-dl"
+
