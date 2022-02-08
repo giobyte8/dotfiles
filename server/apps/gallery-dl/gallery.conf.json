@@ -3,11 +3,11 @@
 
         "500px": {
             "gallery": {
-                "filename": "{name|id}.{extension}",
+                "filename": "{id}_{name}.{extension}",
                 "directory": ["{category}", "{gallery[name]}"]
             },
             "image": {
-                "filename": "{name|id}.{extension}"
+                "filename": "{id}_{name}.{extension}"
             }
         }
     }
