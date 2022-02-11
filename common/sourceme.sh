@@ -35,8 +35,21 @@ fi
 
 if [ "$color_prompt" = yes ]; then
     # Color reference: https://unix.stackexchange.com/a/124409/331321
-    PS1='\[\e[033m\]\W \[\e[034m\]❯ \[\e[m\]'
-    #PS1='\[\033[48;5;178;38;5;232m\] \W \[\e[m\]'
+
+    if [ -n "$SSH_TTY" ] || [ -n "$SSH_CLIENT" ]; then
+        H=$HOSTNAME
+        if [ $H = "redbox" ]; then
+            H=rbx
+        fi
+
+        # Without bg colors
+        PS1='\[\033[38;5;183m\]$H ⌁ \[\033[38;5;221m\]\W ❯ \[\e[m\]'
+
+        # With nice bg colors
+        #PS1='\[\033[48;5;240;38;5;253m\] ⎌ $H \[\e[m\] \W ❯ \[\e[m\]'
+    else
+        PS1='\[\e[033m\]\W ❯ \[\e[m\]'
+    fi
 fi
 unset color_prompt force_color_prompt
 
