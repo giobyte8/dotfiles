@@ -8,6 +8,8 @@ services:
       - TZ=America/Mexico_City
       - WORKGROUP=WORKGROUP
       - "USER=$USER;$PASS;$UID;$USER;$GID"
+      - USERID=$UID
+      - GROUPID=$GID
 
       - SHARE=blackstore;/mnt/blackstore;yes;no;no
       - SHARE2=redstore;/mnt/redstore;yes;no;no
