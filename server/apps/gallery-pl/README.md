@@ -1,10 +1,14 @@
-# gallery-dl
+# Gallery Pipeline
 
-- `gallery-dl` repo: https://github.com/mikf/gallery-dl
+Automates periodic download and processing of my personal collections of
+wallpapers, inpirational pictures and videos from sites such as Unsplash,
+500px, Pinterest, etc.
+
+Download of content is achieved through [gallery-dl](https://github.com/mikf/gallery-dl)
 
 ## Usage
 
-1. `cp .env.template .env`
+1. `cp .env.template .
 2. Make sure to update values in `.env` for your env
 
 **Download single url:**

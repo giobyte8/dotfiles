@@ -10,7 +10,9 @@ services:
     volumes:
       - "./gallery.conf.json:/etc/gallery-dl.conf"
 
-      # Image already uses /dl as WORKDIR and gallery-dl by default
-      # will use ./gallery-dl as download destination
+      # 1. './gallery-dl/' is the default downloads destination used 
+      #    by gallery dl (can be override through '-d' argument) 
+      # 2. Docker image uses /dl
+      # 3. Based on 1 and 2, default downloads dir will be /dl/gallery-dl
       - "${DOWNLOADS_PATH}:/dl/gallery-dl"
 
