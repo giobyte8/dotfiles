@@ -13,7 +13,7 @@ if [ -n "$SSH_TTY" ] || [ -n "$SSH_CLIENT" ]; then
         H=rbx
     elif [[ $H -eq "graybox" ]]
     then
-        H=graybox
+        H=gbx
     fi
 
     PROMPT="%{$fg[magenta]%}$H ⌁ "

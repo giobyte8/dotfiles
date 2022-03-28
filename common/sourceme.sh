@@ -40,7 +40,10 @@ if [ "$color_prompt" = yes ]; then
         H=$HOSTNAME
         if [ $H = "redbox" ]; then
             H=rbx
+        elif [ $H = "graybox" ]; then
+            H=gbx
         fi
+
 
         # Without bg colors
         PS1='\[\033[38;5;183m\]$H ⌁ \[\033[38;5;221m\]\W ❯ \[\e[m\]'
