@@ -2,22 +2,15 @@ version: '3.7'
 
 services:
   samba:
-    image: dperson/samba
+    image: crazymax/samba
     container_name: samba
+    network_mode: host
     environment:
       - TZ=America/Mexico_City
-      - WORKGROUP=WORKGROUP
-      - "USER=$USER;$PASS;$UID;$USER;$GID"
-      - USERID=$UID
-      - GROUPID=$GID
-
-      - SHARE=blackstore;/mnt/blackstore;yes;no;no
-      - SHARE2=redstore;/mnt/redstore;yes;no;no
-    ports:
-      - '445:445/tcp'
-    restart: unless-stopped
+      - "SAMBA_LOG_LEVEL=1"
     volumes:
-      - $BLACKSTORE:/mnt/blackstore
-      - $REDSTORE:/mnt/redstore
-    command: -p
+      - $CONFIG:/data
+      - $BLACKSTORE:/samba/blackstore
+      - $REDSTORE:/samba/redstore
+    restart: unless-stopped
 
