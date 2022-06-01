@@ -15,4 +15,5 @@ services:
       - ${PATH_MUSIC}:/media/music
       - ${PATH_MUSIC_VIDEOS}:/media/musicvideos
       - ${PATH_RANDOM_VIDEOS}:/media/randomvideos
-    restart: unless-stopped
+    restart: "no"
+
