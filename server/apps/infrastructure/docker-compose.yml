@@ -12,6 +12,20 @@ services:
       hservices:
         ipv4_address: 172.20.1.254
 
+  mariadb:
+    image: mariadb:10.8.3-jammy
+    container_name: mariadb
+    restart: unless-stopped
+    ports:
+      - 3306:3306
+    volumes:
+      - ${MARIADB_DATA}:/var/lib/mysql
+    environment:
+      - MARIADB_ROOT_PASSWORD=${MARIADB_ROOT_PASSWORD}
+    networks:
+      hservices:
+        ipv4_address: 172.20.1.2
+
   couchdb:
     image: couchdb:3.2.2
     container_name: couchdb
@@ -26,11 +40,11 @@ services:
       - "5984:5984"
     networks:
       hservices:
-        ipv4_address: 172.20.1.2
+        ipv4_address: 172.20.1.5
 
   rabbitmq:
     image: rabbitmq:3.9.15-management-alpine
-    container_name: rabbit
+    container_name: rabbitmq
     restart: unless-stopped
     user: "${UID}:${GID}"
     ports:
