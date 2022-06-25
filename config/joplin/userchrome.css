@@ -1,0 +1,91 @@
+/* For styling the entire Joplin app (except the rendered Markdown, which is defined in `userstyle.css`) */
+
+:root {
+    --white: #FFF;
+    --gray-light: #DEDEDE;
+}
+
+body {
+    font-size: 14px;
+}
+
+div, span, a {
+    font-size: 14px;
+}
+
+.sidebar .folders .list-item-container {
+    height: calc(25px + 12px);
+}
+
+.sidebar .folders .list-item-container .list-item {
+    cursor: pointer;
+}
+
+input.title-input {
+    font-family: 'SF Pro', 'Helvetica';
+    font-size: 2.1em !important;
+    margin: 16px 0 8px;
+}
+
+
+/* Sidebar */
+
+/* .sidebar .folders .list-item-container */
+
+
+/* Editor toolbar */
+
+/* Background color */
+.joplin-tinymce > div,
+.tox-toolbar__primary,
+.tox-toolbar__group,
+.tox-editor-container > .tox-editor-header >
+.tox-toolbar-overlord > .tox-toolbar__primary {
+    background-color: var(--white) !important;
+}
+
+.tox .tox-editor-header {
+    border-bottom: 1px solid var(--gray-light) !important;
+}
+
+.joplin-tinymce > div > .button,
+.tox .tox-tbtn {
+    margin: 0 3px !important;
+}
+
+.tox .tox-toolbar__group .tox-tbtn,
+.tox .tox-tbtn .tox-icon svg {
+    color: #666 !important;
+    fill: #666 !important;
+}
+
+.resizableLayoutItem.rli-editor > div > div > div > div:nth-child(1) {
+    padding-left: 16px !important;
+}
+
+.resizableLayoutItem.rli-editor > div > div > div > div:nth-child(2) {
+    padding-left: 0 !important;
+}
+
+
+/* Editor toolbar in view mode */
+
+.editor-toolbar {
+    background-color: var(--white) !important;
+    border-bottom: 1px solid var(--gray-light) !important;
+}
+
+.editor-toolbar > div > .button {
+    margin: 0 3px;
+}
+
+
+/* Markdown editor */
+
+.CodeMirror-lines > div > .CodeMirror-code {
+    font-family: 'Fira Code' !important;
+}
+
+.CodeMirror-lines {
+    padding: calc(2rem - 10px) 2rem 10rem;
+}

@@ -1,0 +1,30 @@
+/* For styling the rendered Markdown */
+
+body {
+    font-family: 'SF Pro', 'Helvetica Neue', 'Helvetica', 'PT Sans', Arial, sans-serif;
+    font-size: 1em;
+}
+
+p {
+    margin-bottom: 0;
+    margin-top: 0.6em;
+}
+
+ul {
+    margin-bottom: 0;
+    margin-top: 0.15em;
+}
+
+li {
+    margin-bottom: 0em;
+}
+
+.mce-content-body {
+    padding: 2rem 2rem 10rem;
+}
+
+#joplin-container-content,
+.CodeMirror-lines {
+    padding: calc(2rem - 10px) 2rem 10rem !important;
+}
+
