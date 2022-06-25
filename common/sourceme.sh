@@ -55,6 +55,7 @@ unset color_prompt force_color_prompt
 
 ## Custom variables
 export SYSTEMD_EDITOR=vim
+export BAT_THEME=Dracula
 
 ##
 ## Load custom scripts and functions
