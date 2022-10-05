@@ -21,5 +21,5 @@ if [ -n "$SSH_TTY" ] || [ -n "$SSH_CLIENT" ]; then
 fi
 
 PROMPT="$PROMPT%{$fg[yellow]%}%1~ ❯ $T %{$reset_color%}"
-RPROMPT="%(?.%F{green}√.%F{red}?%?)%{$reset_color%}"
+# RPROMPT="%(?.%F{green}√.%F{red}?%?)%{$reset_color%}"
 
