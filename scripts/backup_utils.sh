@@ -23,10 +23,11 @@ function backup {
     echo " From: $SRC"
     echo "   To: $DST"
 
-    rsync --progress -zrh \
-        --ignore-existing \
-        --exclude '*.THM' \
-        --exclude '*.LRV' \
-        $SRC              \
+    rsync --progress -zrh     \
+        --ignore-existing     \
+        --exclude '*.THM'     \
+        --exclude '*.LRV'     \
+        --exclude '.trashed*' \
+        $SRC                  \
         $DST
 }
