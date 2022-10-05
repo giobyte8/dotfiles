@@ -26,22 +26,6 @@ services:
       hservices:
         ipv4_address: 172.20.1.2
 
-  couchdb:
-    image: couchdb:3.2.2
-    container_name: couchdb
-    restart: unless-stopped
-    user: "${UID}:${GID}"
-    environment:
-      - "COUCHDB_USER=$COUCHDB_USER"
-      - "COUCHDB_PASSWORD=$COUCHDB_PASS"
-    volumes:
-      - ${COUCHDB_DATA_PATH}:/opt/couchdb/data
-    ports:
-      - "5984:5984"
-    networks:
-      hservices:
-        ipv4_address: 172.20.1.5
-
   rabbitmq:
     image: rabbitmq:3.9.15-management-alpine
     container_name: rabbitmq
