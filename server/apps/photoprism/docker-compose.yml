@@ -96,8 +96,7 @@ services:
       - "/home/rock/pictures/Cameras:/photoprism/originals/cameras"               # Original media files (DO NOT REMOVE)
       - "/home/rock/workspace/appdata/photoprism:/photoprism/storage"             # *Writable* storage folder for cache, database, and sidecar files (DO NOT REMOVE)
     networks:
-      hservices:
-        ipv4_address: 172.20.1.101
+      - hservices
 
   ## Watchtower upgrades services automatically (optional)
   ## see https://docs.photoprism.app/getting-started/updates/#watchtower

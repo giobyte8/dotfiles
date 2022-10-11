@@ -23,8 +23,7 @@ services:
       - 51413:51413/udp
     restart: unless-stopped
     networks:
-      hservices:
-        ipv4_address: 172.20.1.100
+      - hservices
 
 networks:
   hservices:
