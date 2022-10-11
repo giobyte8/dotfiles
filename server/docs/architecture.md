@@ -8,18 +8,15 @@ workflows
     1. [Main drive](#main-drive)
     2. [External drives](#external-drives)
     4. [Backups structure and automation](#backups-structure-and-automation)
-    3. Applications and services
-        1. Describe apps folder structure, apps config, apps runtime folders
-2. Applications and services
-    1. Common services
-        1. DB servers, message brokers
-    2. Plex
-    3. Transmission
-    4. Apps automated startup process
-    5. Services networking and intercommunication
-    6. Apps access links and port mapping
+2. [Applications and services](#applications-and-services)
+    1. [Common services](#common-services)
+    2. [Deployed apps](#deployed-apps)
+    3. [Networking overview](#networking-overview)
+    6. [Apps access links and port mapping](#apps-access-links-and-port-mapping)
+    5. [Automated startup process](#automated-startup-process)
 3. Monitoring tools
     1. Btop and docker aliases
+    1. Notifications with RabbitMQ and Telegram
     1. Telegram bot
 4. Security
     1. Firewall setup
@@ -201,3 +198,54 @@ Following directories are included in backups
 
 Backups are done automatically by [borgmatic]() and are configured under
 `/home/rock/DotFiles/server/apps/borgmatic`
+
+# Applications and services
+
+Most of the services are deployed using docker containers
+
+## Common services
+
+The backbone of the infrastructure is composed of several services that
+are used by multiple deployed applications. Such services are:
+
+- MariaDB
+- RabbitMQ
+- Redis
+
+## Deployed apps
+
+- Plex
+- Transmission
+- Photoprism
+- [Galleries](github.com/giobyte8/galleries)
+
+## Networking overview
+
+All production services and apps running in docker are attached to a
+docker bridge network called `hservices`.
+
+Some IPs in such network are reserved to be manually assigned and some
+others are destinated to be managed by DHCP
+
+**Home services network**
+
+* Subnet: `172.20.1.0/24`
+* IPs for dynamic assignment: `172.20.1.0/25 (172.20.1.1-126)`
+* IPs reserved to be manually assigned: `172.20.1.127-254`
+
+**Security**
+
+For security reasons, apps and services are not directly accessible from
+external networks, access is restricted to hosts inside the `hservices`
+network
+
+A few services are exposed to host local network, that is done by mapping
+container ports to host ports
+
+## Apps access links and port mapping
+
+| Service | Exposed ports | Mapped to host port |
+|---------|---------------|---------------------|
+| MariaDB | 3306          | 3306                |
+
+## Automated startup process
