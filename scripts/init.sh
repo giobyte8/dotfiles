@@ -5,7 +5,7 @@ if [ -f "/opt/homebrew/opt/asdf/libexec/asdf.sh" ]; then
     . /opt/homebrew/opt/asdf/libexec/asdf.sh
 fi
 
-if [ -f "~/.asdf/plugins/java/set-java-home.zsh" ]; then
+if [ -f "$HOME/.asdf/plugins/java/set-java-home.zsh" ]; then
     . ~/.asdf/plugins/java/set-java-home.zsh
     export ASDF_GROOVY_DISABLE_JAVA_HOME_EXPORT=true
 fi
