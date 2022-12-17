@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  borgmatic:
+    image: modem7/borgmatic-docker
+    container_name: borgmatic
+#    restart: never
+    environment:
+      - TZ=${TZ}
+      - BORG_PASSPHRASE=${BORG_PASSPHRASE}
+    volumes:
+      - ${SRC_PICTURES}:/mnt/pictures:ro
+      - ${BORG_REPO_PATH}:/mnt/host-local-borg-repository
+
+      - ${BORGMATIC_CFG_PATH}:/etc/borgmatic.d/
+      - ${BORG_CFG_PATH}:/root/.config/borg
+      - ${BORG_CACHE}:/root/.cache/borg
+
+      # Where to restore files when needed?
+      - ${RESTORED_PATH}:/mnt/restored

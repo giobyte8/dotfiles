@@ -1,0 +1,15 @@
+version: '3.5'
+
+services:
+  ftp-server:
+    container_name: ftp
+    environment:
+      - FTP_PASS=test
+      - FTP_USER=rock
+    image: garethflowers/ftp-server
+    ports:
+      - '20-21:20-21/tcp'
+      - '40000-40009:40000-40009/tcp'
+    volumes:
+      - '/Users/giovanni.aguirre/Downloads/ftpdroid:/home/rock'
+
