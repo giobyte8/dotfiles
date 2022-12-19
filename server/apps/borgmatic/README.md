@@ -8,7 +8,7 @@
 
 This service automates backup of following home server data
 
-- [*] Pictures
+- [x] Pictures
 - [ ] Personal documents
 - [ ] Sensible personal documents
 
@@ -55,10 +55,30 @@ From inside container run below commands
 borgmatic rcreate -e repokey
 ```
 
-### 4. (Optional) Run a backup manually
+### 4. (Optional) Setup backups to remote location
+
+> This is needed only if you're implementing backups into a remote
+> server. Like in the config at `location.repositories.ssh...` in
+> `pictures.yml` file
+
+1. Make sure the right user and IP address are configured in the repositories
+   list of your backup config (`.yml` file).
+2. Setup right values for `$SSH_KEYS_PATH` in your `.env` file. This can be the
+   path to your `$HOME/.ssh` or you can create a `ssh_keys/` directory in this
+   project root and create new keys there. Check
+   [this article from Digital Ocean](https://www.digitalocean.com/community/tutorials/how-to-set-up-ssh-keys-on-ubuntu-22-04) for further reference.
+3. Make sure repository is initialized in remote server. This repository should
+   be the same as specified in the `location.repositories.ssh...` config of your
+   backups. You can init repo with `borg init -encryption=repokey ./path/to/repo`
+
+### 5. (Optional) Run a backup manually
 
 > It's a good idea to run the first backup manually to make sure things are
-> working as expected
+> working as expected.
+>
+> Also, if you configured new ssh keys for a remote repository, this may be
+> necessary in order to add remote server to list of known hosts during first
+> backup
 
 From inside container run
 
@@ -89,6 +109,12 @@ docker exec -it borgmatic /bin/bash
 ```
 
 ## Setup customization
+
+### Customize automated backup time
+
+Cron will be configured based on file at `borgmatic_cfg/crontab.txt`,
+update this file and then recreate container so that new config is
+applied
 
 ### Validate config
 
