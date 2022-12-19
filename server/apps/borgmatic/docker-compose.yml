@@ -15,6 +15,7 @@ services:
       - ${BORGMATIC_CFG_PATH}:/etc/borgmatic.d/
       - ${BORG_CFG_PATH}:/root/.config/borg
       - ${BORG_CACHE}:/root/.cache/borg
+      - ${SSH_KEYS_PATH}:/root/.ssh
 
       # Where to restore files when needed?
       - ${RESTORED_PATH}:/mnt/restored
