@@ -18,7 +18,7 @@ location:
     # service file to the ReadWritePaths list.
     repositories:
         - /mnt/host-local-borg-repository
-        - ssh://rock@143.244.144.17/./backups
+        #- ssh://rock@143.244.144.17/./backups
         #- ssh://user@backupserver/./{fqdn}
 
     # Working directory for the "borg create" command. Tildes are
