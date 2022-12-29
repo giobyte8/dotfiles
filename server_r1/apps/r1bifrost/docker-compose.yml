@@ -1,0 +1,27 @@
+version: '3'
+
+services:
+  r1bifrost:
+    image: nginx:1.23.3-alpine
+    container_name: r1bifrost
+    restart: always
+    ports:
+      - "80:80"
+    volumes:
+      - "$SITES_PATH:/etc/nginx/conf.d:ro"
+      - "$LOGS_PATH:/var/log/nginx"
+    networks:
+      r1_services:
+        ipv4_address: 172.20.2.130
+
+networks:
+  r1_services:
+    name: r1_services
+    driver: bridge
+    ipam:
+      config:
+        # 172.20.2.1-254
+        - subnet: 172.20.2.0/24
+
+        # 172.20.2.1-126 (127?)
+          ip_range: 172.20.2.0/25
