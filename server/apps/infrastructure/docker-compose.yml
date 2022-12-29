@@ -1,13 +1,16 @@
 version: '3.1'
 
 services:
-  # This will port forward to all services eventually
+  # This will port forward/reverse proxy to all services eventually
   bifrost:
-    image: alpine:3.15.4
+    image: nginx:1.23.3-alpine
     container_name: bifrost
     restart: unless-stopped
     ports:
-      - 27017:27017
+      - 127.0.0.1:2000:80
+    volumes:
+      - "$BIFROST_SITES_PATH:/etc/nginx/conf.d:ro"
+      - "$BIFROST_LOGS_PATH:/var/log/nginx"
     networks:
       hservices:
         ipv4_address: 172.20.1.254
@@ -55,7 +58,7 @@ services:
     networks:
       hservices:
         ipv4_address: 172.20.1.132
-        
+
 networks:
   hservices:
     name: hservices
