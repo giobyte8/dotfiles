@@ -42,6 +42,8 @@ if [ "$color_prompt" = yes ]; then
             H=rbx
         elif [ $H = "graybox" ]; then
             H=gbx
+	elif [ $H = "userver" ]; then
+	    H=r1
         fi
 
 
