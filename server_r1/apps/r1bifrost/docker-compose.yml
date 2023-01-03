@@ -2,14 +2,20 @@ version: '3'
 
 services:
   r1bifrost:
-    image: nginx:1.23.3-alpine
+    image: jonasal/nginx-certbot:latest
     container_name: r1bifrost
-    restart: always
+    restart: unless-stopped
     ports:
-      - "80:80"
+      - 80:80
+      - 443:443
+    environment:
+      - "CERTBOT_EMAIL=$CERTBOT_EMAIL"
+      - "STAGING=$CERTBOT_STAGING"
     volumes:
-      - "$SITES_PATH:/etc/nginx/conf.d:ro"
+      - "$CERTBOT_CERTS_PATH:/etc/letsencrypt"
+      - "$SITES_PATH:/etc/nginx/user_conf.d"
       - "$LOGS_PATH:/var/log/nginx"
+      - "$UPSTREAM_SSL_CERTS_PATH:/mnt/upstream_ssl_certs"
     networks:
       r1_services:
         ipv4_address: 172.20.2.130
