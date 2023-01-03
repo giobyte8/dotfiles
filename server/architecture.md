@@ -8,20 +8,29 @@ workflows
     1. [Main drive](#main-drive)
     2. [External drives](#external-drives)
     4. [Backups structure and automation](#backups-structure-and-automation)
-2. [Applications and services](#applications-and-services)
+2. [Deployed apps and services](#applications-and-services)
     1. [Common services](#common-services)
     2. [Deployed apps](#deployed-apps)
     3. [Networking overview](#networking-overview)
-    6. [Apps access links and port mapping](#apps-access-links-and-port-mapping)
-    5. [Automated startup process](#automated-startup-process)
+        1. [Access from internal network](#access-from-internal-network)
+        2. [Access from outside](#access-from-outside)
+            1. [Bifrost](#bifrost)
+            2. [Public apps links](#public-apps-links)
+    4. [Automated startup process](#automated-startup-process)
 3. Monitoring tools
     1. Btop and docker aliases
-    1. Notifications with RabbitMQ and Telegram
-    1. Telegram bot
+    1. Notifications with RabbitMQ and RTerminal
+    1. Bifrost monitoring
 4. Security
     1. Firewall setup
     2. Installed apps password management
-    3. Access from outside
+    3. Access from outside monitoring and alerting
+
+# TODOs
+
+- [ ] Document backup automation
+- [ ] Complete documentation of internal and external networking
+- [ ] Implement automated startup process
 
 # Storage
 
@@ -233,19 +242,34 @@ others are destinated to be managed by DHCP
 * IPs for dynamic assignment: `172.20.1.0/25 (172.20.1.1-126)`
 * IPs reserved to be manually assigned: `172.20.1.127-254`
 
-**Security**
+### Access from internal network
 
-For security reasons, apps and services are not directly accessible from
-external networks, access is restricted to hosts inside the `hservices`
-network
+| Running on | Service | Exposed port | Mapped to host port |
+|------------|---------|--------------|---------------------|
+| Docker     | MariaDB | 3306         | 3306                |
 
-A few services are exposed to host local network, that is done by mapping
-container ports to host ports
+### Access from outside
 
-## Apps access links and port mapping
+For security reasons, only a few ports are allowed in the router and mapped
+to the server
 
-| Service | Exposed ports | Mapped to host port |
-|---------|---------------|---------------------|
-| MariaDB | 3306          | 3306                |
+| External port | Mapped to host port | Mapped to service |
+|---------------|---------------------|-------------------|
+| 2000          | 2000                | bifrost:443       |
+
+#### Bifrost
+
+> The portal to other worlds ⚡️
+
+The bifrost acts as the entrance gateway for services exposed to the external
+world. It listens on port 443 and reverse proxies requests to appropriate
+services
+
+#### Public apps links
+
+| Application  | Link                                    |
+|--------------|-----------------------------------------|
+| Photoprism   | https://photos.giovanniaguirre.me       |
+| Transmission | https://transmission.giovanniaguirre.me |
 
 ## Automated startup process
