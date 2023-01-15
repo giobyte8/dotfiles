@@ -9,7 +9,7 @@ function ll-ext {
         TGT=$1
     fi
 
-    find "$TGT" -type f -maxdepth 1 -name '*.*' | sed 's|.*\.||' | sort -u
+    find "$TGT" -maxdepth 1 -type f -name '*.*' | sed 's|.*\.||' | sort -u
 }
 
 # Lists all extensions found in given path and
@@ -22,7 +22,7 @@ function ll-ext-count {
         TGT=$1
     fi
 
-    find "$TGT" -type f -maxdepth 1 -name '*.*' | \
+    find "$TGT" -maxdepth 1 -type f -name '*.*' | \
         sed 's/[^\.]*//' | \
         sed 's/.*\.//'   | \
         sort             | \
