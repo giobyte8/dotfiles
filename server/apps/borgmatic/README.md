@@ -2,15 +2,18 @@
 
 ## TODOs
 
-- [ ] Add crontab.txt to exec borgmatic automatically
+- [x] Add crontab.txt to exec borgmatic automatically
 - [ ] Implement backups to remote server
 - [ ] Implement hooks to integrate with rterminal
 
 This service automates backup of following home server data
 
-- [x] Pictures
+- [x] Camera pictures
+- [ ] Camera videos
+- [ ] Edited pictures
+- [ ] Edited videos
+- [ ] Private sensible galleries (Backup encrypted zip, not pictures)
 - [ ] Personal documents
-- [ ] Sensible personal documents
 
 ## Backup strategy
 
@@ -19,13 +22,13 @@ There 2 backups of information:
 1. Into a local borg repository
 2. Offsite, on a remote server
 
-Backups will run every day at 1am as configured at `./borgmatic_cfg/crontab.txt`
+Backups will run every Monday at 1am as configured at `./borgmatic_cfg/crontab.txt`
 
 ## Deployment
 
 ### 1. Prepare environment file
 
-Create your own `.env` file from template and edit it to match your own
+Create `.env` file from template and edit it to match your own
 requirements
 
 ```bash
@@ -42,8 +45,8 @@ docker compose up -d borgmatic
 
 ### 3. Initialize repository
 
-> You can skip this step if a borg repository alread exists in your
-> 'BORG_REPO_PATH' variable at your `.env` file.
+> You can skip this step if a borg repository already exists in your
+> 'BORG_REPO_PATH' variable in your `.env` file.
 >
 > Note that borgmatic skips repository creation if the repository already exists.
 > This supports use cases like ensuring a repository exists prior to performing a
