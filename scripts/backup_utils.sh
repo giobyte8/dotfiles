@@ -27,14 +27,24 @@ function bkp-photos {
     # In order to sync files with specific extensions only, we exclude
     # everything with --exclude and use --include to specify dirs and
     # the file extensions.
+    #
+    # Included extensions
+    #   .gpr  GoPro raw extension
+    #   .xmp  Extensible Metadata Platform (Sidecar file)
+    #   .dng  Samsung Galaxy S20 raw extension
 
     rsync -hruz --progress    \
         --exclude '*'         \
         --include '*/'        \
         --include '*.jpg'     \
         --include '*.JPG'     \
+        --include '*.jpeg'    \
+        --include '*.JPEG'    \
         --include '*.gpr'     \
         --include '*.GPR'     \
+        --include '*.raw'     \
+        --include '*.xmp'     \
+        --include '*.dng'     \
         $SRC                  \
         $DST
 }
