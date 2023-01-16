@@ -27,4 +27,7 @@ function ll-ext-count {
         sed 's/.*\.//'   | \
         sort             | \
         uniq -c
+
+    # Recursive extension count:
+    # find . -type f -name '*.*' | sed 's/[^\.]*//' | sed 's/.*\.//' | sort | uniq -c
 }
