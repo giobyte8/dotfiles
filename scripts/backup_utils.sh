@@ -34,7 +34,6 @@ function bkp-photos {
     #   .dng  Samsung Galaxy S20 raw extension
 
     rsync -hruz --progress    \
-        --exclude '*'         \
         --include '*/'        \
         --include '*.jpg'     \
         --include '*.JPG'     \
@@ -45,6 +44,7 @@ function bkp-photos {
         --include '*.raw'     \
         --include '*.xmp'     \
         --include '*.dng'     \
+        --exclude '*'         \
         $SRC                  \
         $DST
 }
@@ -78,10 +78,10 @@ function bkp-videos {
     # the file extensions.
 
     rsync -hruz --progress    \
-        --exclude '*'         \
         --include '*/'        \
         --include '*.mp4'     \
         --include '*.MP4'     \
+        --exclude '*'         \
         $SRC                  \
         $DST
 }
