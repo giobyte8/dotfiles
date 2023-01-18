@@ -4,12 +4,16 @@ There is a lot of functionality already integrated in native tools. Don't repeat
 
 ## Files sync
 
-`rsync` is the tool to go. Below is a command that will send Wallpapers directory to `192.168.1.103` machine 
+`rsync` is the tool to go. Below is a command that will send Wallpapers directory to `192.168.1.103` machine
 
 ```bash
 rsync --delete --progress -zrh \
 		Wallpapers/ \
 		ubuntu@192.168.1.103:/media/blackstore/Pictures/Wallpapers
+
+# rsync files listed in a txt
+#  missing.txt -> each line contains a filename relative to source path
+rsync --progress -hu --files-from=missing.txt rock@192.168.1.103:./videos/cameras/GoPro/ ./
 ```
 
 
