@@ -367,82 +367,68 @@ consistency:
 # forget to set secure permissions on this configuration file (chmod
 # 0600) as well as on any script called from a hook (chmod 0700) to
 # prevent potential shell injection or privilege escalation.
-# hooks:
+hooks:
     # List of one or more shell commands or scripts to execute
     # before all the actions for each repository.
     # before_actions:
         # - echo "Starting actions."
 
-    # List of one or more shell commands or scripts to execute
     # before creating a backup, run once per repository.
-    # before_backup:
-        # - echo "Starting a backup."
+    before_backup:
+        - /mnt/hooks/on_action.sh "{repository}" "{configuration_filename}" "LOW" "Starting backup"
 
-    # List of one or more shell commands or scripts to execute
     # before pruning, run once per repository.
-    # before_prune:
-        # - echo "Starting pruning."
+    before_prune:
+        - /mnt/hooks/on_action.sh "{repository}" "{configuration_filename}" "LOW" "Starting pruning"
 
-    # List of one or more shell commands or scripts to execute
     # before compaction, run once per repository.
-    # before_compact:
-        # - echo "Starting compaction."
+    before_compact:
+        - /mnt/hooks/on_action.sh "{repository}" "{configuration_filename}" "LOW" "Starting compaction"
 
-    # List of one or more shell commands or scripts to execute
     # before consistency checks, run once per repository.
-    # before_check:
-        # - echo "Starting checks."
+    before_check:
+        - /mnt/hooks/on_action.sh "{repository}" "{configuration_filename}" "LOW" "Starting consistency check"
 
-    # List of one or more shell commands or scripts to execute
     # before extracting a backup, run once per repository.
     # before_extract:
         # - echo "Starting extracting."
 
-    # List of one or more shell commands or scripts to execute
     # after creating a backup, run once per repository.
-    # after_backup:
-        # - echo "Finished a backup."
+    after_backup:
+        - /mnt/hooks/on_action.sh "{repository}" "{configuration_filename}" "LOW" "Finished backup"
 
-    # List of one or more shell commands or scripts to execute
     # after compaction, run once per repository.
-    # after_compact:
-        # - echo "Finished compaction."
+    after_compact:
+        - /mnt/hooks/on_action.sh "{repository}" "{configuration_filename}" "LOW" "Finished compaction"
 
-    # List of one or more shell commands or scripts to execute
     # after pruning, run once per repository.
-    # after_prune:
-        # - echo "Finished pruning."
+    after_prune:
+        - /mnt/hooks/on_action.sh "{repository}" "{configuration_filename}" "LOW" "Finished pruning"
 
-    # List of one or more shell commands or scripts to execute
     # after consistency checks, run once per repository.
-    # after_check:
-        # - echo "Finished checks."
+    after_check:
+        - /mnt/hooks/on_action.sh "{repository}" "{configuration_filename}" "LOW" "Finished consistency check"
 
-    # List of one or more shell commands or scripts to execute
     # after extracting a backup, run once per repository.
     # after_extract:
         # - echo "Finished extracting."
 
-    # List of one or more shell commands or scripts to execute
     # after all actions for each repository.
     # after_actions:
         # - echo "Finished actions."
 
-    # List of one or more shell commands or scripts to execute
     # when an exception occurs during a "prune", "compact",
     # "create", or "check" action or an associated before/after
     # hook.
-    # on_error:
-        # - echo "Error during prune/compact/create/check."
+    on_error:
+        - /mnt/hooks/on_action.sh "{repository}" "{configuration_filename}" "HIGH" "Error during prune/compact/create/check"
 
-    # List of one or more shell commands or scripts to execute
     # before running all actions (if one of them is "create").
     # These are collected from all configuration files and then
     # run once before all of them (prior to all actions).
     # before_everything:
         # - echo "Starting actions."
 
-    # List of one or more shell commands or scripts to execute
     # after running all actions (if one of them is "create").
     # These are collected from all configuration files and then
     # run once after all of them (after any action).
