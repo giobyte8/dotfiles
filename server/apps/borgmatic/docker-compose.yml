@@ -11,7 +11,6 @@ services:
 
       # For rterminal notifications
       - RABBITMQ_HOST=${RABBITMQ_HOST}
-      - RABBITMQ_PORT=${RABBITMQ_PORT}
       - RABBITMQ_USER=${RABBITMQ_USER}
       - RABBITMQ_PASS=${RABBITMQ_PASS}
       - RABBITMQ_API_PORT=${RABBITMQ_API_PORT}
@@ -29,3 +28,10 @@ services:
 
       # Where to restore files when needed?
       - ${RESTORED_PATH}:/mnt/restored
+    networks:
+      - hservices
+
+networks:
+  hservices:
+    external: true
+
