@@ -53,7 +53,7 @@ services:
       - "2342:2342"
     environment:
       PHOTOPRISM_ADMIN_PASSWORD: "${ADMIN_PASSWORD}"          # YOUR INITIAL ADMIN PASSWORD (MINIMUM 8 CHARACTERS, USERNAME "admin")
-      PHOTOPRISM_SITE_URL: "http://localhost:2342/"  # public server URL incl http:// or https:// and /path, :port is optional
+      PHOTOPRISM_SITE_URL: "${SITE_URL}"             # public server URL incl http:// or https:// and /path, :port is optional
       PHOTOPRISM_ORIGINALS_LIMIT: 5000               # file size limit for originals in MB (increase for high-res video)
       PHOTOPRISM_HTTP_COMPRESSION: "gzip"            # improves transfer speed and bandwidth utilization (none or gzip)
       PHOTOPRISM_LOG_LEVEL: "info"                   # log level: trace, debug, info, warning, error, fatal, or panic
@@ -93,7 +93,8 @@ services:
     user: "1000:1000"
     working_dir: "/photoprism" # do not change or remove
     volumes:
-      - "/home/rock/pictures/Cameras:/photoprism/originals/cameras"               # Original media files (DO NOT REMOVE)
+      - "/home/rock/pictures/cameras:/photoprism/originals/cameras:ro"            # Original photo files (DO NOT REMOVE)
+      - "/home/rock/videos/transcoded:/photoprism/originals/videos:ro"            # Externally transcoded videos
       - "/home/rock/workspace/appdata/photoprism:/photoprism/storage"             # *Writable* storage folder for cache, database, and sidecar files (DO NOT REMOVE)
     networks:
       - hservices
