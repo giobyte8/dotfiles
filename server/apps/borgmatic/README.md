@@ -3,8 +3,8 @@
 ## TODOs
 
 - [x] Add crontab.txt to exec borgmatic automatically
-- [ ] Implement backups to remote server
-- [ ] Implement hooks to integrate with rterminal
+- [x] Implement backups to remote server
+- [x] Implement hooks to integrate with rterminal
 
 This service automates backup of following home server data
 
@@ -46,13 +46,18 @@ docker compose up -d borgmatic
 ### 3. Initialize repository
 
 > You can skip this step if a borg repository already exists in your
-> 'BORG_REPO_PATH' variable in your `.env` file.
+> 'BORG_LOCAL_REPO_PATH' variable in your `.env` file.
 >
 > Note that borgmatic skips repository creation if the repository already exists.
 > This supports use cases like ensuring a repository exists prior to performing a
 > backup.
 
-From inside container run below commands
+Go inside the container:
+```bash
+docker exec -it borgmatic /bin/bash
+```
+
+From inside container run:
 
 ```bash
 borgmatic rcreate -e repokey
@@ -61,18 +66,31 @@ borgmatic rcreate -e repokey
 ### 4. (Optional) Setup backups to remote location
 
 > This is needed only if you're implementing backups into a remote
-> server. Like in the config at `location.repositories.ssh...` in
-> `pictures.yml` file
+> server. Like values starting with `ssh:` at `location.repositories` in
+> `borgmatic_cfg/pictures.yml` file
 
-1. Make sure the right user and IP address are configured in the repositories
-   list of your backup config (`.yml` file).
+1. Make sure the right ssh addresses (Including user and IP) are configured
+   in the repositories list in your backup configs (`.yml` file).
 2. Setup right values for `$SSH_KEYS_PATH` in your `.env` file. This can be the
    path to your `$HOME/.ssh` or you can create a `ssh_keys/` directory in this
-   project root and create new keys there. Check
-   [this article from Digital Ocean](https://www.digitalocean.com/community/tutorials/how-to-set-up-ssh-keys-on-ubuntu-22-04) for further reference.
+   project root and create new keys there. See sample command below to generate
+   new ssh keys in a particular directory.
+
+   Check [this article from Digital Ocean](https://www.digitalocean.com/community/tutorials/how-to-set-up-ssh-keys-on-ubuntu-22-04) for further reference.
+
 3. Make sure repository is initialized in remote server. This repository should
    be the same as specified in the `location.repositories.ssh...` config of your
-   backups. You can init repo with `borg init -encryption=repokey ./path/to/repo`
+   backups. You can init repo with `borg init --encryption=repokey ./path/to/repo`
+
+Command to create rsa key in a custom directory:
+```bash
+ssh-keygen  \
+    -m PEM  \
+    -t rsa  \
+    -b 4096 \
+    -C "<enter wharever comment like: user@host" \
+    -f ssh_keys/id_rsa \
+```
 
 ### 5. (Optional) Run a backup manually
 
@@ -83,8 +101,12 @@ borgmatic rcreate -e repokey
 > necessary in order to add remote server to list of known hosts during first
 > backup
 
-From inside container run
+Go inside the container:
+```bash
+docker exec -it borgmatic /bin/bash
+```
 
+From inside container run:
 ```bash
 borgmatic create -v 1 --list --stats
 
