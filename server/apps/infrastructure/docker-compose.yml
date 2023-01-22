@@ -7,9 +7,11 @@ services:
     container_name: bifrost
     restart: unless-stopped
     ports:
-      - 127.0.0.1:2000:80
+      - 2000:443
+      - 443:443
     volumes:
-      - "$BIFROST_SITES_PATH:/etc/nginx/conf.d:ro"
+      - "$BIFROST_UPSTREAM_SSL_PATH:/mnt/upstream_ssl_certs"
+      - "$BIFROST_SITES_PATH:/etc/nginx/conf.d"
       - "$BIFROST_LOGS_PATH:/var/log/nginx"
     networks:
       hservices:
@@ -52,7 +54,6 @@ services:
     image: redis:6.2.6-alpine
     container_name: redis
     restart: unless-stopped
-    user: "${UID}:${GID}"
     ports:
       - '6379:6379'
     networks:
