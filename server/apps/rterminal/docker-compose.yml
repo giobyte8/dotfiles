@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  rterminal:
+    image: giobyte8/rterminal:1.0.2
+    container_name: rterminal
+    user: $UID:$GID
+    environment:
+      - "TG_BOT_TOKEN=${TG_BOT_TOKEN}"
+      - "BOT_AUTH_HASH=${BOT_AUTH_HASH}"
+      - "SESSION_EXPIRE=${SESSION_EXPIRE}"
+
+      - "REDIS_HOST=${REDIS_HOST}"
+      - "REDIS_PORT=${REDIS_PORT}"
+
+      - "RABBITMQ_HOST=${RABBITMQ_HOST}"
+      - "RABBITMQ_PORT=${RABBITMQ_PORT}"
+      - "RABBITMQ_USER=${RABBITMQ_USER}"
+      - "RABBITMQ_PASS=${RABBITMQ_PASS}"
+
+      - "RUNTIME_PATH=/mnt/runtime"
+      - "LOG_LEVEL=${LOG_LEVEL}"
+    volumes:
+      - "${RUNTIME_PATH}:/mnt/runtime"
+    networks:
+      - hservices
+
+networks:
+  hservices:
+    external: true
+
