@@ -1,10 +1,15 @@
 # Automated backups through borgmatic and docker
 
-## TODOs
-
-- [x] Add crontab.txt to exec borgmatic automatically
-- [x] Implement backups to remote server
-- [x] Implement hooks to integrate with rterminal
+1. [Backup strategy](#backup-strategy)
+2. [Deployment](#deployment)
+   1. [Prepare .env file](#1-prepare-environment-file)
+   1. [Start borgmatic service](#2-start-borgmatic-service)
+   1. [Initialize repository](#3-initialize-repository)
+   1. [Backups to remote location](#4-optional-setup-backups-to-remote-location)
+   1. [Run a backup manually](#5-optional-run-a-backup-manually)
+3. [Run borg/borgmatic commands manually](#run-borg-commands-manually)
+4. [Setup customization](#setup-customization)
+5. [References](#references)
 
 This service automates backup of following home server data
 
@@ -14,6 +19,10 @@ This service automates backup of following home server data
 - [ ] Edited videos
 - [ ] Private sensible galleries (Backup encrypted zip, not pictures)
 - [ ] Personal documents
+
+The list of directories/files included in backups and paramters such as
+frequency and redundancy are configured in several files at
+[borgmatic_cfg](./borgmatic_cfg/) directory.
 
 ## Backup strategy
 
