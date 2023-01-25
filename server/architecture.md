@@ -7,15 +7,9 @@ workflows
 1. [Storage](#storage)
     1. [Main drive](#main-drive)
     2. [External drives](#external-drives)
-    4. [Backups structure and automation](#backups-structure-and-automation)
-2. [Deployed apps and services](#applications-and-services)
+    4. [Backups automation and structure](#backups-automation-and-structure)
+2. [Apps and services](#applications-and-services)
     1. [Common services](#common-services)
-    2. [Deployed apps](#deployed-apps)
-    3. [Networking overview](#networking-overview)
-        1. [Access from internal network](#access-from-internal-network)
-        2. [Access from outside](#access-from-outside)
-            1. [Bifrost](#bifrost)
-            2. [Public apps links](#public-apps-links)
     4. [Automated startup process](#automated-startup-process)
 3. Monitoring tools
     1. Btop and docker aliases
@@ -28,8 +22,6 @@ workflows
 
 # TODOs
 
-- [ ] Document backup automation
-- [ ] Complete documentation of internal and external networking
 - [ ] Implement automated startup process
 
 # Storage
@@ -68,26 +60,41 @@ contains personal data
 |     # Where all the photos and pictures are stored
 |- -- pictures/
 |
-|        # Personal photos classified by the camera which they come from
+|        # Personal photos classified by the camera which they come from,
 |        # there is an 'Others' directory for photos with unknown camera or
 |        # not taken by me
-|- -- -- Cameras/
+|- -- -- cameras/
 |
-|        # Edited photos/videos or in progress edition projects
-|- -- -- Edits/
-|
-|        # All of my photos from before I started to classify (2019)
-|- -- -- Memories/
-|
-|        # Hand picked amazing wallpapers
-|- -- -- Wallpapers/
+|        # Edited photos or in progress edition projects
+|- -- -- edits/
 |
 |        # Collections downloaded and classified by my 'galleries' instance
 |        # https://github.com/giobyte8/galleries
 |- -- -- galleries/
 |
-|        # Private galleries: Mostly hand picked sensible pictures
+|        # Photos collection until before I started to classify (2019)
+|- -- -- memories/
+|
+|        # Private galleries:
+|        # - Hand picked sensible pictures
 |- -- -- pgalleries/
+|
+|        # Hand picked amazing wallpapers
+|- -- -- wallpapers/
+|
+|
+|     # Where all the videos are stored
+|- -- videos/
+|
+|        # Personal videos classified by the camera they came from.
+|        # There is an 'Others' directory for videos with unknown camera
+|        # or not recorded by me
+|- -- -- cameras
+|
+|        # Transcoded versions of videos. All of those are optimized for
+|        # web access. Since those are transcoded version from the originals
+|        # no backup of this directory is needed
+|- -- -- transcoded
 |
 |
 |     # Runtime or wip data from running apps and services
@@ -126,7 +133,7 @@ Here is where all external drives (SSDs, HDDs, SD Cards) are mounted
 |     # (Galaxy S20+) MTP Device is manually mounted here
 |- -- s20/
 |
-|- -- # RPI SDCard is manually mounted here
+|- -- # SDCards are manually mounted here when needed
 |- -- sdcard/
 ```
 
@@ -188,88 +195,30 @@ Here is where all external drives (SSDs, HDDs, SD Cards) are mounted
 |- -- backups/
 ```
 
-## Backups structure and automation
+## Backups automation and structure
 
-Important data is backed up using [Borg](https://www.borgbackup.org/), there
-are two borg repositories, which means two backups of the information:
-
-1. Local backup at: `/media/vstore/backups`
-2. Offsite backup at remote server
-
-Following directories are included in backups
-
-```bash
-- /home/rock/pictures
-
-- /home/rock/workspace/runtime_backups
-- /media/vstore/Sources
-```
-
-Backups are done automatically by [borgmatic]() and are configured under
-`/home/rock/DotFiles/server/apps/borgmatic`
+Important data is backed up automatically following the 3-2-1 policy.
+All implementation details are documented in its
+[own section](apps/borgmatic/README.md)
 
 # Applications and services
 
-Most of the services are deployed using docker containers
+Most of the services are deployed using docker containers.
+- Each app is configured in its own directory in [apps/](apps/)
+- Most of the apps include a `docker-compose.yml` and an `.env` files.
+- When is necessary, apps include its own `README.md` with docs about
+  its implementation
+
+Navigate to each app's directory inside [apps/](apps/) to review it's
+implementation and deployment details.
 
 ## Common services
 
-The backbone of the infrastructure is composed of several services that
-are used by multiple deployed applications. Such services are:
+The backbone of the server [infrastructure](apps/infrastructure/) is
+composed of several services such as databases, queues, proxies, etc.
+that are then used by deployed applications.
 
-- MariaDB
-- RabbitMQ
-- Redis
-
-## Deployed apps
-
-- Plex
-- Transmission
-- Photoprism
-- [Galleries](github.com/giobyte8/galleries)
-
-## Networking overview
-
-All production services and apps running in docker are attached to a
-docker bridge network called `hservices`.
-
-Some IPs in such network are reserved to be manually assigned and some
-others are destinated to be managed by DHCP
-
-**Home services network**
-
-* Subnet: `172.20.1.0/24`
-* IPs for dynamic assignment: `172.20.1.0/25 (172.20.1.1-126)`
-* IPs reserved to be manually assigned: `172.20.1.127-254`
-
-### Access from internal network
-
-| Running on | Service | Exposed port | Mapped to host port |
-|------------|---------|--------------|---------------------|
-| Docker     | MariaDB | 3306         | 3306                |
-
-### Access from outside
-
-For security reasons, only a few ports are allowed in the router and mapped
-to the server
-
-| External port | Mapped to host port | Mapped to service |
-|---------------|---------------------|-------------------|
-| 2000          | 2000                | bifrost:443       |
-
-#### Bifrost
-
-> The portal to other worlds ⚡️
-
-The bifrost acts as the entrance gateway for services exposed to the external
-world. It listens on port 443 and reverse proxies requests to appropriate
-services
-
-#### Public apps links
-
-| Application  | Link                                    |
-|--------------|-----------------------------------------|
-| Photoprism   | https://photos.giovanniaguirre.me       |
-| Transmission | https://transmission.giovanniaguirre.me |
+Network configuration and overview of such services is documented
+in [apps/infrastructure](apps/infrastructure/README.md)
 
 ## Automated startup process
