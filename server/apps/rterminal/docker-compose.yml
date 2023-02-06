@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   rterminal:
-    image: giobyte8/rterminal:1.0.2
+    image: giobyte8/rterminal:1.0.3
     container_name: rterminal
     user: $UID:$GID
     environment:
