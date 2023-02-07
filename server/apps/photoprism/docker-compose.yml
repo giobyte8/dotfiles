@@ -93,9 +93,9 @@ services:
     user: "1000:1000"
     working_dir: "/photoprism" # do not change or remove
     volumes:
-      - "/home/rock/pictures/cameras:/photoprism/originals/cameras:ro"            # Original photo files (DO NOT REMOVE)
-      - "/home/rock/videos/transcoded:/photoprism/originals/videos:ro"            # Externally transcoded videos
-      - "/home/rock/workspace/appdata/photoprism:/photoprism/storage"             # *Writable* storage folder for cache, database, and sidecar files (DO NOT REMOVE)
+      - "/home/rock/mmedia/cameras:/photoprism/originals/cameras:ro"            # Original photo files (DO NOT REMOVE)
+      - "/home/rock/mmedia/edits/vtranscoded:/photoprism/originals/videos:ro"   # Externally transcoded videos
+      - "/home/rock/workspace/appdata/photoprism:/photoprism/storage"           # *Writable* storage folder for cache, database, and sidecar files (DO NOT REMOVE)
     networks:
       - hservices
 
