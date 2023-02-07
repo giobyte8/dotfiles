@@ -3,6 +3,10 @@
 
 if [[ $OSTYPE == 'darwin'* ]]; then
 
+  ## MacOS-only aliases
+  alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
+
+
   function dns-set {
     if [ $1 = "cloudflare" ]; then
       echo "Switching to Cloudflare DNS servers"

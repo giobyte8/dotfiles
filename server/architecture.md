@@ -57,16 +57,22 @@ contains personal data
 |     # * Usually experimental or in early development phase apps
 |- -- eapps/
 |
-|     # Where all the photos and pictures are stored
-|- -- pictures/
 |
-|        # Personal photos classified by the camera which they come from,
-|        # there is an 'Others' directory for photos with unknown camera or
-|        # not taken by me
+|     # Multimedia content:
+|     # - Pictures, Photos, Videos, etc.
+|- -- mmedia/
+|
+|        # Content classified by the camera which was taken by. There is
+|        # an 'Others' directory for photos with unknown camera.
 |- -- -- cameras/
 |
-|        # Edited photos or in progress edition projects
+|        # Edited photos/videos or in progress edition projects
 |- -- -- edits/
+|
+|           # Transcoded versions of videos. All of those are optimized for
+|           # web access. Since those are transcoded version from the originals
+|           # no backup of this directory is needed
+|- -- -- -- vtranscoded/
 |
 |        # Collections downloaded and classified by my 'galleries' instance
 |        # https://github.com/giobyte8/galleries
@@ -81,20 +87,6 @@ contains personal data
 |
 |        # Hand picked amazing wallpapers
 |- -- -- wallpapers/
-|
-|
-|     # Where all the videos are stored
-|- -- videos/
-|
-|        # Personal videos classified by the camera they came from.
-|        # There is an 'Others' directory for videos with unknown camera
-|        # or not recorded by me
-|- -- -- cameras
-|
-|        # Transcoded versions of videos. All of those are optimized for
-|        # web access. Since those are transcoded version from the originals
-|        # no backup of this directory is needed
-|- -- -- transcoded
 |
 |
 |     # Runtime or wip data from running apps and services
