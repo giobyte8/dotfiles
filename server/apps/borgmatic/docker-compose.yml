@@ -17,8 +17,7 @@ services:
       - RABBITMQ_EXCHANGE=${RABBITMQ_EXCHANGE}
       - RABBITMQ_ROUTING_KEY=${RABBITMQ_ROUTING_KEY}
     volumes:
-      - ${SRC_PICTURES}:/mnt/pictures:ro
-      - ${SRC_VIDEOS_CAMERAS}:/mnt/videos/cameras:ro
+      - ${SRC_MMEDIA_CAMERAS}:/mnt/data/mmedia/cameras:ro
       - ${BORG_LOCAL_REPO_PATH}:/mnt/host-local-borg-repository
 
       - ${BORGMATIC_CFG_PATH}:/etc/borgmatic.d/

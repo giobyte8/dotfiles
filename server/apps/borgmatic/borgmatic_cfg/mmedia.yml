@@ -7,7 +7,7 @@ location:
     # expanded. Do not backslash spaces in path names.
     # REMEMBER: Those paths are inside the container
     source_directories:
-        - /mnt/videos/cameras
+        - /mnt/data/mmedia/cameras
 
     # Paths to local or remote repositories (required). Tildes are
     # expanded. Multiple repositories are backed up to in
@@ -230,7 +230,7 @@ storage:
     # and consistency sections to avoid accidental
     # pruning/checking of archives with different archive name
     # formats.
-    archive_name_format: 'videos-cameras-{now}'
+    archive_name_format: 'mmedia-{now}'
 
     # Bypass Borg error about a repository that has been moved.
     # Defaults to false.
@@ -326,12 +326,12 @@ consistency:
           # run it no more than monthly. Defaults to
           # "always": running this check every time checks
           # are run.
-          frequency: 4 weeks
+          frequency: 1 month
 
         - name: data
-          frequency: 1 months
+          frequency: 2 months
         - name: extract
-          frequency: 3 months
+          frequency: 4 months
 
     # Paths to a subset of the repositories in the location
     # section on which to run consistency checks. Handy in case
@@ -382,7 +382,7 @@ hooks:
 
     # before compaction, run once per repository.
     before_compact:
-        - /mnt/hooks/on_action.sh "n/a" "{configuration_filename}" "LOW" "Starting compaction"
+        - /mnt/hooks/on_action.sh "--" "{configuration_filename}" "LOW" "Starting compaction"
 
     # before consistency checks, run once per repository.
     before_check:
@@ -398,7 +398,7 @@ hooks:
 
     # after compaction, run once per repository.
     after_compact:
-        - /mnt/hooks/on_action.sh "n/a" "{configuration_filename}" "LOW" "Finished compaction"
+        - /mnt/hooks/on_action.sh "--" "{configuration_filename}" "LOW" "Finished compaction"
 
     # after pruning, run once per repository.
     after_prune:

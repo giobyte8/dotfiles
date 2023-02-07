@@ -13,8 +13,7 @@
 
 This service automates backup of following home server data
 
-- [x] Camera pictures
-- [ ] Camera videos
+- [x] Cameras pictures/videos
 - [ ] Edited pictures
 - [ ] Edited videos
 - [ ] Private sensible galleries (Backup encrypted zip, not pictures)
@@ -26,10 +25,10 @@ frequency and redundancy are configured in several files at
 
 ## Backup strategy
 
-There 2 backups of information:
+There are 2 backups of information:
 
-1. Into a local borg repository
-2. Offsite, on a remote server
+1. Onsite: Into a local borg repository
+2. Offsite: To a remote storage server
 
 Backups will run every Monday at 1am as configured at `./borgmatic_cfg/crontab.txt`
 

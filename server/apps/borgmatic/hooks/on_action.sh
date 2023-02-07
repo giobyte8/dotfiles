@@ -32,7 +32,7 @@ fi
 if [ ! $# -eq 4 ]; then
     echo "ERR: Wrong number of arguments"
     echo " Usage: on_action.sh <repo> <config> <priority> <msg>"
-    return 1
+    exit 1
 fi
 
 # Read and validate arguments
@@ -40,6 +40,18 @@ REPO=$1
 CONF=$2
 PRIORITY=$3
 MESSAGE=$4
+
+# Simplify repository names
+if [ "$REPO" = "ssh://uh46y91c@uh46y91c.repo.borgbase.com/./repo" ]; then
+    REPO="Offsite"
+elif [ "$REPO" = "/mnt/host-local-borg-repository" ]; then
+    REPO="Onsite"
+fi
+
+# Simplify config file name
+if type basename &> /dev/null; then
+    CONF=$(basename "${CONF}")
+fi
 
 
 # Prepare message payload
@@ -49,8 +61,9 @@ function json_escape() {
 }
 
 msg="$MESSAGE
-Repo: $REPO
-Conf: $CONF"
+
+Conf: $CONF
+Repo: $REPO"
 j_msg=$(json_escape "$msg")
 
 notification="{
