@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  filebrowser:
+    image: filebrowser/filebrowser:s6
+    container_name: fileb
+    environment:
+      - TZ=America/Mexico_City
+      - UID=$UID
+      - GID=$GID
+    volumes:
+      - "$PATH_MMEDIA:/srv/mmedia"
+      - "$PATH_BLACKSTORE:/srv/blackstore"
+      - "$PATH_VSTORE:/srv/vstore"
+      - "$PATH_DB:/database/filebrowser.db"
+      - "$PATH_SETTINGS:/config/settings.json"
+    ports:
+      - 2001:80
+    restart: unless-stopped
+    networks:
+      - hservices
+
+networks:
+  hservices:
+    external: true
+
