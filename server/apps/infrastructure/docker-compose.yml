@@ -31,6 +31,21 @@ services:
       hservices:
         ipv4_address: 172.20.1.130
 
+  postgres:
+    image: postgres:14.6-alpine
+    container_name: postgres
+    restart: unless-stopped
+    ports:
+      - 5432:5432
+    volumes:
+      - ${POSTGRES_DATA}:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASS}
+    networks:
+      hservices:
+        ipv4_address: 172.20.1.133
+
   rabbitmq:
     image: rabbitmq:3.9.15-management-alpine
     container_name: rabbitmq
