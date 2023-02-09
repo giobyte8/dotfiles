@@ -6,8 +6,8 @@ services:
     container_name: fileb
     environment:
       - TZ=America/Mexico_City
-      - UID=$UID
-      - GID=$GID
+      - PUID=$UID
+      - PGID=$GID
     volumes:
       - "$PATH_MMEDIA:/srv/mmedia"
       - "$PATH_BLACKSTORE:/srv/blackstore"
