@@ -13,7 +13,7 @@ skt-ip() {
 }
 
 
-# SSH's you into a given instance (uses above function to get ip) 
+# SSH's you into a given instance (uses above function to get ip)
 # Usage: skt-ssh <env_name> <app_name>
 skt-ssh() {
   env_name="$1"
@@ -40,7 +40,7 @@ skt-logs() {
 skt-env() {
   env_name="$1"
   aws ec2 describe-instances \
-    --query "Reservations[].Instances[].{Env: Tags[?Key == 'Name']|[0].Value, Version: Tags[?Key == 'nexus_version']|[0].Value}" \
+    --query "Reservations[].Instances[].{App: Tags[?Key == 'Name']|[0].Value, Version: Tags[?Key == 'nexus_version']|[0].Value, CloudConfigBranch: Tags[?Key == 'spring_cloud_config_branch_name']|[0].Value}" \
     --filters "Name=tag:app_environment_id,Values=${env_name}" "Name=instance-state-name,Values=running" \
     --output table \
     --profile skydev
@@ -53,7 +53,7 @@ skt-env-app() {
   app_name="$2"
 
   aws ec2 describe-instances \
-    --query "Reservations[].Instances[].{Env: Tags[?Key == 'Name']|[0].Value, Version: Tags[?Key == 'nexus_version']|[0].Value}" \
+    --query "Reservations[].Instances[].{App: Tags[?Key == 'Name']|[0].Value, Version: Tags[?Key == 'nexus_version']|[0].Value, CloudConfigBranch: Tags[?Key == 'spring_cloud_config_branch_name']|[0].Value}" \
     --filters \
         "Name=tag:app_environment_id,Values=${env_name}" \
         "Name=instance-state-name,Values=running"        \
