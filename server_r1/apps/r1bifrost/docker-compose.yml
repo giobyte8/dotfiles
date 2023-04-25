@@ -12,7 +12,7 @@ services:
       - "CERTBOT_EMAIL=$CERTBOT_EMAIL"
       - "STAGING=$CERTBOT_STAGING"
     volumes:
-      - "$PROXY_PASS_FILE=/etc/nginx/proxy_pass.conf"
+      - "$PROXY_PASS_FILE:/etc/nginx/proxy_pass.conf"
       - "$CERTBOT_CERTS_PATH:/etc/letsencrypt"
       - "$SITES_PATH:/etc/nginx/user_conf.d"
       - "$LOGS_PATH:/var/log/nginx"
