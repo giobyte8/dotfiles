@@ -5,7 +5,7 @@ services:
   bifrost:
     image: nginx:1.23.3-alpine
     container_name: bifrost
-    restart: unless-stopped
+    restart: "no"
     ports:
       - 2000:443
       - 443:443
