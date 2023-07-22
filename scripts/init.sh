@@ -11,7 +11,6 @@ if [ -f "$HOME/.asdf/plugins/java/set-java-home.zsh" ]; then
 fi
 
 if [ -f "$HOME/.asdf/plugins/golang/set-env.zsh" ]; then
-    echo "Setting go env"
     . ~/.asdf/plugins/golang/set-env.zsh
 fi
 
