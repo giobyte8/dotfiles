@@ -6,6 +6,7 @@ alias dpsa="docker ps -a --format \"table {{.Names}}\t{{.Status}}\""
 alias dpsp="docker ps --format \"table {{.Names}}\t{{.Status}}\t{{.Ports}}\""
 alias dpsap="docker ps -a --format \"table {{.Names}}\t{{.Status}}\t{{.Ports}}\""
 alias dc="docker compose"
+alias dcs="docker compose config --services"
 
 # AWS SAM shortcuts
 alias sam-local-api="sam build && sam local start-api"
