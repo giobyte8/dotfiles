@@ -1,0 +1,3 @@
+#!/bin/bash
+
+gallery-dl --cookies ./cookies.txt  -D "./data.dev/downloads" $1
