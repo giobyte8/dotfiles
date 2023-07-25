@@ -10,6 +10,10 @@ if [ -f "$HOME/.asdf/plugins/java/set-java-home.zsh" ]; then
     export ASDF_GROOVY_DISABLE_JAVA_HOME_EXPORT=true
 fi
 
+if [ -f "$HOME/.asdf/plugins/golang/set-env.zsh" ]; then
+    . ~/.asdf/plugins/golang/set-env.zsh
+fi
+
 # thrift@0.9 path and flags (Required in mac for skytouch setup)
 if [ -d "/opt/homebrew/opt/thrift@0.9/bin" ]; then
     export PATH="/opt/homebrew/opt/thrift@0.9/bin:$PATH"
