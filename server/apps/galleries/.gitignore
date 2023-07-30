@@ -1,6 +1,11 @@
 # Env files
 .env
 http_downloader.docker.env
+synchronizer.docker.env
 
 # Per service config files
-gallery-dl.cookies.json
+gallery-dl.config.json
+
+# Synchronizer config
+config/synchronizer/sync_scheduler.crontab
+

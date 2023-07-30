@@ -27,13 +27,13 @@
         "pinterest": {
             "videos": false,
             "cookies": {
-                "_pinterest_sess": "<Replace with your own value>"
+                "_pinterest_sess": "TWc9PSZVNVJuRHB2NWtXMkpSV2lOZnRaOXJvU3phUy81RnlPcG1HYUZ3Sm9ZbHFGcWpVVTBZMFFjNWhKSnZsdXdLTEErcUYxNkRCZENMTUF3RnlETk9EbXNnNDlNQnF0Z1hvVjBYaUU5Ykh3dWNXWndwRGJHblJGUzhHUVI0eWpMZzBUcHdjUGhIK2dFU0ozQWdDRngrdTZ2eDhOdnBvNDNFa2h0aHBYUno2WndMVTdZZ1MvdEpoSTNEbllFY0Rrdnl2UVd3ckYyck9XWTEzK3YwSC9zVWtjbXp3YjgzWFhqSUF3RnJrSkJITHFpYzQ5ZjJHQ2xHTGxOZS93ek9qSzZDYTg3b3RjTmR1T3pzaVZ5bEZadzkvMnZZd3hYdXpiQzlNNFYxbjB5d1Jxd1YxeHgrMlFXd3R6Y1FzS21STFFLb25MSXdmd3dTN0wvMEYzZ29xeVRDWXhjK3hJZWV1bFZFTGs4QWVYVmxaZDEzRklSVW5jeE5KYjNYTXRYR2pKVWh6cHNOZ3RuZXI2cGoxNEhReU5EUjdtR093PT0ma1lhcDYybVJmcjU3bXNQUWJtYzNqUkNtNUowPQ"
             }
         },
 
         "instagram": {
             "cookies": {
-                "sessionid": "<Replace with your own value>"
+                "sessionid": "2522103297%3Afftwo7EoJYswKx%3A3%3AAYcX-QOLCuNLys7XfAdmixgiChABxpteT1vslqClKw"
             }
         }
     }
