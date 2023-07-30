@@ -4,3 +4,6 @@
 [submodule "ohmyzsh-custom/plugins/zsh-nvm"]
 	path = ohmyzsh-custom/plugins/zsh-nvm
 	url = https://github.com/lukechilds/zsh-nvm
+[submodule "server/apps/galleries/db"]
+	path = server/apps/galleries/db
+	url = git@github.com:giobyte8/galleries_db.git
