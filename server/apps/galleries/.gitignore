@@ -3,9 +3,10 @@
 http_downloader.docker.env
 synchronizer.docker.env
 
-# Per service config files
+# http_downloader config files
 gallery-dl.config.json
+gallery-dl.conf.json
 
-# Synchronizer config
+# synchronizer config
 config/synchronizer/sync_scheduler.crontab
 
