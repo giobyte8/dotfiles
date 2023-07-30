@@ -1,3 +1,9 @@
 #!/bin/bash
+#
+# Note: You can use a cookies.txt file instead of config.json
+# by using the cookies param: --cokies cookies.txt
+# Just make sure to remove cookies from 'config.json'
 
-gallery-dl --cookies ./cookies.txt  -D "./data.dev/downloads" $1
+gallery-dl                         \
+    -c ./gallery-dl.conf.json      \
+    -D "./data.dev/downloads" $1

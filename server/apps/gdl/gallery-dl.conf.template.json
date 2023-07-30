@@ -1,0 +1,25 @@
+{
+    "extractor": {
+        "500px": {
+            "gallery": {
+                "filename": "500px_{id}.{extension}"
+            },
+            "image": {
+                "filename": "500px_{id}.{extension}"
+            }
+        },
+
+        "pinterest": {
+            "cookies": {
+                "_pinterest_sess": "<Replace in your final config file>"
+            }
+        },
+
+        "instagram": {
+            "cookies": {
+                "sessionid": "<Replace in your final config file>"
+            }
+        }
+    }
+
+}
