@@ -12,6 +12,7 @@ location:
     source_directories:
         - /mnt/data/mmedia/cameras
         - /mnt/data/mmedia/memories
+        - /mnt/data/mmedia/pphotos.zip
 
     # A required list of local or remote repositories with paths and
     # optional labels (which can be used with the --repository flag to

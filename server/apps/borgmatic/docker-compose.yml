@@ -18,6 +18,7 @@ services:
     volumes:
       - "${SRC_MMEDIA_CAMERAS}:/mnt/data/mmedia/cameras:ro"
       - "${SRC_MMEDIA_MEMORIES}:/mnt/data/mmedia/memories:ro"
+      - "${SRC_MMEDIA_PPHOTOS}:/mnt/data/mmedia/pphotos.zip:ro"
       - "${BORG_LOCAL_REPOS_PATH}:/mnt/repos"
 
       - ${BORGMATIC_CFG_PATH}:/etc/borgmatic.d/
