@@ -20,6 +20,7 @@ Backups include following data:
    1. [Prepare environment file](#prepare-environment-file)
    1. [Start borgmatic service](#start-borgmatic-service)
    1. [Initialize repositories](#initialize-repositories-first-time-only)
+   1. [Export and store keyfile and passphrase](#backup-keyfile-and-passphrase-first-time-only)
    1. [Create a backup manually](#create-a-backup-manually)
 3. [Restore files](#restore-files-from-backups)
 4. [Verify backups automatically](#verify-backups-automatically)
@@ -125,6 +126,56 @@ borgmatic rcreate -e repokey
 # Alternatively you could use borg directly (Idempotent):
 borg init -e repokey ssh://root@borgrh/mnt/repo.borg
 ```
+
+## Backup keyfile and passphrase (First time only)
+When a repository is initialized, borg shows a warning that you'll need the
+repokey and passphrase to access repo in case of disaster
+
+```
+You will need both KEY AND PASSPHRASE to access this repo!
+If you used a repokey mode, the key is stored in the repo, but you should
+back it up separately.
+
+Use "borg key export" to export the key, optionally in printable format.
+Write down the passphrase. Store both at safe place(s).
+```
+
+So, let's export key and passphrase into external files so that we can store it
+in alternate secure places.
+
+1. Prepare dir in mounted `restore` volume to store keys and passphrase
+   ```shell
+   dc exec borgmatic bash
+   mkdir -p /mnt/restored/borgkeys
+   cd /mnt/restored/borgkeys
+   ```
+2. Write down passphrase into txt file
+   ```shell
+   echo "${BORG_PASSPHRASE}" > bpassphrase.txt
+   # Alternatively you could get passphrase from your .env compose file
+   ```
+3. Export keys for each repository. **Make sure to do this process once
+   for each encrypted repository**
+
+   > Tip: You can get repo paths from `repositories` section in your
+   > borgmatic config (yaml) files
+
+   ```shell
+   borg key export /mnt/repos/lrepo.borg > lrepo-key-bkp
+   # Repeat for each repository
+
+   # OPTIONAL: Export keys in printable format and html with QR code
+   borg key export --paper   /mnt/repos/lrepo.borg > lrepo-key-bkp.txt
+   borg key export --qr-html /mnt/repos/lrepo.borg > lrepo-key-bkp.html
+   ```
+4. Store generated files in a secure location.
+   > Anyone with access to these files will be able access and
+   > manipulates backups in those repos.
+5. Once files have been stored in a safe place, delete them from local
+   file system
+   ```bash
+   cd / && rm -r /mnt/restored/borgkeys
+   ```
 
 ## Create a backup manually
 Backups will run periodically based on config at
