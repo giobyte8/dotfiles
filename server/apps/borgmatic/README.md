@@ -169,8 +169,8 @@ in alternate secure places.
    borg key export --qr-html /mnt/repos/lrepo.borg > lrepo-key-bkp.html
    ```
 4. Store generated files in a secure location.
-   > Anyone with access to these files will be able access and
-   > manipulates backups in those repos.
+   > Anyone with access to these files will be able to access and
+   > manipulate backups in corresponding repositories.
 5. Once files have been stored in a safe place, delete them from local
    file system
    ```bash
