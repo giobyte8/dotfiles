@@ -1,15 +1,14 @@
-version: '3.8'
-
 services:
   borgmatic:
-    image: modem7/borgmatic-docker
+    image: ghcr.io/borgmatic-collective/borgmatic:1.7.15
     container_name: borgmatic
+    hostname: borgmatic
 #    restart: never
     environment:
       - TZ=${TZ}
       - BORG_PASSPHRASE=${BORG_PASSPHRASE}
 
-      # For rterminal notifications
+      # For amqp notifications
       - RABBITMQ_HOST=${RABBITMQ_HOST}
       - RABBITMQ_USER=${RABBITMQ_USER}
       - RABBITMQ_PASS=${RABBITMQ_PASS}
@@ -17,17 +16,41 @@ services:
       - RABBITMQ_EXCHANGE=${RABBITMQ_EXCHANGE}
       - RABBITMQ_ROUTING_KEY=${RABBITMQ_ROUTING_KEY}
     volumes:
-      - ${SRC_MMEDIA_CAMERAS}:/mnt/data/mmedia/cameras:ro
-      - ${BORG_LOCAL_REPO_PATH}:/mnt/host-local-borg-repository
+      - "${SRC_MMEDIA_CAMERAS}:/mnt/data/mmedia/cameras:ro"
+      - "${SRC_MMEDIA_MEMORIES}:/mnt/data/mmedia/memories:ro"
+      - "${BORG_LOCAL_REPOS_PATH}:/mnt/repos"
 
       - ${BORGMATIC_CFG_PATH}:/etc/borgmatic.d/
       - ${BORG_CFG_PATH}:/root/.config/borg
       - ${BORG_CACHE}:/root/.cache/borg
-      - ${SSH_KEYS_PATH}:/root/.ssh
+      - ${SSH_CFG_PATH}:/root/.ssh
       - ${HOOKS_PATH}:/mnt/hooks
 
       # Where to restore files when needed?
       - ${RESTORED_PATH}:/mnt/restored
+    networks:
+      - hservices
+
+  borgrh:
+    image: giobyte8/borgrh:1.2.4
+    build:
+      context: borgrh/
+      dockerfile: borgrh.dockerfile
+    profiles:
+      - dev
+    container_name: borgrh
+    hostname: borgrh
+    environment:
+      - TZ=${TZ}
+    volumes:
+      - "./devdata/borgrh/repos:/mnt/repos"
+
+      - "./devdata/borgrh/borg.cfg:/root/.config/borg"
+      - "./devdata/borgrh/borg.cache:/root/.cache/borg"
+
+      - "./devdata/borgrh/ssh/authorized_keys:/root/.ssh/authorized_keys"
+      - "./devdata/borgrh/ssh_hostkeys/ssh_host_ed25519_key:/etc/ssh/ssh_host_ed25519_key"
+      - "./devdata/borgrh/ssh_hostkeys/ssh_host_ed25519_key.pub:/etc/ssh/ssh_host_ed25519_key.pub"
     networks:
       - hservices
 

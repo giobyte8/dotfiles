@@ -82,7 +82,7 @@ amqp_msg="{
 
 
 # Post message to RabbitMQ
-
+# For debug remove '-s' flag and use '-v' for verbose mode
 curl -s \
     -u "$RABBITMQ_USER:$RABBITMQ_PASS"  \
     -X POST                             \

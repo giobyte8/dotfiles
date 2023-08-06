@@ -1,5 +1,10 @@
 
+# Development runtime data
 devdata/
+
+# Prod runtime data
+config/ssh
+
+# Legacy prod runtime data
 borg_cfg/security
 ssh_keys/
-
