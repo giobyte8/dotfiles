@@ -1,20 +1,27 @@
 # Automatically start docker apps
 
-echo "Starting borgmatic"
+# ref: https://stackoverflow.com/a/4774063/3211029
+HERE="$( cd -- "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
+CURP="$(pwd)"
+
+cd $HERE
+
 cd borgmatic && docker-compose up -d && cd ..
 
 echo
-echo "Starting photoprism"
 cd photoprism && docker-compose up -d && cd ..
 
 echo
-echo "Starting plex"
 cd plex && docker-compose up -d && cd ..
 
 echo
-echo "Starting rterminal"
 cd rterminal && docker-compose up -d && cd ..
 
 echo
-echo "Starting bifrost"
 cd infrastructure && docker-compose up -d bifrost && cd ..
+
+echo
+echo "Services started"
+
+cd $CURP
+
