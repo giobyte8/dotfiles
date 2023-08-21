@@ -6,6 +6,10 @@ if [[ $OSTYPE == 'darwin'* ]]; then
   ## MacOS-only aliases
   alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
 
+  ## Global env variables setup
+  export GEM_HOME=$HOME/.gem
+  export PATH=$GEM_HOME/bin:$PATH
+
 
   function dns-set {
     if [ $1 = "cloudflare" ]; then
