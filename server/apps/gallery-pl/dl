@@ -1,7 +1,0 @@
-#!/bin/bash
-#
-# Shortcut for invoke gallery-dl in its own container
-#
-
-docker-compose run --rm --name gallerydl gallerydl $@
-
