@@ -13,6 +13,7 @@ services:
       - "$PATH_CONFIG:/config"
       - "$PATH_WALLPAPERS:/mnt/wallpapers"
       - "$PATH_S20PLUS:/mnt/s20plus"
+      - "$PATH_S23_CAM:/mnt/S23_Cam"
     ports:
       - 8384:8384
       - 22000:22000/tcp
