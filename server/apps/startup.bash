@@ -9,6 +9,9 @@ cd $HERE
 cd borgmatic && docker-compose up -d && cd ..
 
 echo
+cd syncthing && docker-compose up -d && cd ..
+
+echo
 cd photoprism && docker-compose up -d && cd ..
 
 echo
