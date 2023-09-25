@@ -1,9 +1,9 @@
-version: '3.8'
 
 services:
   rterminal:
     image: giobyte8/rterminal:1.0.3
     container_name: rterminal
+    restart: unless-stopped
     user: $UID:$GID
     environment:
       - "TG_BOT_TOKEN=${TG_BOT_TOKEN}"
