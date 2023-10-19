@@ -15,8 +15,9 @@ workflows
     1. Btop and docker aliases
     1. Notifications with RabbitMQ and RTerminal
     1. Bifrost monitoring
-4. Security
-    1. Firewall setup
+4. [Security](#security)
+    1. [SSH Login](#ssh-login)
+    2. Firewall setup
     2. Installed apps password management
     3. Access from outside monitoring and alerting
 
@@ -214,3 +215,13 @@ Network configuration and overview of such services is documented
 in [apps/infrastructure](apps/infrastructure/README.md)
 
 ## Automated startup process
+
+# Security
+
+## SSH Login
+
+SSH is configured following my [custom guide](https://giovanniaguirre.me/blog/secure_ssh_setup/) which:
+
+- Disables root login
+- Disables password login from external networks
+- Setup client machines to use ssh keys to login
