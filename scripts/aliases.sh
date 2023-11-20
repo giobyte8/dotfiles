@@ -25,3 +25,6 @@ alias meserver="ssh rock@143.244.144.17"
 
 # ssh shortcuts (Forcing usage of password auth)
 alias rpip="ssh -o PubkeyAuthentication=no -o PreferredAuthentications=password rock@192.168.1.103"
+
+# Directories path shortcuts
+alias ginf="cd ~/dotf/apps/infra"
