@@ -1,14 +1,14 @@
 # GDL
 
-Scripts and config for personal usage of [gallery-dl](https://github.com/mikf/gallery-dl)
-to download content from internet
+Scripts and config for [gallery-dl](https://github.com/mikf/gallery-dl).
 
 ## Usage
-Run using provided script, which will load config from `gdl.config.json`
+Run using provided wrapper script, which will load config from `gdl.config.json`
 
 ```shell
 ./gdl [url]
 ```
+
 ## Config file
 Create your custom config for downloads
 
