@@ -1,0 +1,18 @@
+
+services:
+
+  # Ref: https://hub.docker.com/r/stilliard/pure-ftpd/
+  ftp:
+    image: stilliard/pure-ftpd
+    container_name: ftp
+    ports:
+      - "21:21"
+      - "30000-30009:30000-30009"
+    volumes:
+      - "${FTP_FILES}:/home/${FTP_USER}/"
+      - "${FTP_CFG_FILES}/passwd:/etc/pure-ftpd/passwd"
+    environment:
+      PUBLICHOST: "localhost"
+      FTP_USER_NAME: "${FTP_USER}"
+      FTP_USER_PASS: "${FTP_PASS}"
+      FTP_USER_HOME: "/home/${FTP_USER}"
