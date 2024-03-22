@@ -24,7 +24,9 @@ alias graybox="ssh giovanni@192.168.1.102"
 alias meserver="ssh rock@143.244.144.17"
 
 # ssh shortcuts (Forcing usage of password auth)
+alias sshp="ssh -o PubkeyAuthentication=no -o PreferredAuthentications=password"
 alias rpip="ssh -o PubkeyAuthentication=no -o PreferredAuthentications=password rock@192.168.1.103"
 
 # Directories path shortcuts
-alias ginf="cd ~/dotf/apps/infra"
+alias apps="cd ~/dotf/apps && ls"
+alias infra="cd ~/dotf/apps/infra && docker compose config --services"
