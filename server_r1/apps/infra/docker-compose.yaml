@@ -1,0 +1,27 @@
+name: r1infra
+
+services:
+  redis:
+    image: redis:7.2-alpine
+    container_name: redis
+    restart: unless-stopped
+    command: redis-server /opt/redis/config/redis.conf
+    ports:
+      - '6000:6000' # Non TLS Connections
+      - '6001:6001' # TLS Connections
+    volumes:
+      - "${REDIS_CONF_DIR}:/opt/redis/config"
+    networks:
+      - r1services
+
+networks:
+  r1services:
+    name: r1services
+    driver: bridge
+    ipam:
+      config:
+          # 172.20.2.1-254
+        - subnet: 172.20.2.0/24
+
+          # 172.20.2.1-126 (127?)
+          ip_range: 172.20.2.0/25
