@@ -4,13 +4,15 @@ As the name indicates, this server is deployed offsite. Mainly used as a
 reverse proxy for `hservices`. It does not need great computational capacity.
 
 1. [Applications and services](#applications-and-services)
-    1. [R1 Bifrost](#r1-bifrost)
-        1. [Traffic encryption](#traffic-encryption)
-        2. [Encryption of traffic to upstream servers](#encryption-of-traffic-to-upstream-servers)
-        3. [Realtime monitoring](#realtime-monitoring)
+    1. [Infrastructure](#infrastructure)
+        1. [Bifrost](#bifrost)
+        2. [Cronic certbot](#cronic-certbot)
+        3. [Redis](#redis)
+    
     2. [Plausible](#plausible)
+    
 
-# TODOs
+### TODOs
 
 - [ ] Configure realtime monitoring for r1bifrost
 - [ ] Automate IP refresh for home server
