@@ -1,6 +1,18 @@
 name: r1infra
 
 services:
+  ccertbot:
+    image: giobyte8/ccertbot:1.0.0
+    container_name: ccertbot
+    restart: unless-stopped
+    volumes:
+      - "${CCBOT_CERTS_DIR}:/etc/letsencrypt"
+      - "${CCBOT_LOGS}:/var/log/letsencrypt"
+      - "${CCBOT_ENV_FILE}:/opt/ccertbot/.env"
+      - "${CCBOT_CREDS_DO_FILE}:/opt/ccertbot/.creds_digitalocean"
+    networks:
+      - r1services
+
   redis:
     image: redis:7.2-alpine
     container_name: redis
