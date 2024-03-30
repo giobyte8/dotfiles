@@ -1,5 +1,24 @@
 
 services:
+  bifrost:
+    image: jonasal/nginx-certbot:latest
+    container_name: bifrost
+    restart: unless-stopped
+    ports:
+      - 80:80
+      - 443:443
+    environment:
+      - "CERTBOT_EMAIL=$NCBOT_EMAIL"
+      - "STAGING=$NCBOT_STAGING"
+    volumes:
+      - "$NCBOT_PROXY_PASS_FILE:/etc/nginx/proxy_pass.conf"
+      - "$NCBOT_CERTS_PATH:/etc/letsencrypt"
+      - "$NCBOT_SITES_PATH:/etc/nginx/user_conf.d"
+      - "$NCBOT_LOGS_PATH:/var/log/nginx"
+      - "$NCBOT_UPSTREAM_CERTS_PATH:/mnt/upstream_ssl_certs"
+    networks:
+      - r1services
+
   ccertbot:
     image: giobyte8/ccertbot:1.0.0
     container_name: ccertbot
