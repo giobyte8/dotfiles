@@ -18,8 +18,9 @@ services:
     restart: unless-stopped
     command: redis-server /opt/redis/config/redis.conf
     ports:
-      - '6000:6000' # Non TLS Connections
-      - '6001:6001' # TLS Connections
+      # Non TLS Connections are disabled by default
+      #- '6000:6000' # Non TLS Connections
+      - '6001:6001'  # TLS Connections
     volumes:
       - "${REDIS_CONF_DIR}:/opt/redis/config"
       - "${REDIS_SSL_CERT_FILE}:/opt/redis/ssl/redis_server_cert.pem"
