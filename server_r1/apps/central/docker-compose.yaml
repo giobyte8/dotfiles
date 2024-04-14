@@ -1,5 +1,13 @@
 
 services:
+  central:
+    image: giobyte8/central:1.0.0
+    container_name: central
+    env_file:
+      - central.envimage
+    networks:
+      - r1services
+
   central-web:
     image: giobyte8/central-web:1.0.0
     container_name: central-web
