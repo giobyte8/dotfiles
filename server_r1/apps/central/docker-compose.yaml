@@ -1,0 +1,12 @@
+
+services:
+  central-web:
+    image: giobyte8/central-web:1.0.0
+    container_name: central-web
+    restart: unless-stopped
+    networks:
+      - r1services
+
+networks:
+  r1services:
+    external: true
