@@ -4,7 +4,9 @@ services:
     image: giobyte8/central:1.0.0
     container_name: central
     env_file:
-      - central.envimage
+      - central.env
+    volumes:
+      - "$LOGS_PATH:/opt/central/logs"
     networks:
       - r1services
 
