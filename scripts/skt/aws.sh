@@ -21,7 +21,7 @@ skt-ssh() {
   extra_args="$3"
 
   instance_ip=$(skt-ip "${env_name}" "${app_name}")
-  ssh gaguirre@"${instance_ip}" "${extra_args}"
+  ssh -o PubkeyAuthentication=no -o PreferredAuthentications=password gaguirre@"${instance_ip}" "${extra_args}"
 }
 
 # SSH's you into a given instance and tails app logs
@@ -31,7 +31,7 @@ skt-logs() {
   app_name="$2"
 
   instance_ip=$(skt-ip "${env_name}" "${app_name}")
-  ssh gaguirre@"${instance_ip}" "tail -f /opt/${app_name}/logs/${app_name}.log"
+  ssh -o PubkeyAuthentication=no -o PreferredAuthentications=password gaguirre@"${instance_ip}" "tail -f /opt/${app_name}/logs/${app_name}.log"
 }
 
 # Gets all the apps currently running in a given environment,
