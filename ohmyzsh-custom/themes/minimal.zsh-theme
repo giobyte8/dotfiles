@@ -3,6 +3,7 @@
 #
 #  NOTE: A patched font with extense glyphs support is recommended
 #  for usage with following prompt
+#
 
 # Cleanup current PROMPT
 PROMPT=''
@@ -22,4 +23,3 @@ fi
 
 PROMPT="$PROMPT%{$fg[yellow]%}%1~ ❯ $T %{$reset_color%}"
 # RPROMPT="%(?.%F{green}√.%F{red}?%?)%{$reset_color%}"
-
