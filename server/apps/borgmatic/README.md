@@ -1,7 +1,5 @@
 # Automated backups through borgmatic and docker
-This service automates backup of server data using
-[borg](https://borgbackup.readthedocs.io) and
-[borgmatic](https://torsion.org/borgmatic/).
+This service automates backup of server data using [borg](https://borgbackup.readthedocs.io) and [borgmatic](https://torsion.org/borgmatic/).
 
 Backups include following data:
 - [x] Cameras pictures and videos
@@ -96,7 +94,7 @@ vim .env
 
 # Enter values for:
 #   - Borg passphrase (For backups encryption)
-#   - RabbitMQ broker (Used for notifications)
+#   - RabbitMQ or Redis broker (Used for notifications)
 # > Verify the rest of variables have right values
 ```
 
@@ -163,7 +161,7 @@ in alternate secure places.
    ```shell
    borg key export /mnt/repos/lrepo.borg > lrepo-key-bkp
    # Repeat for each repository
-
+   
    # OPTIONAL: Export keys in printable format and html with QR code
    borg key export --paper   /mnt/repos/lrepo.borg > lrepo-key-bkp.txt
    borg key export --qr-html /mnt/repos/lrepo.borg > lrepo-key-bkp.html

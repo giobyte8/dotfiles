@@ -24,9 +24,16 @@ mkdir -p devdata/f_sources/pictures
 # TODO Include gallery-dl command to fetch some images into dirs
 ```
 
-## Start RabbitMQ broker for hooks notifications
-Start AMQP broker from [infrastructure](../infrastructure/README.md) so
-that you can verify hooks post notifications to the queue
+## Notifications backend broker
+
+You can leverage borgmatic hooks functionality and included custom scripts to send notifications about backups activity.
+
+This setup allows to post notifications to *RabbitMQ* or *Redis*. Depending on your choice, start the corresponding service from [infrastructure](../infrastructure/README.md)  project.
+
+```shell
+docker compose up -d redis
+docker compose up -d rabbitmq
+```
 
 ## Prepare runtime dirs for borgmatic
 ```shell
