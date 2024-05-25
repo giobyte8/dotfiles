@@ -1,5 +1,5 @@
 FROM alpine:3.18.2
-LABEL maintainer="giovann.fi05@gmail.com"
+LABEL maintainer="giovanni.fi05@gmail.com"
 
 # Install borg and openssh
 RUN apk add --no-cache \
