@@ -1,6 +1,9 @@
 services:
   borgmatic:
-    image: ghcr.io/borgmatic-collective/borgmatic:1.7.15
+    image: giobyte8/borgmatic:1.8.11
+    build:
+      context: borgmatic.docker/
+      dockerfile: borgmatic.dockerfile
     container_name: borgmatic
     hostname: borgmatic
 #    restart: never
@@ -9,12 +12,20 @@ services:
       - BORG_PASSPHRASE=${BORG_PASSPHRASE}
 
       # For amqp notifications
-      - RABBITMQ_HOST=${RABBITMQ_HOST}
-      - RABBITMQ_USER=${RABBITMQ_USER}
-      - RABBITMQ_PASS=${RABBITMQ_PASS}
-      - RABBITMQ_API_PORT=${RABBITMQ_API_PORT}
-      - RABBITMQ_EXCHANGE=${RABBITMQ_EXCHANGE}
-      - RABBITMQ_ROUTING_KEY=${RABBITMQ_ROUTING_KEY}
+      # - RABBITMQ_HOST=${RABBITMQ_HOST}
+      # - RABBITMQ_USER=${RABBITMQ_USER}
+      # - RABBITMQ_PASS=${RABBITMQ_PASS}
+      # - RABBITMQ_API_PORT=${RABBITMQ_API_PORT}
+      # - RABBITMQ_EXCHANGE=${RABBITMQ_EXCHANGE}
+      # - RABBITMQ_ROUTING_KEY=${RABBITMQ_ROUTING_KEY}
+
+      # Redis config for 'central' notifications
+      - QUEUE_NOTIFICATIONS=${QUEUE_NOTIFICATIONS}
+      - REDIS_HOST=${REDIS_HOST}
+      - REDIS_PORT=${REDIS_PORT}
+      - REDIS_SSL=${REDIS_SSL}
+      - REDIS_USERNAME=${REDIS_USERNAME}
+      - REDIS_PASSWORD=${REDIS_PASSWORD}
     volumes:
       - "${SRC_MMEDIA_CAMERAS}:/mnt/data/mmedia/cameras:ro"
       - "${SRC_MMEDIA_MEMORIES}:/mnt/data/mmedia/memories:ro"
