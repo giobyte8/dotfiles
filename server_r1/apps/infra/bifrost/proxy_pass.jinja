@@ -1,0 +1,8 @@
+
+# This template is frequently updated by central observers to refresh
+# ipv4 address of upstream server.
+#
+# Output file is included into bifrost actual configuration
+
+# IP for upstream server
+proxy_pass https://{{ redis_key_value }}:2000;

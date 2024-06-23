@@ -1,0 +1,49 @@
+
+observers:
+  rbx_ipv4:
+    type: redis_string
+    interval: 300          # 300s = 5min
+
+    # Redis key to 'observe'
+    key: ct.hosts.a02340b8-8fec-4b67-b829-4945c36c5ad5.ipv4_public
+
+    # Names of actions to execute upon change detection
+    # Each one must be defined under 'actions' section
+    on_change:
+      - notify_rbx_ipv4_update
+      - stop_bifrost
+      - render_proxy_pass
+      - start_bifrost
+      - notify_rbx_ipv4_update_complete
+
+actions:
+  notify_rbx_ipv4_update:
+    type: redis_list_rpush
+    list_key: ct.notifications
+    msg_template: |
+        {
+            "title": "RBX ip has changed",
+            "content": "📦 rbx IPv4 has changed. Updating upstream..."
+        }
+
+  notify_rbx_ipv4_update_complete:
+    type: redis_list_rpush
+    list_key: ct.notifications
+    msg_template: |
+        {
+            "title": "RBX ip has changed",
+            "content": "Upstream ipv4 address updated 😎"
+        }
+
+  render_proxy_pass:
+    type: render_template
+    template_uri: file:///opt/central/proxy_pass.jinja
+    output_uri: file:///opt/central/proxy_pass.conf
+
+  start_bifrost:
+    type: docker_ctr_start
+    container: bifrost
+
+  stop_bifrost:
+    type: docker_ctr_stop
+    container: bifrost

@@ -1,12 +1,19 @@
 
 services:
   central:
-    image: giobyte8/central:1.0.0
+    image: giobyte8/central:1.1.0
     container_name: central
     env_file:
       - central.env
     volumes:
       - "$LOGS_PATH:/opt/central/logs"
+      - "/var/run/docker.sock:/var/run/docker.sock"
+
+      - "central.cfg.yaml:/opt/central/central.cfg.yaml"
+
+      # bifrost proxy_pass config
+      - "$BIFROST_PROXY_PASS_TEMPLATE:/opt/central/proxy_pass.jinja"
+      - "$BIFROST_PROXY_PASS:/opt/central/proxy_pass.conf"
     networks:
       - r1services
 
