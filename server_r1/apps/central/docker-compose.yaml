@@ -9,7 +9,7 @@ services:
       - "$LOGS_PATH:/opt/central/logs"
       - "/var/run/docker.sock:/var/run/docker.sock"
 
-      - "central.cfg.yaml:/opt/central/central.cfg.yaml"
+      - "./central.cfg.yaml:/opt/central/central.cfg.yaml"
 
       # bifrost proxy_pass config
       - "$BIFROST_PROXY_PASS_TEMPLATE:/opt/central/proxy_pass.jinja"
