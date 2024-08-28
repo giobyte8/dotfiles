@@ -2,7 +2,9 @@
 # Global 'multi system' configuration init
 
 # Activate mise package/env manager
-eval "$(mise activate zsh)"
+if type mise > /dev/null; then
+    eval "$(mise activate zsh)"
+fi
 
 # # thrift@0.9 path and flags (Required in mac for skytouch setup)
 if [ -d "/opt/homebrew/opt/thrift@0.9/bin" ]; then
