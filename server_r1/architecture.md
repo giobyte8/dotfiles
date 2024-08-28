@@ -8,9 +8,9 @@ reverse proxy for `hservices`. It does not need great computational capacity.
         1. [Bifrost](#bifrost)
         2. [Cronic certbot](#cronic-certbot)
         3. [Redis](#redis)
-    
+
     2. [Plausible](#plausible)
-    
+
 
 ### TODOs
 
@@ -56,7 +56,7 @@ The steps for generation of self signed certificates are documented in
 
 Once the `client` certificate and `CA` key had been transferred to `remote1`, we can update  `bifrost` config to encrypt traffic to upstream server.
 
-1. Set right value for `BIFROST_UPSTREAM_SSL_PATH` variable in `.env` file. 
+1. Set right value for `BIFROST_UPSTREAM_SSL_PATH` variable in `.env` file.
    It should point to directory containing the client certificate and CA.
 2. Configure sites in [bifrost_sites/](./apps/infra/bifrost/sites/*.conf) files to use self signed certificate to secure traffic. Use existing sites or [nginx docs](https://docs.nginx.com/nginx/admin-guide/security-controls/securing-http-traffic-upstream/) as reference.
    Main added parts are detailed below:
@@ -80,6 +80,10 @@ server {
     }
 }
 ```
+
+#### Geographical Access Restrictions
+
+- [ ] Implement GeoIP restrictions to reduce atack risks
 
 #### Realtime monitoring
 
@@ -128,7 +132,7 @@ docker-compose up -d
 
 This service uses the official docker image with a custom config to accept only secure TLS connections.
 
-> **TLS certificates** 
+> **TLS certificates**
 >
 > In order to secure client connections, redis instance requires a valid SSL certificate. You can use provided [cronic_certbot]() to generate it and then mount certificates into redis container as described below.
 
