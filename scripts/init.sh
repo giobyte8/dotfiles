@@ -2,8 +2,10 @@
 # Global 'multi system' configuration init
 
 # Activate mise package/env manager
-if type mise > /dev/null; then
-    eval "$(mise activate zsh)"
+if [ -f "$HOME/.local/bin/mise" ]; then
+# if type mise > /dev/null; then
+    # echo "mise found, activating..."
+    eval "$(~/.local/bin/mise activate zsh)"
 fi
 
 # # thrift@0.9 path and flags (Required in mac for skytouch setup)
