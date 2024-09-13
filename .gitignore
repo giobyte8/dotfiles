@@ -3,4 +3,4 @@ backup/
 .env
 
 apps/data
-
+.terraform/
