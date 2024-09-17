@@ -9,10 +9,10 @@ if [ -f "$HOME/.local/bin/mise" ]; then
 fi
 
 # Some envs use asdf instead of mise
-if [ -f "$HOME/.asdf/plugins/java/set-java-home.zsh" ]; then
-    # echo "Setting JAVA_HOME"
-    . ~/.asdf/plugins/java/set-java-home.zsh
-fi
+# if [ -f "$HOME/.asdf/plugins/java/set-java-home.zsh" ]; then
+#     # echo "Setting JAVA_HOME"
+#     . ~/.asdf/plugins/java/set-java-home.zsh
+# fi
 
 # # thrift@0.9 path and flags (Required in mac for skytouch setup)
 if [ -d "/opt/homebrew/opt/thrift@0.9/bin" ]; then
