@@ -1,13 +1,21 @@
+env_file=""$(dirname "$0")"/.env"
 
 function proxy-set {
     # TODO: Use -s argument to show/no show logging
 
-    #echo "Setting proxy variables"
+    # Load sensitive info from .env file
+    if [ -f "${env_file}" ]; then
+        source "${env_file}"
+    fi
 
-    export http_proxy=http://proxy.aexp.com:8080
-    export https_proxy=http://proxy.aexp.com:8080
-    export HTTPS_PROXY=http://proxy.aexp.com:8080
-    export HTTP_PROXY=http://proxy.aexp.com:8080
+    #echo "Setting proxy variables"
+    proxy_url="http://${PROXY_USER}:${PROXY_PASS}@proxy.aexp.com:8080"
+    #proxy_url_no_auth=http://proxy.aexp.com:8080
+
+    export http_proxy=$proxy_url
+    export https_proxy=$proxy_url
+    export HTTPS_PROXY=$proxy_url
+    export HTTP_PROXY=$proxy_url
 
     export {NO_PROXY,no_proxy}=".americanexpress.com,.aexp.com,localhost,127.0.0.1"
 }
