@@ -2,10 +2,12 @@
 # Global 'multi system' configuration init
 
 # Activate mise package/env manager
-if [ -f "$HOME/.local/bin/mise" ]; then
-# if type mise > /dev/null; then
+# if [ -f "$HOME/.local/bin/mise" ]; then
+#     eval "$(~/.local/bin/mise activate zsh)"
+#
+if type mise > /dev/null; then
     # echo "mise found, activating..."
-    eval "$(~/.local/bin/mise activate zsh)"
+    eval "$(mise activate zsh)"
 fi
 
 # Some envs use asdf instead of mise

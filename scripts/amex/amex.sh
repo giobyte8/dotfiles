@@ -10,7 +10,7 @@ function proxy-set {
 
     #echo "Setting proxy variables"
     proxy_url="http://${PROXY_USER}:${PROXY_PASS}@proxy.aexp.com:8080"
-    #proxy_url_no_auth=http://proxy.aexp.com:8080
+    #proxy_url=http://proxy.aexp.com:8080
 
     export http_proxy=$proxy_url
     export https_proxy=$proxy_url
