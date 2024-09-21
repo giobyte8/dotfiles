@@ -30,3 +30,5 @@ alias rpip="ssh -o PubkeyAuthentication=no -o PreferredAuthentications=password 
 # Directories path shortcuts
 alias apps="cd ~/dotf/apps && ls"
 alias infra="cd ~/dotf/apps/infra && docker compose config --services"
+
+alias tf="terraform"
