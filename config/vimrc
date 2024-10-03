@@ -13,9 +13,10 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
-Plugin 'jacoborus/tender'
-Plugin 'junegunn/goyo.vim'
-Plugin 'dracula/vim'
+
+" Set custom name for dir in '.vim/bundle/*' to prevent name conflicting
+" with other plugins (e.g. Dracula theme also is named 'vim')
+Plugin 'rose-pine/vim', {'name': 'rose-pine'}
 
 
 " All of your Plugins must be added before the following line
@@ -29,6 +30,10 @@ filetype plugin indent on    " required
 
 set laststatus=2                        " Display vim-airline from startup
 set number                              " Display line numbers
+
+" Theme config
+set background=dark
+colorscheme rosepine
 let g:airline_powerline_fonts=1         " Use powerline fonts on vim-airline
 let g:airline_theme="wombat"            " Airline theme
 
