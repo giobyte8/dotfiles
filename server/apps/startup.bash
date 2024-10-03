@@ -6,7 +6,7 @@ CURP="$(pwd)"
 
 cd $HERE
 
-cd borgmatic && docker-compose up -d && cd ..
+cd borgmatic && docker-compose up -d borgmatic && cd ..
 
 echo
 cd syncthing && docker-compose up -d && cd ..
