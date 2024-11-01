@@ -4,3 +4,5 @@
 alias ro="cd ~/src/rooam"
 alias poc="cd ~/src/rooam/1_poc"
 alias rde="cd ~/src/rooam/docker-env"
+
+alias awsr="aws --profile rooam"
