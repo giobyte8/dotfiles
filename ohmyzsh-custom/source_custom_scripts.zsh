@@ -8,6 +8,6 @@ for f in "${SCRIPTS}"/*.sh; do source $f; done
 
 hostname=$(hostname)
 if [ "$hostname" = "CQ76DCFF2Y" ]; then
-    echo "Sourcing scripts for 'amex' env"
+    # echo "Sourcing scripts for 'amex' env"
     for f in "${SCRIPTS}"/amex/*.sh; do source $f; done
 fi
