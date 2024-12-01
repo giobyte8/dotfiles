@@ -6,6 +6,7 @@ services:
     restart: unless-stopped
     user: $UID:$GID
     environment:
+      - "TZ=America/Mexico_City"
       - "TG_BOT_TOKEN=${TG_BOT_TOKEN}"
       - "BOT_AUTH_HASH=${BOT_AUTH_HASH}"
       - "SESSION_EXPIRE=${SESSION_EXPIRE}"
