@@ -47,7 +47,7 @@ mkdir -p devdata/f_restored
 
 ## Prepare "remote" storage server
 In order to verify that remote repository config works, an additional container
-`borgrh` with borg on it is provided. Use such container as a remote host
+`borgrh` with borg on it is provided. Use this container as a remote host
 so that backups are created through ssh repository.
 
 ### Setup ssh keys
@@ -90,7 +90,18 @@ mkdir -p devdata/borgrh/borg.cache
 
 # Start remote host container
 docker compose up -d borgrh
+
+# To allow pasword less ssh login (to init repos and borg config)
+# the 'authorized_keys' file must belong to user attempting login
+# and have permissions where only the owner can write to it
+docker compose exec borgrh chown root:root /root/.ssh/authorized_keys
+docker compose exec borgrh chmod 644 /root/.ssh/authorized_keys
 ```
+
+> Eventually will stop using root user on 'borgrh' container due
+> to security reasons.
+> Not a big deal for now since this is just a development temporary
+> container.
 
 ## Prepare dummy database servers
 TODO: Create database containers to test DBs backups

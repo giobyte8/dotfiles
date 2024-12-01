@@ -6,7 +6,7 @@ RUN apk add --no-cache \
     tzdata  \
     openssh \
     sshfs   \
-    borgbackup=1.2.4-r4
+    borgbackup=1.2.7-r0
 
 ENV PS1="\h:\w \\$ "
 ENTRYPOINT [ "/usr/sbin/sshd", "-D" ]
