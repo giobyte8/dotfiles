@@ -17,8 +17,8 @@ cd photoprism && docker-compose up -d && cd ..
 echo
 cd plex && docker-compose up -d && cd ..
 
-echo
-cd rterminal && docker-compose up -d && cd ..
+#echo
+#cd rterminal && docker-compose up -d && cd ..
 
 echo
 cd infrastructure && docker-compose up -d bifrost && cd ..

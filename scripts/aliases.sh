@@ -14,7 +14,6 @@ alias dcs="docker compose config --services"
 alias dl="docker logs"
 alias dlf="docker logs -f"
 
-
 # AWS SAM shortcuts
 alias sam-local-api="sam build && sam local start-api"
 
@@ -32,3 +31,7 @@ alias apps="cd ~/dotf/apps && ls"
 alias infra="cd ~/dotf/apps/infra && docker compose config --services"
 
 alias tf="terraform"
+
+# VSCode CLI
+alias ct="code tunnel"
+
