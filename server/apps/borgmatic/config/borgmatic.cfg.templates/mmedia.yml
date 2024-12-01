@@ -1,129 +1,119 @@
 # Go to: https://torsion.org/borgmatic/docs/reference/configuration/
 # for additional reference (Double check config for your borgmatic version)
 
-# Where to look for files to backup, and where to store those backups.
-# See https://borgbackup.readthedocs.io/en/stable/quickstart.html and
-# https://borgbackup.readthedocs.io/en/stable/usage/create.html
-# for details.
-location:
 
-    # List of source directories and files to back up. Globs and tildes
-    # are expanded. Do not backslash spaces in path names.
-    source_directories:
-        - /mnt/data/mmedia/cameras
-        - /mnt/data/mmedia/memories
-        - /mnt/data/mmedia/pphotos.zip
+# List of source directories and files to back up. Globs and tildes
+# are expanded. Do not backslash spaces in path names.
+source_directories:
+    - /mnt/data/mmedia/cameras
+    - /mnt/data/mmedia/memories
+    - /mnt/data/mmedia/pphotos.zip
 
-    # A required list of local or remote repositories with paths and
-    # optional labels (which can be used with the --repository flag to
-    # select a repository). Tildes are expanded. Multiple repositories are
-    # backed up to in sequence. Borg placeholders can be used. See the
-    # output of "borg help placeholders" for details. See ssh_command for
-    # SSH options like identity file or port. If systemd service is used,
-    # then add local repository paths in the systemd service file to the
-    # ReadWritePaths list. Prior to borgmatic 1.7.10, repositories was a
-    # list of plain path strings.
-    repositories:
-        - path: /mnt/repos/lrepo.borg
-          label: local
+# A required list of local or remote repositories with paths and
+# optional labels (which can be used with the --repository flag to
+# select a repository). Tildes are expanded. Multiple repositories are
+# backed up to in sequence. Borg placeholders can be used. See the
+# output of "borg help placeholders" for details. See ssh_command for
+# SSH options like identity file or port. If systemd service is used,
+# then add local repository paths in the systemd service file to the
+# ReadWritePaths list. Prior to borgmatic 1.7.10, repositories was a
+# list of plain path strings.
+repositories:
+    - path: /mnt/repos/lrepo.borg
+      label: local
 
-        # TODO: Replace with appropiate values for prod deployment
-        - path: ssh://root@borgrh/mnt/repos/remote.borg
-          label: offsite
+    # TODO: Replace with appropiate values for prod deployment
+    - path: ssh://root@borgrh/mnt/repos/remote.borg
+      label: offsite
 
-    # Any paths matching these patterns are excluded from backups. Globs
-    # and tildes are expanded. Note that a glob pattern must either start
-    # with a glob or be an absolute path. Do not backslash spaces in path
-    # names. See the output of "borg help patterns" for more details.
-    exclude_patterns:
-        - '*.pyc'
-        - '*/.vim*.tmp'
-        - '*.DS_Store'
+# Any paths matching these patterns are excluded from backups. Globs
+# and tildes are expanded. Note that a glob pattern must either start
+# with a glob or be an absolute path. Do not backslash spaces in path
+# names. See the output of "borg help patterns" for more details.
+exclude_patterns:
+    - '*.pyc'
+    - '*/.vim*.tmp'
+    - '*.DS_Store'
 
-    # Exclude directories that contain a file with the given filenames.
-    # Defaults to not set.
-    # exclude_if_present:
-        # - .nobackup
+# Exclude directories that contain a file with the given filenames.
+# Defaults to not set.
+# exclude_if_present:
+    # - .nobackup
 
-# Repository storage options. See
-# https://borgbackup.readthedocs.io/en/stable/usage/create.html and
-# https://borgbackup.readthedocs.io/en/stable/usage/general.html for
-# details.
-storage:
-    # Type of compression to use when creating archives. See
-    # http://borgbackup.readthedocs.io/en/stable/usage/create.html for
-    # details. Defaults to "lz4".
-    #
-    # Use below command to view details and available protocols
-    # > borg help compression
-    # NOTE: Using lz4 here since this config is for images and video
-    compression: lz4
+# Type of compression to use when creating archives. See
+# http://borgbackup.readthedocs.io/en/stable/usage/create.html for
+# details. Defaults to "lz4".
+#
+# Use below command to view details and available protocols
+# > borg help compression
+# NOTE: Using lz4 here since this config is for images and video
+compression: lz4
 
-    # Remote network upload rate limit in kiBytes/second. Defaults to
-    # unlimited.
-    # upload_rate_limit: 100
+# Remote network upload rate limit in kiBytes/second. Defaults to
+# unlimited.
+# upload_rate_limit: 100
 
-    # Name of the archive. Borg placeholders can be used. See the output
-    # of "borg help placeholders" for details. Defaults to
-    # "{hostname}-{now:%Y-%m-%dT%H:%M:%S.%f}". When running actions like
-    # rlist, info, or check, borgmatic automatically tries to match only
-    # archives created with this name format.
-    archive_name_format: 'mmedia-{now}'
+# Name of the archive to create. Borg placeholders can be used. See
+# the output of "borg help placeholders" for details. Defaults to
+# "{hostname}-{now:%Y-%m-%dT%H:%M:%S.%f}" with Borg 1 and
+# "{hostname}" with Borg 2, as Borg 2 does not require unique
+# archive names; identical archive names form a common "series" that
+# can be targeted together. When running actions like repo-list,
+# info, or check, borgmatic automatically tries to match only
+# archives created with this name format.
+archive_name_format: 'mmedia-{now}'
 
-# Retention policy for how many backups to keep in each category. See
-# https://borgbackup.readthedocs.io/en/stable/usage/prune.html for
-# details. At least one of the "keep" options is required for pruning
-# to work. To skip pruning entirely, run "borgmatic create" or "check"
-# without the "prune" action. See borgmatic documentation for details.
-retention:
+# Number of daily archives to keep.
+keep_daily: 14
 
-    # Number of daily archives to keep.
-    keep_daily: 14
+# Number of weekly archives to keep.
+keep_weekly: 8
 
-    # Number of weekly archives to keep.
-    keep_weekly: 8
+# Number of monthly archives to keep.
+keep_monthly: 12
 
-    # Number of monthly archives to keep.
-    keep_monthly: 12
+# Number of yearly archives to keep.
+keep_yearly: 2
 
-    # Number of yearly archives to keep.
-    keep_yearly: 2
 
-# Consistency checks to run after backups. See
-# https://borgbackup.readthedocs.io/en/stable/usage/check.html and
-# https://borgbackup.readthedocs.io/en/stable/usage/extract.html for
-# details.
-consistency:
+# List of one or more consistency checks to run on a periodic basis
+# (if "frequency" is set) or every time borgmatic runs checks (if
+# "frequency" is omitted).
+checks:
+    # Name of the consistency check to run:
+    #  * "repository" checks the consistency of the repository.
+    #  * "archives" checks all of the archives.
+    #  * "data" verifies the integrity of the data within the archives
+    #      and implies the "archives" check as well.
+    #  * "spot" checks that some percentage of source
+    #      files are found in the most recent archive (with
+    #      identical contents).
+    #  * "extract" does an extraction dry-run of the
+    #      most recent archive.
+    #  * See "skip_actions" for disabling checks
+    #      altogether.
+    - name: repository
 
-    # List of one or more consistency checks to run on a periodic basis
-    # (if "frequency" is set) or every time borgmatic runs checks (if
-    # "frequency" is omitted).
-    checks:
-        # Name of consistency check to run: "repository",
-        # "archives", "data", and/or "extract". Set to "disabled"
-        # to disable all consistency checks. "repository" checks
-        # the consistency of the repository, "archives" checks all
-        # of the archives, "data" verifies the integrity of the
-        # data within the archives, and "extract" does an
-        # extraction dry-run of the most recent archive. Note that
-        # "data" implies "archives".
-        - name: repository
+    # How frequently to run this type of consistency
+    # check (as a best effort). The value is a number
+    # followed by a unit of time. E.g., "2 weeks" to
+    # run this consistency check no more than every
+    # two weeks for a given repository or "1 month" to
+    # run it no more than monthly. Defaults to
+    # "always": running this check every time checks
+    # are run.
+      frequency: 2 weeks
 
-        # How frequently to run this type of consistency check (as
-        # a best effort). The value is a number followed by a unit
-        # of time. E.g., "2 weeks" to run this consistency check
-        # no more than every two weeks for a given repository or
-        # "1 month" to run it no more than monthly. Defaults to
-        # "always": running this check every time checks are run.
-          frequency: 1 month
-        - name: data
-          frequency: 2 months
-        - name: extract
-          frequency: 4 months
+    - name: data
+      frequency: 2 months
 
-    # Restrict the number of checked archives to the last n. Applies only
-    # to the "archives" check. Defaults to checking all archives.
-    check_last: 10
+    - name: extract
+      frequency: 4 months
+
+# Restrict the number of checked archives to the last n. Applies only
+# to the "archives" check. Defaults to checking all archives.
+check_last: 10
+
 
 # Shell commands, scripts, or integrations to execute at various
 # points during a borgmatic run. IMPORTANT: All provided commands and
@@ -131,75 +121,74 @@ consistency:
 # forget to set secure permissions on this configuration file (chmod
 # 0600) as well as on any script called from a hook (chmod 0700) to
 # prevent potential shell injection or privilege escalation.
-hooks:
 
-    # List of one or more shell commands or scripts to execute before all
-    # the actions for each repository.
-    # before_actions:
-        # - echo Starting actions.
+# List of one or more shell commands or scripts to execute before all
+# the actions for each repository.
+# before_actions:
+    # - echo Starting actions.
 
-    # before creating a backup, run once per repository.
-    before_backup:
-        - /mnt/hooks/on_action.sh "{repository}" "{configuration_filename}" "LOW" "Starting backup"
+# before creating a backup, run once per repository.
+before_backup:
+    - /mnt/hooks/on_action_rd.sh "{repository}" "{configuration_filename}" "Starting backup 💾"
 
-    # before pruning, run once per repository.
-    before_prune:
-        - /mnt/hooks/on_action.sh "{repository}" "{configuration_filename}" "LOW" "Starting pruning"
+# before pruning, run once per repository.
+# before_prune:
+#    - /mnt/hooks/on_action.sh "{repository}" "{configuration_filename}" "LOW" "Starting pruning"
 
-    # before compaction, run once per repository.
-    before_compact:
-        - /mnt/hooks/on_action.sh "--" "{configuration_filename}" "LOW" "Starting compaction"
+# before compaction, run once per repository.
+# before_compact:
+#    - /mnt/hooks/on_action.sh "--" "{configuration_filename}" "LOW" "Starting compaction"
 
-    # before consistency checks, run once per repository.
-    before_check:
-        - /mnt/hooks/on_action.sh "{repository}" "{configuration_filename}" "LOW" "Starting consistency check"
+# before consistency checks, run once per repository.
+before_check:
+    - mnt/hooks/on_action_rd.sh "{repository}" "{configuration_filename}" "↳ Consistency check"
 
-    # List of one or more shell commands or scripts to execute before
-    # extracting a backup, run once per repository.
-    # before_extract:
-        # - echo Starting extracting.
+# List of one or more shell commands or scripts to execute before
+# extracting a backup, run once per repository.
+# before_extract:
+    # - echo Starting extracting.
 
-    # after creating a backup, run once per repository.
-    after_backup:
-        - /mnt/hooks/on_action.sh "{repository}" "{configuration_filename}" "LOW" "Finished backup"
+# after creating a backup, run once per repository.
+after_backup:
+    - /mnt/hooks/on_action_rd.sh "{repository}" "{configuration_filename}" "Finished backup ✅"
 
-    # after compaction, run once per repository.
-    after_compact:
-        - /mnt/hooks/on_action.sh "--" "{configuration_filename}" "LOW" "Finished compaction"
+# after compaction, run once per repository.
+# after_compact:
+#    - /mnt/hooks/on_action.sh "--" "{configuration_filename}" "LOW" "Finished compaction"
 
-    # after pruning, run once per repository.
-    after_prune:
-        - /mnt/hooks/on_action.sh "{repository}" "{configuration_filename}" "LOW" "Finished pruning"
+# after pruning, run once per repository.
+# after_prune:
+#    - /mnt/hooks/on_action.sh "{repository}" "{configuration_filename}" "LOW" "Finished pruning"
 
-    # after consistency checks, run once per repository.
-    after_check:
-        - /mnt/hooks/on_action.sh "{repository}" "{configuration_filename}" "LOW" "Finished consistency check"
+# after consistency checks, run once per repository.
+after_check:
+    - mnt/hooks/on_action_rd.sh "{repository}" "{configuration_filename}" "↳ Consistency check complete"
 
-    # List of one or more shell commands or scripts to execute after
-    # extracting a backup, run once per repository.
-    # after_extract:
-        # - echo Finished extracting.
+# List of one or more shell commands or scripts to execute after
+# extracting a backup, run once per repository.
+# after_extract:
+    # - echo Finished extracting.
 
-    # List of one or more shell commands or scripts to execute after all
-    # actions for each repository.
-    # after_actions:
-        # - echo Finished actions.
+# List of one or more shell commands or scripts to execute after all
+# actions for each repository.
+# after_actions:
+    # - echo Finished actions.
 
-    # Run when an exception occurs during a "create", "prune", "compact",
-    # or "check" action or an associated before/after hook.
-    on_error:
-        - /mnt/hooks/on_action.sh "{repository}" "{configuration_filename}" "HIGH" "Error during prune/compact/create/check"
+# Run when an exception occurs during a "create", "prune", "compact",
+# or "check" action or an associated before/after hook.
+on_error:
+    - /mnt/hooks/on_action_rd.sh "{repository}" "{configuration_filename}" "Error during prune/compact/create/check"
 
-    # List of one or more shell commands or scripts to execute before
-    # running all actions (if one of them is "create"). These are
-    # collected from all configuration files and then run once before all
-    # of them (prior to all actions).
-    # before_everything:
-        # - echo Starting actions.
+# List of one or more shell commands or scripts to execute before
+# running all actions (if one of them is "create"). These are
+# collected from all configuration files and then run once before all
+# of them (prior to all actions).
+# before_everything:
+    # - echo Starting actions.
 
-    # List of one or more shell commands or scripts to execute after
-    # running all actions (if one of them is "create"). These are
-    # collected from all configuration files and then run once after all
-    # of them (after any action).
-    # after_everything:
-        # - echo Completed actions.
+# List of one or more shell commands or scripts to execute after
+# running all actions (if one of them is "create"). These are
+# collected from all configuration files and then run once after all
+# of them (after any action).
+# after_everything:
+    # - echo Completed actions.
