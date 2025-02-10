@@ -141,7 +141,7 @@ before_backup:
 
 # before consistency checks, run once per repository.
 before_check:
-    - mnt/hooks/on_action_rd.sh "{repository}" "{configuration_filename}" "↳ Consistency check"
+    - /mnt/hooks/on_action_rd.sh "{repository}" "{configuration_filename}" "↳ Consistency check"
 
 # List of one or more shell commands or scripts to execute before
 # extracting a backup, run once per repository.
@@ -162,7 +162,7 @@ after_backup:
 
 # after consistency checks, run once per repository.
 after_check:
-    - mnt/hooks/on_action_rd.sh "{repository}" "{configuration_filename}" "↳ Consistency check complete"
+    - /mnt/hooks/on_action_rd.sh "{repository}" "{configuration_filename}" "↳ Consistency check complete"
 
 # List of one or more shell commands or scripts to execute after
 # extracting a backup, run once per repository.
