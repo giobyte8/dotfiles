@@ -17,7 +17,7 @@ function proxy-set {
     export HTTPS_PROXY=$proxy_url
     export HTTP_PROXY=$proxy_url
 
-    export {NO_PROXY,no_proxy}=".americanexpress.com,.aexp.com,localhost,127.0.0.1"
+    export {NO_PROXY,no_proxy}=".americanexpress.com,.aexp.com,localhost,127.0.0.1,*.localstack.cloud"
 }
 
 function proxy-unset {
