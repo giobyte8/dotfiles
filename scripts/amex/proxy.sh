@@ -20,6 +20,19 @@ function proxy-set {
     export {NO_PROXY,no_proxy}=".americanexpress.com,.aexp.com,localhost,127.0.0.1,*.localstack.cloud"
 }
 
+function proxy-phoenix {
+    # Use one of below proxies
+
+    # proxy-phoenix.aexp.com
+    # proxy-greensboro.aexp.com
+    # proxy-newyork.aexp.com
+    # proxy-mexico.aexp.com
+    # proxy-brighton.aexp.com
+    # proxy-sydney.aexp.com
+    # proxy-tokyo.aexp.com
+    # proxy-gurgaon.aexp.com
+}
+
 function proxy-unset {
     unset HTTPS_PROXY
     unset HTTP_PROXY
