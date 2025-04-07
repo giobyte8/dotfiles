@@ -31,5 +31,23 @@ function aws_dev {
 
 # AWS Login shortcut
 function awsl {
-    aws_dev
+    aws_poweruser
+}
+
+
+#################################################
+# Setup CodeArtifact token
+
+function awsca_token {
+    export AWS_PROFILE=Rooam-PowerUser-738199573860
+
+    SSO_ACCOUNT=$(aws sts get-caller-identity --query "Account")
+    if [ ${#SSO_ACCOUNT} -ne 14 ];  then
+        aws sso login
+    fi
+
+    TOKEN=`aws codeartifact get-authorization-token --domain rooam --domain-owner 738199573860 --region us-east-1 --query authorizationToken --output text --duration-seconds 43200`
+    echo $TOKEN
+
+    export CODEARTIFACT_AUTH_TOKEN=$TOKEN
 }
