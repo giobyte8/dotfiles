@@ -1,0 +1,13 @@
+[Unit]
+Description=Keep HDDs awake and mounted
+After=local-fs.target
+
+# In case some disks depends on network services
+# e.g. NFS or Samba shares
+# Wants=network-online.target
+# After=network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=/home/rock/dotf/server/utils/storage/keep-disks-awake.sh
+
