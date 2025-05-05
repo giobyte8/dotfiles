@@ -5,6 +5,7 @@ if [[ $OSTYPE == 'darwin'* ]]; then
 
   ## MacOS-only aliases
   alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
+  alias typora="open -a typora"
 
   ## Global env variables setup
   export GEM_HOME=$HOME/.gem
