@@ -21,3 +21,4 @@ brew install --cask visual-studio-code
 brew install --cask spotify
 brew install --cask obsidian
 brew install --cask typora
+brew install --cask docker
