@@ -13,6 +13,7 @@ services:
       - "$PATH_BOOKS:/mnt/books"
       - "$PATH_S20PLUS:/mnt/s20plus"
       - "$PATH_S23_CAM:/mnt/S23_Cam"
+      - "$PATH_IPHONE_PHOTOS:/mnt/iPhone16"
     ports:
       - 8384:8384
       - 22000:22000/tcp
