@@ -10,7 +10,7 @@ services:
       - PGID=$GID
     volumes:
       - "$PATH_MMEDIA:/srv/mmedia"
-      - "$PATH_BLACKSTORE:/srv/blackstore"
+      - "$PATH_REDSTORE1:/srv/redstore1"
       - "$PATH_VSTORE:/srv/vstore"
       - "$PATH_DB:/database/filebrowser.db"
       - "$PATH_SETTINGS:/config/settings.json"
