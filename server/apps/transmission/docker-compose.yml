@@ -1,5 +1,4 @@
----
-version: "2.1"
+
 services:
   transmission:
     image: lscr.io/linuxserver/transmission
@@ -8,15 +7,19 @@ services:
       - PUID=$UID
       - PGID=$GID
       - TZ=America/Mexico_City
-      - TRANSMISSION_WEB_HOME=/combustion-release/  # optional
-      - USER=${USER}                                # optional
-      - PASS=${PASS}                                # optional
+
+      # Following env vars are optional
+      - TRANSMISSION_WEB_HOME=/opt/ui/flood-for-transmission
+      - USER=${USER}
+      - PASS=${PASS}
       # - WHITELIST=iplist #optional
       # - HOST_WHITELIST=dnsnane list #optional
     volumes:
       - ${APPDATA_PATH}:/config
       - ${DOWNLOADS_PATH}:/downloads
       - ${WATCH_PATH}:/watch
+
+      - ./config/ui/flood-for-transmission:/opt/ui/flood-for-transmission
     ports:
       - ${PORT_UI}:9091
       - 51413:51413
