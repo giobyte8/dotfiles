@@ -34,25 +34,21 @@ services:
       - 4318:4318   # OTLP http receiver
       - 55679:55679 # zpages extension
     volumes:
-      - "./otelcol-cfg.yaml:/etc/otelcol-contrib/config.yaml"
+      - "./otelcol.yaml:/etc/otelcol-contrib/config.yaml"
 
-  # Derived from: https://www.jaegertracing.io/docs/1.47/getting-started/#all-in-one
+  # From: https://www.jaegertracing.io/docs/2.5/getting-started/#all-in-one
   jaeger:
-    image: jaegertracing/all-in-one:1.51
+    image: jaegertracing/jaeger:2.5.0
     container_name: jaeger
     ports:
-      - 6831:6831/udp
-      - 6832:6832/udp
-      - 5778:5778
       - 16686:16686
-      - 4300:4317
-      - 4301:4318
-      - 14250:14250
-      - 14268:14268
-      - 14269:14269
+
+      # Already binded in otelcol
+      # - 4317:4317
+      # - 4318:4318
+
+      - 5778:5778
       - 9411:9411
-    environment:
-      - COLLECTOR_ZIPKIN_HOST_PORT=:9411
 
   # See '.env' file for connection params
   neo4j:
