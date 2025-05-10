@@ -12,6 +12,9 @@ processors:
     send_batch_size: 1000
 
 exporters:
+  debug:
+    verbosity: normal
+
   otlp/jaeger:
     endpoint: jaeger:4317
     tls:
@@ -19,8 +22,8 @@ exporters:
 
   prometheus:
     endpoint: 0.0.0.0:8889
-    const_labels:
-      service: hservices # (How to support multiple services?)
+    # const_labels:
+    #   service: hservices
 
 service:
   pipelines:
@@ -31,4 +34,4 @@ service:
     metrics:
       receivers: [otlp]
       processors: [batch]
-      exporters: [prometheus]
+      exporters: [debug, prometheus]

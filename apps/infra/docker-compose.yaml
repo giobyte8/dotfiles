@@ -50,6 +50,35 @@ services:
       - 5778:5778
       - 9411:9411
 
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: prometheus
+    ports:
+      - 9090:9090
+    volumes:
+      - "./config/prometheus.yaml:/etc/prometheus/prometheus.yml"
+      - "./data/prometheus:/prometheus"
+    command:
+      - "--config.file=/etc/prometheus/prometheus.yml"
+      - "--storage.tsdb.retention.time=90d"
+      - "--web.enable-lifecycle"
+
+  grafana:
+    image: grafana/grafana-oss:latest
+    container_name: grafana
+    ports:
+      - "9091:3000"
+    volumes:
+      - "./data/grafana:/var/lib/grafana"
+      - "./config/grafana/datasources:/etc/grafana/provisioning/datasources"
+      # - "./config/grafana/dashboards:/etc/grafana/provisioning/dashboards"
+    environment:
+      - "GF_SECURITY_ADMIN_USER=$GRAFANA_USER"
+      - "GF_SECURITY_ADMIN_PASSWORD=$GRAFANA_PASS"
+      # - GF_INSTALL_PLUGINS= # You can install plugins here if needed
+    depends_on:
+      - prometheus
+
   # See '.env' file for connection params
   neo4j:
     image: neo4j:5.20-community-bullseye

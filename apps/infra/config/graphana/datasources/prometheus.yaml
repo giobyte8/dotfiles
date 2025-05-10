@@ -1,0 +1,19 @@
+apiVersion: 1
+
+datasources:
+  - name: Prometheus
+    type: prometheus
+
+    # 'proxy' means Grafana backend handles requests,
+    # 'direct' means browser does
+    access: proxy
+    url: http://prometheus:9090
+
+    # Optional: make this the default data source for new panels
+    isDefault: true
+    jsonData:
+      # Or POST if your Prometheus configuration requires it
+      httpMethod: GET
+
+    # Optional: set to false to prevent editing from UI
+    editable: true
