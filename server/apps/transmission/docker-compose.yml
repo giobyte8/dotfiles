@@ -21,7 +21,7 @@ services:
 
       - ./config/ui/flood-for-transmission:/opt/ui/flood-for-transmission
     ports:
-      - ${PORT_UI}:9091
+      # - ${PORT_UI}:9091
       - 51413:51413
       - 51413:51413/udp
     restart: unless-stopped
