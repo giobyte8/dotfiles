@@ -1,0 +1,23 @@
+
+services:
+  ddownloader:
+    image: giobyte8/ddownloader:1.0.2
+    container_name: ddownloader
+    user: "${UID}:${GID}"
+    env_file:
+      - ddownloader.env
+    environment:
+      - "TZ=America/Mexico_City"
+    volumes:
+      - "./gdl-base.json:/opt/ddownloader/config/gdl-base.json"
+      - "$RUNTIME_PATH:/opt/ddownloader/config/runtime/"
+
+      # Downloaded files will be saved here
+      - "$GALLERIES_PATH:/opt/ddownloader/data"
+    networks:
+      - hservices
+
+networks:
+  hservices:
+    external: true
+
