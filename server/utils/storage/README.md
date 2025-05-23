@@ -28,3 +28,21 @@ sudo systemctl daemon-reload
 sudo systemctl enable --now keep-storage-mounted.timer
 ```
 
+## Manage systemd service
+
+Use systemctl, to view its status
+```shell
+systemctl status keep-storage-mounted.service
+```
+
+Use `journalctl` to review its logs
+```shell
+journalctl -u keep-storage-mounted -r
+```
+- `-r`: Shows logs in reverse order, so that newest entries appear at the top
+- `-f`: Shows latest entries and follows logs, use it for realtime monitoring
+
+Alternatively, you can query logs in a specific time range
+```shell
+journalctl -u keep-storage-mounted.service --since "2025-05-12 00:00:00" --until "2025-05-12 23:59:59"
+```
