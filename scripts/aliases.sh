@@ -35,3 +35,9 @@ alias tf="terraform"
 # VSCode CLI
 alias ct="code tunnel"
 
+#################################################
+# gallery-dl shortcuts
+
+# Download in current directory
+alias gdl="gallery-dl -D ./"
+
