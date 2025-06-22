@@ -4,7 +4,8 @@ There is a lot of functionality already integrated in native tools. Don't repeat
 
 ## Files sync
 
-`rsync` is the tool to go. Below is a command that will send Wallpapers directory to `192.168.1.103` machine
+`rsync` is the tool to go. Below there is a command that will send Wallpapers directory
+to `192.168.1.103` machine
 
 ```bash
 rsync --delete --progress -zrh \
@@ -16,8 +17,6 @@ rsync --delete --progress -zrh \
 rsync --progress -hu --files-from=missing.txt rock@192.168.1.103:./videos/cameras/GoPro/ ./
 ```
 
-
-
 Some other interesting flags for `rsync`
 
 * `--existing` Skip creating new files on receiver
@@ -27,7 +26,18 @@ Some other interesting flags for `rsync`
 * `--progress` Show progress during transfers
 * `-z` or `--compress` Compress data during transfer
 * `-h` or `--human-readable` Output numbers in a human-readable format
+* `-u` Skip existing files on the destination that have a modification time newer than the
+       source file.
 * `--log-file=FILE` Log what we're doing to the specified FILE
 
 And much more options: https://ss64.com/bash/rsync.html
 
+## Cheatsheet 'rsync'
+
+Copy with progress
+
+```shell
+rsync --progress -hru /path/to/source/ /path/to/destination
+
+# NOTE: '/' at end of source is needed to sync contents only
+```
