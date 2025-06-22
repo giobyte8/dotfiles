@@ -1,9 +1,10 @@
 
 services:
   ddownloader:
-    image: giobyte8/ddownloader:1.0.2
+    image: giobyte8/ddownloader:1.1.1
     container_name: ddownloader
     user: "${UID}:${GID}"
+    restart: unless-stopped
     env_file:
       - ddownloader.env
     environment:
