@@ -129,7 +129,7 @@ check_last: 10
 
 # before creating a backup, run once per repository.
 before_backup:
-    - /mnt/hooks/on_action_rd.sh "{repository}" "{configuration_filename}" "Starting backup 💾"
+    - /mnt/hooks/ct_on_action.sh "{repository}" "{configuration_filename}" "Starting backup 💾"
 
 # before pruning, run once per repository.
 # before_prune:
@@ -141,7 +141,7 @@ before_backup:
 
 # before consistency checks, run once per repository.
 before_check:
-    - /mnt/hooks/on_action_rd.sh "{repository}" "{configuration_filename}" "↳ Consistency check"
+    - /mnt/hooks/ct_on_action.sh "{repository}" "{configuration_filename}" "↳ Consistency check"
 
 # List of one or more shell commands or scripts to execute before
 # extracting a backup, run once per repository.
@@ -150,7 +150,7 @@ before_check:
 
 # after creating a backup, run once per repository.
 after_backup:
-    - /mnt/hooks/on_action_rd.sh "{repository}" "{configuration_filename}" "Finished backup ✅"
+    - /mnt/hooks/ct_on_action.sh "{repository}" "{configuration_filename}" "Finished backup ✅"
 
 # after compaction, run once per repository.
 # after_compact:
@@ -162,7 +162,7 @@ after_backup:
 
 # after consistency checks, run once per repository.
 after_check:
-    - /mnt/hooks/on_action_rd.sh "{repository}" "{configuration_filename}" "↳ Consistency check complete"
+    - /mnt/hooks/ct_on_action.sh "{repository}" "{configuration_filename}" "↳ Consistency check complete"
 
 # List of one or more shell commands or scripts to execute after
 # extracting a backup, run once per repository.
@@ -177,7 +177,7 @@ after_check:
 # Run when an exception occurs during a "create", "prune", "compact",
 # or "check" action or an associated before/after hook.
 on_error:
-    - /mnt/hooks/on_action_rd.sh "{repository}" "{configuration_filename}" "Error during prune/compact/create/check"
+    - /mnt/hooks/ct_on_action.sh "{repository}" "{configuration_filename}" "Error during prune/compact/create/check"
 
 # List of one or more shell commands or scripts to execute before
 # running all actions (if one of them is "create"). These are

@@ -8,3 +8,8 @@ config/ssh
 # Legacy prod runtime data
 borg_cfg/security
 ssh_keys/
+
+# Python virtual environment
+#   Used by hooks to send notifications
+.venv/
+__pycache__/
