@@ -11,4 +11,4 @@ alias awsr="aws --profile rooam"
 # Run AWS CLI against local stack
 #   Endpoint URL is taken from 'localstack'
 #   profile at ~/.aws/config
-alias laws="aws --profile localstack"
+alias aws-local="aws --profile localstack"
