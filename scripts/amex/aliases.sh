@@ -8,6 +8,12 @@ alias ws="cd ~/src/rooam/_poc/workspace"
 
 alias awsr="aws --profile rooam"
 
+#
+# Shortcuts to rooam projects
+
+alias tpw="cd ~/src/rooam/rooam-ticket-poll-worker"
+
+
 # Run AWS CLI against local stack
 #   Endpoint URL is taken from 'localstack'
 #   profile at ~/.aws/config
