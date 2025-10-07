@@ -1,17 +1,27 @@
 # Manages AWS SSO Login and AWS_PROFILE value
 # Ref: https://rooamdotco.atlassian.net/wiki/spaces/DEV/pages/2415788033/AWS+CLI
 
+DEBUG=0
+
 # Setup CodeArtifact token
 function awsca_token {
-    echo
-    echo "Exporting CodeArtifact token:"
     TOKEN=`aws codeartifact get-authorization-token --domain rooam --domain-owner ${1} --region us-east-1 --query authorizationToken --output text --duration-seconds 43200`
-    echo $TOKEN
+
+    if [ $DEBUG -eq 1 ]; then
+        echo
+        echo "Exporting CodeArtifact token:"
+        echo "$TOKEN"
+    fi
 
     export CODEARTIFACT_AUTH_TOKEN=$TOKEN
 }
 
 function __login_with_profile {
+    # Clean up env variables from previous/expired sessions
+    unset AWS_ACCESS_KEY_ID
+    unset AWS_SECRET_ACCESS_KEY
+    unset AWS_SESSION_TOKEN
+
     export AWS_PROFILE="${1}"
     echo "Doing 'aws sso login' with profile: '${AWS_PROFILE}'"
 
