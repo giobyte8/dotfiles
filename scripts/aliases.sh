@@ -41,3 +41,6 @@ alias ct="code tunnel"
 # Download in current directory
 alias gdl="gallery-dl -D ./"
 
+# Download in specified directory
+alias gdld="gallery-dl -D"
+

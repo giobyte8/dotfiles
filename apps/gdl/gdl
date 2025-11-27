@@ -6,4 +6,4 @@
 
 gallery-dl                         \
     -c ./gallery-dl.conf.json      \
-    -D "./data.dev/downloads" $1
+    -D "./galleries" $1
