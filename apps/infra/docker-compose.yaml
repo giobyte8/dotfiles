@@ -46,15 +46,14 @@ services:
       # Already binded in otelcol
       # - 4317:4317
       # - 4318:4318
-
-      - 5778:5778
-      - 9411:9411
+      # - 5778:5778
+      # - 9411:9411
 
   prometheus:
     image: prom/prometheus:latest
     container_name: prometheus
     ports:
-      - 9090:9090
+      - 9090:9090 # UI and APIs
     volumes:
       - "./config/prometheus.yaml:/etc/prometheus/prometheus.yml"
       - "./data/prometheus:/prometheus"
@@ -104,7 +103,7 @@ services:
       - POSTGRES_PASSWORD=${PG_PASS}
 
   pgadmin:
-    image: dpage/pgadmin4
+    image: dpage/pgadmin4:latest
     container_name: pgadmin
     ports:
       - 5400:80
