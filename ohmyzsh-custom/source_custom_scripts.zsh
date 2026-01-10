@@ -11,3 +11,8 @@ if [ "$hostname" = "CQ76DCFF2Y" ]; then
     # echo "Sourcing scripts for 'amex' env"
     for f in "${SCRIPTS}"/amex/*.sh; do source $f; done
 fi
+
+if [ "$hostname" = "redbox" ]; then
+    # echo "Sourcing scripts for 'redbox' env"
+    for f in "${SCRIPTS}"/rbx/*.sh; do source $f; done
+fi
