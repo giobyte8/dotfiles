@@ -2,9 +2,9 @@
 # Setup of alias functions specific to amex env
 
 alias ro="cd ~/src/rooam"
-alias poc="cd ~/src/rooam/_poc"
+alias ro-other="cd ~/src/rooam/_other"
 alias rde="cd ~/src/rooam/docker-env"
-alias ws="cd ~/src/rooam/_poc/workspace"
+alias ws="cd ~/src/rooam/_other/workspace"
 
 alias awsr="aws --profile rooam"
 
@@ -18,3 +18,4 @@ alias tpw="cd ~/src/rooam/rooam-ticket-poll-worker"
 #   Endpoint URL is taken from 'localstack'
 #   profile at ~/.aws/config
 alias aws-local="aws --profile localstack"
+alias awslocal="aws --profile localstack"
