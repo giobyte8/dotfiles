@@ -1,6 +1,7 @@
 [Unit]
 Description=Keep HDDs awake and mounted
 After=local-fs.target
+RequiresMountsFor=/media/redstore1 /media/vstore
 
 # In case some disks depends on network services
 # e.g. NFS or Samba shares
@@ -9,5 +10,6 @@ After=local-fs.target
 
 [Service]
 Type=oneshot
+RemainAfterExit=yes
 ExecStart=/home/rock/dotf/server/utils/storage/keep-disks-awake.sh
 
