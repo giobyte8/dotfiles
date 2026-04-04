@@ -1,7 +1,7 @@
 
 services:
   ddownloader:
-    image: giobyte8/ddownloader:1.2.0
+    image: giobyte8/ddownloader:1.4.1
     container_name: ddownloader
     user: "${UID}:${GID}"
     restart: unless-stopped
