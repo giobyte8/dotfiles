@@ -54,3 +54,45 @@ function rds-audit() {
 
     bash access-rds.sh "$env" middleware "$db_name"
 }
+
+function rds-toast() {
+    # Default to 'staging' if no argument is provided
+    local env="${1:-staging}"
+
+    # Determine db value based on environment
+    local db_name
+    if [[ "$env" == "staging" ]]; then
+        db_name="staging-toast-integration-db-0"
+    elif [[ "$env" == "production" ]]; then
+        db_name="production-toast-integration-db-0"
+    else
+        echo "Unknown environment: $env. Use 'staging' or 'production'."
+        return 1
+    fi
+
+    cd ~/src/rooam/rooam-dev-tools/aws
+    awsl # Function from 'aws.sh'
+
+    bash access-rds.sh "$env" middleware "$db_name"
+}
+
+function rds-checkmatch() {
+    # Default to 'staging' if no argument is provided
+    local env="${1:-staging}"
+
+    # Determine db value based on environment
+    local db_name
+    if [[ "$env" == "staging" ]]; then
+        db_name="staging-checkmatch-db-0"
+    elif [[ "$env" == "production" ]]; then
+        db_name="production-checkmatch-db-0"
+    else
+        echo "Unknown environment: $env. Use 'staging' or 'production'."
+        return 1
+    fi
+
+    cd ~/src/rooam/rooam-dev-tools/aws
+    awsl # Function from 'aws.sh'
+
+    bash access-rds.sh "$env" middleware "$db_name"
+}
