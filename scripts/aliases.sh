@@ -24,7 +24,7 @@ alias r1="ssh rock@143.244.144.17"
 
 # ssh shortcuts (Forcing usage of password auth)
 alias sshp="ssh -o PubkeyAuthentication=no -o PreferredAuthentications=password"
-alias rbxp="ssh -o PubkeyAuthentication=no -o PreferredAuthentications=password rock@192.168.1.103"
+alias rbxp="ssh -o PubkeyAuthentication=no -o PreferredAuthentications=password rock@192.168.100.130"
 
 # Directories path shortcuts
 alias apps="cd ~/dotf/apps && ls"
