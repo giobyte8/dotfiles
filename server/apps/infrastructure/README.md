@@ -122,7 +122,7 @@ openssl ecparam -out ca.key -name prime256v1 -genkey
 openssl req -new -sha256 -key ca.key -out ca.csr
 
 # Use the .csr to create certificate
-openssl x509 -req -sha256 -days 365 -in ca.csr -signkey ca.key -out ca.crt
+openssl x509 -req -sha256 -days 730 -in ca.csr -signkey ca.key -out ca.crt
 ```
 
 ###### 2. Create server certificate
@@ -142,7 +142,7 @@ openssl x509 -req                            \
   -in server.csr                             \
   -CA  ca.crt -CAkey ca.key -CAcreateserial  \
   -out server.crt                            \
-  -days 365 -sha256
+  -days 730 -sha256
 
 # (Optional) You can verify the certificate's content
 openssl x509 -in server.crt -text -noout
@@ -165,7 +165,7 @@ openssl x509 -req                            \
   -in client.csr                             \
   -CA  ca.crt -CAkey ca.key -CAcreateserial  \
   -out client.crt                            \
-  -days 365 -sha256
+  -days 730 -sha256
 
 # (Optional) You can verify the certificate's content
 openssl x509 -in client.crt -text -noout
