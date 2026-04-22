@@ -50,5 +50,15 @@ function aws_dev {
 
 # AWS Login shortcut
 function awsl {
-    aws_poweruser
+    # Check first argument for env, default to 'lz'.
+    local env="${1:-lz}"
+
+    if [[ "$env" == "lz" ]]; then
+        aws_poweruser
+    elif [[ "$env" == "e1" ]]; then
+        __login_with_profile "e1"
+    else
+        echo "Unknown environment: $env. Use 'lz', or 'e1'."
+        return 1
+    fi
 }
