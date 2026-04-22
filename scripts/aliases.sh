@@ -6,13 +6,20 @@ alias dpsa="docker ps -a --format \"table {{.Names}}\t{{.Status}}\""
 alias dpsp="docker ps --format \"table {{.Names}}\t{{.Status}}\t{{.Ports}}\""
 alias dpsap="docker ps -a --format \"table {{.Names}}\t{{.Status}}\t{{.Ports}}\""
 
-# Docker compose
-alias dc="docker compose"
-alias dcs="docker compose config --services"
-
 # Docker logs inspection
 alias dl="docker logs"
 alias dlf="docker logs -f"
+
+# Docker compose
+alias dc="docker compose"
+alias dcs="docker compose config --services"
+alias dcps="docker compose ps --format \"table {{.Service}}\t{{.Name}}\t{{.State}}\""
+alias dcpsp="docker compose ps --format \"table {{.Name}}\t{{.State}}\t{{.Ports}}\""
+
+# Compose logs inspection
+alias dcl="docker compose logs"
+alias dclf="docker compose logs -f"
+
 
 # AWS SAM shortcuts
 alias sam-local-api="sam build && sam local start-api"
