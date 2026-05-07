@@ -48,6 +48,10 @@ config.keys = {
   
   -- Make Option-Right equivalent to Alt-f; forward-word
   { key="RightArrow", mods="OPT", action=wezterm.action{SendString="\x1bf" }},
+
+  -- Reorder tabs
+  { key="LeftArrow",  mods="CMD", action=wezterm.action.MoveTabRelative(-1) },
+  { key="RightArrow", mods="CMD", action=wezterm.action.MoveTabRelative(1)  },
 }
 
 
