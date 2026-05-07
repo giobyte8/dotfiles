@@ -9,17 +9,21 @@
 PROMPT=''
 
 if [ -n "$SSH_TTY" ] || [ -n "$SSH_CLIENT" ]; then
-    H=$HOSTNAME
-    if [[ $H -eq "redbox" ]]
+    H="$(hostname)"
+    if [[ $H == "redbox" ]]
     then
         H=rbx
-    elif [[ $H -eq "graybox" ]]
+    elif [[ $H == "graybox" ]]
     then
         H=gbx
+    elif [[ $H == "mbpro-gio.local" ]]
+    then
+        H=mb
     fi
 
-    PROMPT="%{$fg[magenta]%}$H ⌁ "
+    #PROMPT="%{$fg[magenta]%}$H ⌁ "
+    PROMPT="%{$fg[magenta]%}$H "
 fi
 
-PROMPT="$PROMPT%{$fg[yellow]%}%1~ ❯ $T %{$reset_color%}"
+PROMPT="$PROMPT%{$fg[yellow]%}%1~ ❯ %{$reset_color%}"
 # RPROMPT="%(?.%F{green}√.%F{red}?%?)%{$reset_color%}"
