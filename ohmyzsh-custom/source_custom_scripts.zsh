@@ -8,7 +8,7 @@ SRC_DIR="$(realpath $HERE/../src)"
 # Source common scripts
 
 for f in "${SCRIPTS}"/*.sh; do source $f; done
-for f in "${SRC_DIR}"/*.sh; do source $f; done
+for f in "${SRC_DIR}"/**/*.sh; do source $f; done
 
 
 # -------------------------------------------------------------------
