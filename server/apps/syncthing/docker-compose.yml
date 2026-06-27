@@ -2,7 +2,6 @@ services:
   syncthing:
     image: lscr.io/linuxserver/syncthing:latest
     container_name: syncthing
-    hostname: syncthing #optional
     environment:
       - PUID=$UID
       - PGID=$GID
@@ -10,9 +9,13 @@ services:
     volumes:
       - "$PATH_CONFIG:/config"
 
+      - "$PATH_GALLERIES:/mnt/galleries"
       - "$PATH_WALLPAPERS:/mnt/wallpapers"
       - "$PATH_DOCS:/mnt/docs"
       - "$PATH_IPHONE_PHOTOS:/mnt/iPhone16"
+
+      - "$PATH_MM_DIANA:/mnt/mmedia/diana"
+      - "$PATH_GALLERIES_P:/mnt/mmedia/galleries.p/"
     ports:
       - 8384:8384
       - 22000:22000/tcp
