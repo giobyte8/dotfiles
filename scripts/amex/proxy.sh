@@ -16,6 +16,7 @@ function proxy-set {
     export https_proxy=$proxy_url
     export HTTPS_PROXY=$proxy_url
     export HTTP_PROXY=$proxy_url
+    export ALL_PROXY=$proxy_url
 
     export {NO_PROXY,no_proxy}=".americanexpress.com,.aexp.com,localhost,127.0.0.1,*.localstack.cloud"
 }
@@ -34,6 +35,7 @@ function proxy-phoenix {
 }
 
 function proxy-unset {
+    unset ALL_PROXY
     unset HTTPS_PROXY
     unset HTTP_PROXY
     unset http_proxy
@@ -51,6 +53,7 @@ function proxy-status {
     echo " HTTPS_PROXY=${HTTPS_PROXY}"
     echo " http_proxy=${http_proxy}"
     echo " https_proxy=${https_proxy}"
+    echo " ALL_PROXY=${ALL_PROXY}"
 
     echo
     echo " NO_PROXY=${NO_PROXY}"
