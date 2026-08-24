@@ -20,6 +20,11 @@ if [ "$hostname" = "CQ76DCFF2Y" ]; then
     for f in "${SCRIPTS}"/amex/*.sh; do source $f; done
 fi
 
+if [ "$hostname" = "mbpro-gio.local" ]; then
+    # echo "Sourcing scripts for 'mbpro' env"
+    for f in "${SCRIPTS}"/mbpro/**/*.sh; do source $f; done
+fi
+
 if [ "$hostname" = "redbox" ]; then
     # echo "Sourcing scripts for 'redbox' env"
     for f in "${SCRIPTS}"/rbx/*.sh; do source $f; done
