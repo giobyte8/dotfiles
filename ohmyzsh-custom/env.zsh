@@ -9,3 +9,10 @@ fi
 if [ -d "/opt/homebrew/opt/libpq/bin" ]; then
     PATH="/opt/homebrew/opt/libpq/bin:$PATH"
 fi
+
+# Load brew in linux
+if [ -d "/home/linuxbrew/.linuxbrew/bin" ]; then
+    #echo "DEBUG: Loading linux brew"
+    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv zsh)"
+fi
+
