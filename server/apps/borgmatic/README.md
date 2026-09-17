@@ -5,7 +5,7 @@ Backups include following data:
 - [x] Cameras pictures and videos
 - [ ] Edited pictures
 - [ ] Edited videos
-- [ ] Private sensible galleries (Encrypted zip, not uncompressed files)
+- [x] Private sensible galleries (Encrypted zip, not uncompressed files)
 - [ ] Legacy source code (SRC The Journey)
 - [ ] Personal documents
 
@@ -94,7 +94,7 @@ vim .env
 
 # Enter values for:
 #   - Borg passphrase (For backups encryption)
-#   - RabbitMQ or Redis broker (Used for notifications)
+#   - Notification System config
 # > Verify the rest of variables have right values
 ```
 
