@@ -1,12 +1,9 @@
-env_file=""$(dirname "$0")"/.env"
+# Functions to manage proxy settings for this machine.
+#  Notice that sensitive vars were loaded from '.env' file at
+#  init.sh script
 
 function proxy-set {
     # TODO: Use -s argument to show/no show logging
-
-    # Load sensitive info from .env file
-    if [ -f "${env_file}" ]; then
-        source "${env_file}"
-    fi
 
     #echo "Setting proxy variables"
     proxy_url="http://${PROXY_USER}:${PROXY_PASS}@proxy.aexp.com:8080"
