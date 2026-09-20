@@ -26,6 +26,9 @@ function fl() (
     up)
       __fup "$@"
       ;;
+    down)
+      __fdown "$@"
+      ;;
     *)
       __err "Unknown command '$cmd'"
       # TODO: Print usage information
@@ -157,6 +160,41 @@ function __fup {
   else
     # Start all non-disabled services
     docker compose up -d $(__svcs_not_in_group "disabled")
+  fi
+}
+
+function __fdown {
+  local _ALL="-a"
+  local host="$FL_HOST" # Set to default value
+  local group
+
+  # Read arguments for 'down' subcommand
+  case $# in
+    0)
+      # Use the default host and all services.
+      ;;
+    1)
+      group="$(__resolve_group "$1")"
+      ;;
+    2)
+      host="$1"
+      group="$(__resolve_group "$2")"
+      ;;
+    *)
+      __err 'Usage: fl down [host] [group]'
+      ;;
+  esac
+
+  host_path="$(__resolve_host_cfg_path "$host")"
+  cd "$host_path"
+
+  # Group is set and not equal to '_ALL'
+  if [ -n "$group" ] && [ "$group" != "$_ALL" ]; then
+    # Stop services for the specified group
+    docker compose down $(__svcs_in_group "$group")
+  else
+    # Stop all running services
+    docker compose down
   fi
 }
 
