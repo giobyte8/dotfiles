@@ -123,7 +123,7 @@ function __fps {
   } |
   column -t -s $'\t' |
   awk '
-    $0 == "__GROUP_BR__" { print ""; next }
+    $1 == "__GROUP_BR__" { print ""; next }
     { print }
   '
 }
