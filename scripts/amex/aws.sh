@@ -57,8 +57,10 @@ function awsl {
         aws_poweruser
     elif [[ "$env" == "e1" ]]; then
         __login_with_profile "e1"
+    elif [[ "$env" == "e2" ]]; then
+        __login_with_profile "e2"
     else
-        echo "Unknown environment: $env. Use 'lz', or 'e1'."
+        echo "Unknown environment: $env. Use 'lz', 'e1', or 'e2'."
         return 1
     fi
 }
