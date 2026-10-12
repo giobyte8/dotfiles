@@ -9,11 +9,27 @@
 # Fleet management entry point
 # Usage:
 #   fl <command> [env|group] [group]
+function fl() {
+  set -e -o pipefail
+
+  if [ $# -eq 0 ]; then
+    if [[ -n "${FL_HOME}" ]] && [[ -n "${FL_HOST}" ]]; then
+      cd "${FL_HOME}/hosts/${FL_HOST}"
+    else
+      echo "Missing configs: 'FL_HOME' and 'FL_HOST'"
+    fi
+    return 0
+  fi
+
+  __fl_subcmd "$@"
+}
+
+# Runs required sub-command in its own subshell.
 #
 # Function body is wrapped in '()' rather than '{}' to
 # use a subshell so `set -e` stops this command on failure
 # without changing the calling interactive shell.
-function fl() (
+function __fl_subcmd() (
   set -e -o pipefail
 
   local cmd="$1"
