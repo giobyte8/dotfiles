@@ -19,3 +19,6 @@ alias tpw="cd ~/src/rooam/rooam-ticket-poll-worker"
 #   profile at ~/.aws/config
 alias aws-local="aws --profile localstack"
 alias awslocal="aws --profile localstack"
+
+# Shortcuts to fix git configs
+alias gso="git remote set-url origin"
