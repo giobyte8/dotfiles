@@ -27,6 +27,10 @@ function __login_with_profile {
 
     aws sso login
     eval "$(aws configure export-credentials --format env)"
+
+    echo
+    echo "Use below command to verify your identity:"
+    echo "> aws sts get-caller-identity"
 }
 
 function aws_poweruser {
