@@ -1,5 +1,4 @@
-#
-# Loads amex environment variables from local .env file
+# Loads environment variables from local .env file
 
 
 # If .env file exists at this script dir, source it

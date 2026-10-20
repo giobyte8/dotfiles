@@ -8,9 +8,11 @@ alias ws="cd ~/src/rooam/_other/workspace"
 
 alias awsr="aws --profile rooam"
 
-#
-# Shortcuts to rooam projects
+# SSH Shortcuts
+alias jh2="ssh -o ServerAliveInterval=30 $JUMPHOST_E2"
+alias jh3="ssh -o ServerAliveInterval=30 $JUMPHOST_E3"
 
+# Shortcuts to rooam projects
 alias tpw="cd ~/src/rooam/rooam-ticket-poll-worker"
 
 
