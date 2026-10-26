@@ -63,8 +63,10 @@ function awsl {
         __login_with_profile "e1"
     elif [[ "$env" == "e2" ]]; then
         __login_with_profile "e2"
+    elif [[ "$env" == "e3" ]]; then
+        __login_with_profile "e3"
     else
-        echo "Unknown environment: $env. Use 'lz', 'e1', or 'e2'."
+        echo "Unknown environment: $env. Use 'lz', 'e1', 'e2', or 'e3'."
         return 1
     fi
 }
