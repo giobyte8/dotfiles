@@ -32,7 +32,7 @@ config.color_scheme = scheme_for_appearance(get_appearance())
 
 -- config.font = wezterm.font 'CaskaydiaCove Nerd Font'
 config.font = wezterm.font 'Cascadia Code PL'
-config.font_size = 13
+config.font_size = 14
 config.line_height = 1.05
 
 -- Enables ligatures
