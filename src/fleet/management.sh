@@ -10,8 +10,6 @@
 # Usage:
 #   fl <command> [env|group] [group]
 function fl() {
-  set -e -o pipefail
-
   if [ $# -eq 0 ]; then
     if [[ -n "${FL_HOME}" ]] && [[ -n "${FL_HOST}" ]]; then
       cd "${FL_HOME}/hosts/${FL_HOST}"
