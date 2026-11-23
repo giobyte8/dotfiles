@@ -1,7 +1,7 @@
 
 services:
   central:
-    image: giobyte8/central:1.2.0
+    image: giobyte8/central:1.3.1
     container_name: central
     env_file:
       - central.env
@@ -18,7 +18,7 @@ services:
       - r1services
 
   central-web:
-    image: giobyte8/central-web:1.0.0
+    image: giobyte8/central-web:1.0.1
     container_name: central-web
     restart: unless-stopped
     networks:
